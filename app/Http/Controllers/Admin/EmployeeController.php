@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -58,7 +59,6 @@ class EmployeeController extends Controller
         phone = ?,
         occupation = ?,
         password = ?,
-        repeat_password = ?,
         updated_at = ?
         WHERE id = ?", [
             $request->name,
@@ -68,7 +68,6 @@ class EmployeeController extends Controller
             $request->phone,
             $request->occupation,
             Hash::make($request->password),
-            Hash::make($request->repeat_password),
             Carbon::now(+7),
             $id
         ]);
@@ -81,9 +80,12 @@ class EmployeeController extends Controller
         $message = $check > 0 ? 'Successfully deleted employee' : 'Failed to deleted employee';
         return redirect()->route('admin.employee-list')->with('message', $message);
     }
-    // public function randomPassword()
-    // {
-    //     $random = Str::random(8);
-    //     return view('admin.pages.employee-list.create', ['random' => $random]);
-    // }
+    public function searchEmployee(Request $request)
+    {
+        dd($request->search);
+        $searches = Employee::where('name', 'like', "%$request->search%")->get();
+        // return view('admin.pages.employee-list.list', ['search' => $employees]);
+        // dd($employees);
+        return redirect()->route('admin.employee-list', ['search' => $searches]);
+    }
 }

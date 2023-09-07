@@ -46,7 +46,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('employee-list/store', [EmployeeController::class, 'store'])->name('employee-list.store');
     Route::get('employee-list/detail/{id}', [EmployeeController::class, 'detail'])->name('employee-list.detail');
     Route::post('employee-list/update/{id}', [EmployeeController::class, 'update'])->name('employee-list.update');
-    Route::delete('employee-list/delete/{id}', [EmployeeController::class, 'delete'])->name('employee-list.delete');
+    Route::get('employee-list/delete/{id}', [EmployeeController::class, 'delete'])->name('employee-list.delete');
+    Route::post('employee-list/search', [EmployeeController::class, 'searchEmployee'])->name('employee-list.search');
 });
 Route::get('admin', function () {
     return view('admin.layout.master');
