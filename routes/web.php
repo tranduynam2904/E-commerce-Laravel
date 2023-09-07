@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Employee\DashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\Employee\WidgetController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,10 +42,18 @@ Route::prefix('employee')->name('employee.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('employee-list', [EmployeeController::class, 'index'])->name('employee-list');
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('employee-list.create', [EmployeeController::class, 'create'])->name('employee-list.create');
-    Route::post('employee-list.store', [EmployeeController::class, 'store'])->name('employee-list.store');
+    Route::get('employee-list/create', [EmployeeController::class, 'create'])->name('employee-list.create');
+    Route::post('employee-list/store', [EmployeeController::class, 'store'])->name('employee-list.store');
+    Route::get('employee-list/detail/{id}', [EmployeeController::class, 'detail'])->name('employee-list.detail');
+    Route::post('employee-list/update/{id}', [EmployeeController::class, 'update'])->name('employee-list.update');
+    Route::delete('employee-list/delete/{id}', [EmployeeController::class, 'delete'])->name('employee-list.delete');
 });
 Route::get('admin', function () {
     return view('admin.layout.master');
 });
+Route::prefix('FTM')->name('FTM.')->group(function(){
+    Route::get('login', [LoginController::class, 'index'])->name('login');
+    Route::post('login/account', [LoginController::class, 'login'])->name('login.account');
+});
+
 require __DIR__ . '/auth.php';

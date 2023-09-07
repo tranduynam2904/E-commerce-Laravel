@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // Specify the table name as employee
     protected $fillable = [
         'name',
         'email',

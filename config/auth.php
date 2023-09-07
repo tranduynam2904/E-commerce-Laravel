@@ -70,7 +70,18 @@ return [
         //     'table' => 'users',
         // ],
     ],
-
+    'guards' => [
+        'employee' => [
+            'driver' => 'eloquent',
+            'provider' => 'employees',
+        ],
+    ],
+    'providers' => [
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

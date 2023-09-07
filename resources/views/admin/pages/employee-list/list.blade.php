@@ -3,7 +3,8 @@
 @section('content')
     <div class="right_col" role="main">
         <div class="">
-            <a href="{{ route('admin.employee-list.create') }}" style="float: right; margin-top:5px" type="button" class="btn btn-primary">Create New Employee</a>
+            <a href="{{ route('admin.employee-list.create') }}" style="float: right; margin-top:5px" type="button"
+                class="btn btn-primary">Create New Employee</a>
             <div style="display: flex; justify-content:flex-end;align-items:center" class="page-title">
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -50,34 +51,66 @@
                                             <th>
                                                 <input type="checkbox" id="check-all" class="flat">
                                             </th>
-                                            <th class="column-title">Invoice </th>
-                                            <th class="column-title">Invoice Date </th>
-                                            <th class="column-title">Order </th>
-                                            <th class="column-title">Bill to Name </th>
-                                            <th class="column-title">Status </th>
-                                            <th class="column-title">Amount </th>
-                                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                                            <th class="column-title">ID</th>
+                                            <th class="column-title">Name</th>
+                                            <th class="column-title">Email </th>
+                                            <th class="column-title">Age </th>
+                                            <th class="column-title">Gender </th>
+                                            <th class="column-title">Phone </th>
+                                            <th class="column-title">Opccupation </th>
+                                            <th class="column-title no-link last"><span class="nobr">Created_at</span>
+                                            </th>
+                                            <th class="column-title no-link last"><span class="nobr">Updated_at</span>
                                             </th>
                                             <th class="bulk-actions" colspan="7">
                                                 <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span
                                                         class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                                             </th>
+                                            <th class="column-title">Detail</th>
+                                            <th class="column-title">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="even pointer">
-                                            <td class="a-center ">
-                                                <input type="checkbox" class="flat" name="table_records">
-                                            </td>
-                                            <td class=" ">121000040</td>
-                                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                                            <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-                                            <td class=" ">John Blank L</td>
-                                            <td class=" ">Paid</td>
-                                            <td class="a-right a-right ">$7.45</td>
-                                            <td class=" last"><a href="#">View</a>
-                                            </td>
-                                        </tr>
+
+                                        @forelse($employees as $employee)
+                                            <tr class="even pointer">
+                                                <td class="a-center ">
+                                                    <input type="checkbox" class="flat" name="table_records">
+                                                </td>
+                                                <td class=" ">{{ $loop->iteration }}</td>
+                                                <td class=" ">{{ $employee->name }}</td>
+                                                <td class=" ">{{ $employee->email }}</td>
+                                                <td class=" ">{{ $employee->age }}</td>
+                                                <td class=" ">{{ $employee->gender ? 'Male' : 'Female' }}</td>
+                                                <td class=" ">{{ $employee->phone }}</td>
+                                                <td class=" ">{{ $employee->occupation }}</td>
+                                                <td class=" ">{{ $employee->created_at }}</td>
+                                                <td class=" ">{{ $employee->updated_at }}</td>
+                                                <td class=" "><a
+                                                        href="{{ route('admin.employee-list.detail', ['id' => $employee->id]) }}">Update</a>
+                                                </td>
+                                                <td class=" ">
+                                                    <form
+                                                        action="{{ route('admin.employee-list.delete', ['id' => $employee->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a href="">
+                                                            <button onclick="return confirm('Are you sure you want to delete this employee?')"
+                                                                style="border: none;
+                                                        background: none;
+                                                        color: inherit;
+                                                        padding: 0;
+                                                        outline: none;"
+                                                                type="submit">Delete</button>
+                                                        </a>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <td class=" ">No Data</td>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
