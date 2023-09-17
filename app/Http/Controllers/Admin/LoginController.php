@@ -18,10 +18,10 @@ class LoginController extends Controller
     {
         // Get the credentials from the request
         $credentials = $request->only('email', 'password');
-
         if (Auth::guard('web')->attempt($credentials)) {
             // Get the authenticated employee
             $employee = Auth::guard('web')->user();
+            // dd($employee);
             // Login the employee using the employee guard
             Auth::guard('web')->login($employee);
             // Redirect the employee to the dashboard or other page

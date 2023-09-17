@@ -18,7 +18,6 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
@@ -43,149 +42,167 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            @foreach ($details as $detail)
-                                <form method="post"
-                                    action="{{ route('admin.employee-list.update', ['id' => $detail->id]) }}"
-                                    class="form-horizontal form-label-left" novalidate>
-                                    @csrf/
-                                    <p>For alternative validation library <code>parsleyJS</code> check out in the <a
-                                            href="form.html">form page</a>
-                                    </p>
-                                    <span class="section">Personal Info</span>
-                                    {{-- @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif --}}
+                            <form method="POST" enctype="multipart/form-data"
+                                action="{{ route('admin.employee-list.update', ['id' => $employees->id]) }}"
+                                class="form-horizontal form-label-left" novalidate>
+                                @method('put')
+                                @csrf
+                                <p>For alternative validation library <code>parsleyJS</code> check out in the <a
+                                        href="form.html">form page</a>
+                                </p>
+                                <span class="section">Personal Info</span>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avatar">Avatar <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="avatar" class="form-control col-md-7 col-xs-12"
+                                            data-validate-length-range="6" data-validate-words="2" name="avatar" multiple
+                                            placeholder="both name(s) e.g Jon Doe" type="file">
+                                        @error('avatar')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="name" class="form-control col-md-7 col-xs-12"
+                                            data-validate-length-range="6" data-validate-words="2" name="name"
+                                            placeholder="both name(s) e.g Jon Doe" type="text"
+                                            value="{{ $employees->name }}">
+                                        @error('name')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">Slug <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input value="{{ $employees->slug }}" id="slug"
+                                            class="form-control col-md-7 col-xs-12" data-validate-length-range="6"
+                                            data-validate-words="2" name="slug" placeholder="both name(s) e.g Jon Doe"
+                                            type="text">
+                                        @error('slug')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input value="{{ $employees->email }}" type="email" id="email" name="email"
+                                            class="form-control col-md-7 col-xs-12">
+                                        @error('email')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Age <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input value="{{ $employees->age }}" type="number" id="email"
+                                            name="age" class="form-control col-md-7 col-xs-12">
+                                        @error('age')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select id="email" name="gender" class="form-control">
+                                            <option value="">Choose option</option>
+                                            <option {{ $employees->gender === '1' ? 'selected' : '' }} value="1">Male
+                                            </option>
+                                            <option {{ $employees->gender === '0' ? 'selected' : '' }} value="0">
+                                                Female
+                                            </option>
+                                        </select>
+                                        @error('gender')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span
-                                                class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="name" class="form-control col-md-7 col-xs-12"
-                                                data-validate-length-range="6" data-validate-words="2" name="name"
-                                                placeholder="both name(s) e.g Jon Doe" type="text"
-                                                value="{{ $detail->name }}">
-                                            @error('name')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">
-                                                    {{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Telephone
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input value="{{ $employees->phone }}" type="tel" id="phone"
+                                            name="phone" data-validate-length-range="8,20"
+                                            class="form-control col-md-7 col-xs-12">
+                                        @error('phone')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span
-                                                class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input value="{{ $detail->email }}" type="email" id="email" name="email"
-                                                class="form-control col-md-7 col-xs-12">
-                                            @error('email')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">
-                                                    {{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Age <span
-                                                class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input value="{{ $detail->age }}" type="number" id="email" name="age"
-                                                class="form-control col-md-7 col-xs-12">
-                                            @error('age')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">
-                                                    {{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender <span
-                                                class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select id="email" name="gender" class="form-control">
-                                                <option value="">Choose option</option>
-                                                <option {{ $detail->gender === '1' ? 'selected' : '' }}
-                                                    value="1">Male
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Occupation
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select id="occupation" name="occupation" class="form-control">
+                                            <option value="">Choose option</option>
+                                            @foreach ($jobCategories as $jobCategory)
+                                                <option
+                                                    {{ $jobCategory->id == $employees->job_categories_id ? 'selected' : '' }}
+                                                    value="{{ $jobCategory->id }}">{{ $jobCategory->occupation }}
                                                 </option>
-                                                <option {{ $detail->gender === '0' ? 'selected' : '' }}
-                                                    value="0">Female
-                                                </option>
-                                            </select>
-                                            @error('gender')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                            @endforeach
+                                        </select>
+                                        @error('occupation')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input value="{{ $detail->phone }}" type="tel" id="telephone" name="phone"
-                                                data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
-                                            @error('phone')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea class="form-control" name="description" id="description"></textarea>
+                                        @error('description')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                            for="occupation">Occupation
-                                            <span class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input value="{{ $detail->occupation }}" id="occupation" type="text" name="occupation"
-                                                data-validate-length-range="5,20"
-                                                class="optional form-control col-md-7 col-xs-12">
-                                            @error('occupation')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <button type="button"
+                                            onclick="window.location.href='{{ route('admin.employee-list.index') }}'"
+                                            class="btn btn-primary">Cancel</button>
+                                        <button id="submit" type="submit" class="btn btn-success">Submit</button>
                                     </div>
-                                    <div class="item form-group">
-                                        <label for="password" class="control-label col-md-3">Password</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input value="{{ $detail->password }}" id="password" type="password" name="password"
-                                                data-validate-length="6,8" class="form-control col-md-7 col-xs-12">
-                                            @error('password')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    {{-- <div class="item form-group">
-                                        <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat
-                                            Password</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="password2" type="password" name="repeat_password"
-                                                data-validate-linked="password" class="form-control col-md-7 col-xs-12">
-                                            @error('repeat_password')
-                                                <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                    class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div> --}}
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-md-offset-3">
-                                            <button type="button" onclick="window.location.href='{{ route('admin.employee-list') }}'" class="btn btn-primary">Cancel</button>
-                                            <button id="send" type="submit" class="btn btn-success">Submit</button>
-                                        </div>
-                                    </div>
-                            @endforeach
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -193,4 +210,13 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js-custom')
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection

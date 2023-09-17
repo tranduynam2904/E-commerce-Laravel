@@ -44,8 +44,8 @@ import ReactDOM from "react-dom";
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form method="POST" action="{{ route('FTM.login.account') }}" class="login100-form validate-form">
-                    @csrf
+                <form method="post" action="{{ route('FTM.login.account') }}" class="login100-form validate-form">
+                
                     <span class="login100-form-title p-b-26">
                         FastTrack Management
                     </span>
@@ -59,7 +59,7 @@ import ReactDOM from "react-dom";
                         <span class="focus-input100" data-placeholder="Email"></span>
                         @error('email')
                             <div style="opacity: 1;max-width: 100%;margin-top:10px" class="alert alert-danger">
-                                {{ $message }}</div>
+                                {{ dd($message)}}</div>
                         @enderror
                     </div>
 
@@ -93,6 +93,7 @@ import ReactDOM from "react-dom";
                             Sign Up
                         </a>
                     </div>
+                    @csrf
                 </form>
             </div>
         </div>

@@ -43,8 +43,9 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <form method="post" action="{{ route('admin.employee-list.store') }}"
-                                class="form-horizontal form-label-left" novalidate>
+                            <form enctype="multipart/form-data" method="post"
+                                action="{{ route('admin.employee-list.store') }}" class="form-horizontal form-label-left"
+                                novalidate>
                                 @csrf
                                 <p>For alternative validation library <code>parsleyJS</code> check out in the <a
                                         href="form.html">form page</a>
@@ -60,15 +61,48 @@
                                     </div>
                                 @endif --}}
                                 <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="avatar">Avatar <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="avatar" class="form-control col-md-7 col-xs-12"
+                                            data-validate-length-range="6" data-validate-words="2" name="avatar" multiple
+                                            placeholder="both name(s) e.g Jon Doe" type="file">
+                                        @error('avatar')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input value="{{ old('name') }}" id="name" class="form-control col-md-7 col-xs-12"
-                                            data-validate-length-range="6" data-validate-words="2" name="name"
-                                            placeholder="both name(s) e.g Jon Doe" type="text">
+                                        <input value="{{ old('name') }}" id="name"
+                                            class="form-control col-md-7 col-xs-12" data-validate-length-range="6"
+                                            data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe"
+                                            type="text">
                                         @error('name')
-                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px" class="alert alert-danger">
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="slug">Slug <span
+                                            class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input value="{{ old('slug') }}" id="slug"
+                                            class="form-control col-md-7 col-xs-12" data-validate-length-range="6"
+                                            data-validate-words="2" name="slug" placeholder="both name(s) e.g Jon Doe"
+                                            type="text">
+                                        @error('slug')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
                                                 {{ $message }}</div>
                                         @enderror
                                     </div>
@@ -88,14 +122,15 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Age <span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="age">Age <span
                                             class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input value="{{ old('age') }}" type="number" id="email" name="age"
+                                        <input value="{{ old('age') }}" type="number" id="age" name="age"
                                             class="form-control col-md-7 col-xs-12">
                                         @error('age')
-                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px" class="alert alert-danger">
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
                                                 {{ $message }}</div>
                                         @enderror
                                     </div>
@@ -113,17 +148,18 @@
                                             </option>
                                         </select>
                                         @error('gender')
-                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px" class="alert alert-danger">
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
                                                 {{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telephone
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Telephone
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input value="{{ old('phone') }}" type="tel" id="telephone" name="phone"
+                                        <input value="{{ old('phone') }}" type="tel" id="phone" name="phone"
                                             data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
                                         @error('phone')
                                             <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
@@ -137,49 +173,51 @@
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input value="{{ old('occupation') }}" id="occupation" type="text" name="occupation"
-                                            data-validate-length-range="5,20"
-                                            class="optional form-control col-md-7 col-xs-12">
+                                        <select id="occupation" name="occupation" class="form-control">
+                                            <option value="">Choose option</option>
+                                            @foreach ($jobCategories as $jobCategory)
+                                                <option value="{{ $jobCategory->id }}"> {{ $jobCategory->occupation }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         @error('occupation')
                                             <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                                 class="alert alert-danger">
                                                 {{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{-- {{ dd($random) }} --}}
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea class="form-control" name="description" id="description"></textarea>
+                                        @error('description')
+                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                                class="alert alert-danger">
+                                                {{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="item form-group">
                                     <label for="password" class="control-label col-md-3">Password</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input value="{{ $random }}" id="password" type="password" name="password" data-validate-length="6,8"
-                                            class="form-control col-md-7 col-xs-12">
+                                        <input value="employeeftm23" id="password" type="password" name="password"
+                                            data-validate-length="6,8" class="form-control col-md-7 col-xs-12">
                                         @error('password')
                                             <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                                 class="alert alert-danger">
                                                 {{ $message }}</div>
                                         @enderror
                                     </div>
-
                                 </div>
-                                {{-- <div class="item form-group">
-                                    <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Repeat
-                                        Password</label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="password2" type="password" name="repeat_password"
-                                            data-validate-linked="password" class="form-control col-md-7 col-xs-12">
-                                        @error('repeat_password')
-                                            <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
-                                                class="alert alert-danger">
-                                                {{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                </div> --}}
-
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <button type="button" onclick="window.location.href='{{ route('admin.employee-list') }}'" class="btn btn-primary">Cancel</button>
+                                        <button type="button"
+                                            onclick="window.location.href='{{ route('admin.employee-list.index') }}'"
+                                            class="btn btn-primary">Cancel</button>
                                         <button id="send" type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>
@@ -190,4 +228,37 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js-custom')
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#description'), {
+                ckfinder: {
+                    // Upload the images to the server using the CKFinder QuickUpload command.
+                    uploadUrl: '{{ route('admin.employee-list.ckeditor.upload.image') . '?_token=' . csrf_token() }}'
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#name').on('keyup', function() {
+                var name = $('#name').val();
+                $.ajax({
+                    method: "POST", //method of form
+                    url: "{{ route('admin.employee-list.create.slug') }}", //action of form
+                    data: {
+                        'name': name,
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#slug').val(response.slug);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -22,6 +22,7 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'avatar' => 'image',
             'name' => 'required|min:3|max:255',
             'email' => ['required', 'email', 'unique:employee', 'regex:/@gmail.com$/'],
             'age' => 'required|max:100',

@@ -1,14 +1,14 @@
 @extends('admin.layout.master')
 @section('content')
-    <style>
-        .table>tbody>tr>td {
-            vertical-align: 0%;
-        }
-    </style>
+<style>
+    .table>tbody>tr>td {
+        vertical-align: 0%;
+    }
+</style>
     <div class="right_col" role="main">
         <div class="">
-            <a href="{{ route('admin.employee-list.create') }}" style="float: right; margin-top:5px" type="button"
-                class="btn btn-primary">Create New Employee</a>
+            <a href="{{ route('admin.job-categories.create') }}" style="float: right; margin-top:5px" type="button"
+                class="btn btn-primary">Create New Job Categories</a>
             <form method="get">
                 {{-- @csrf --}}
                 <div style="display: flex; justify-content:flex-end;align-items:center" class="page-title">
@@ -60,15 +60,11 @@
                                                 <input type="checkbox" id="check-all" class="flat">
                                             </th>
                                             <th class="column-title">ID</th>
-                                            <th class="column-title">Avatar</th>
-                                            <th class="column-title">Name</th>
-                                            <th class="column-title">Slug</th>
-                                            <th class="column-title">Email </th>
-                                            <th class="column-title">Age </th>
-                                            <th class="column-title">Gender </th>
-                                            <th class="column-title">Phone </th>
-                                            <th class="column-title">Occupation </th>
-                                            <th class="column-title">Description </th>
+                                            <th class="column-title">Occupation</th>
+                                            <th class="column-title">Required age</th>
+                                            <th class="column-title">Salary range</th>
+                                            <th class="column-title">Number of recruits</th>
+                                            <th class="column-title">Recruitment status</th>
                                             <th class="column-title no-link last"><span class="nobr">Created_at</span>
                                             </th>
                                             <th class="column-title no-link last"><span class="nobr">Updated_at</span>
@@ -85,46 +81,54 @@
                                     </thead>
                                     <tbody>
 
-                                        @forelse($employees as $employee)
-                                            <tr style="vertical-align: middle" class="even pointer">
+                                        @forelse($jobCategories as $jobCategory)
+                                            <tr class="even pointer">
                                                 <td class="a-center ">
                                                     <input type="checkbox" class="flat" name="table_records">
                                                 </td>
                                                 <td class=" ">{{ $loop->iteration }}</td>
+                                                <td class=" ">{{ $jobCategory->occupation }}</td>
+                                                <td class=" ">{{ $jobCategory->required_age }}</td>
+                                                <td class=" ">{{ $jobCategory->salary_range }}</td>
+                                                <td class=" ">{{ $jobCategory->number_of_recruits }}</td>
                                                 <td class=" ">
-                                                    <img width="50px" height="50px" src="{{ asset('images/' . $employee->avatar ) }}" alt="{{ $employee->avatar }}">
+                                                    {{ $jobCategory->recruitment_status ? 'No recruitment' : 'Still recruiting' }}
                                                 </td>
-                                                <td class=" ">{{ $employee->name }}</td>
-                                                <td class=" ">{{ $employee->slug }}</td>
-                                                <td class=" ">{{ $employee->email }}</td>
-                                                <td class=" ">{{ $employee->age }}</td>
-                                                <td class=" ">{{ $employee->gender ? 'Male' : 'Female' }}</td>
-                                                <td class=" ">{{ $employee->phone }}</td>
-                                                <td class=" ">{{ $employee->job_name }}</td>
-                                                <td class=" ">{!! $employee->description !!}</td>
-                                                <td class=" ">{{ $employee->created_at }}</td>
-                                                <td class=" ">{{ $employee->updated_at }}</td>
+                                                <td class=" ">{{ $jobCategory->created_at }}</td>
+                                                <td class=" ">{{ $jobCategory->updated_at }}</td>
                                                 <td class=" "><a class="btn btn-primary"
-                                                        href="{{ route('admin.employee-list.show', ['id' => $employee->id]) }}">Edit</a>
+                                                        href="{{ route('admin.job-categories.show', ['job_category' => $jobCategory->id]) }}">
+                                                        Edit</a>
                                                 </td>
-                                                <td class=" "><a class="btn btn-danger"
-                                                        onclick=" return confirm('Are you sure you want to delete this employee?')"
-                                                        href="{{ route('admin.employee-list.destroy', ['id' => $employee->id]) }}">Delete</a>
+                                                <td class=" ">
+                                                    <form
+                                                        action="{{ route('admin.job-categories.destroy', ['job_category' => $jobCategory->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick=" return confirm('Are you sure you want to delete this job categories?')">
+                                                            Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
-                                            @empty
-                                                <td class=" ">No Data</td>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div style="display: flex; justify-content:flex-end" class="btn-group">
-                                    {{ $employees->links('pagination::bootstrap-4') }}
-                                </div>
+                                        @empty
+                                            <td class=" ">No Data</td>
+                                        @endforelse
+
+                                    </tbody>
+                                </table>
                             </div>
+                            {{-- <div style="display: flex; justify-content:flex-end" class="btn-group">
+                                @for ($i = 1; $i <= $totalPagination; $i++)
+                                    <a href="?page={{ $i }}" class="btn btn-info"
+                                        type="button">{{ $i }}</a>
+                                @endfor
+                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection

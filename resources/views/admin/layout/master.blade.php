@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
@@ -18,9 +17,19 @@
     <link href="{{ asset('assets/admin/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('assets/admin/vendors/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
-
+    <!-- FullCalendar -->
+    <link href="{{ asset('assets/admin/vendors/fullcalendar/dist/fullcalendar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/vendors/fullcalendar/dist/fullcalendar.print.css') }}" rel="stylesheet"
+        media="print">
     <!-- Custom Theme Style -->
     <link href="{{ asset('assets/admin/build/css/custom.min.css') }}" rel="stylesheet">
+    <!-- Custom styling plus plugins -->
+    <link href="{{ asset('assets/admin/build/css/custom.min.css') }}" rel="stylesheet">
+    <style>
+        td {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body class="nav-md">
@@ -90,9 +99,13 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('assets/admin/vendors/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-
+    <!-- FullCalendar -->
+    <script src="{{ asset('assets/admin/vendors/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendors/fullcalendar/dist/fullcalendar.min.js') }}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('assets/admin/build/js/custom.min.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+    @yield('js-custom')
 </body>
 
 </html>
