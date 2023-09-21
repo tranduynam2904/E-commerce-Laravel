@@ -17,13 +17,14 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('slug', 255)->nullable();
             $table->string('email', 255);
+            $table->timestamp('email_verified_at')->nullable();
             $table->unsignedInteger('age');
             $table->string('gender', 255);
             $table->unsignedBigInteger('phone');
             $table->unsignedBigInteger('job_categories_id');
             $table->text('description');
             $table->foreign('job_categories_id')->references('id')->on('job_categories');
-            $table->string('password', 255);
+            // $table->string('password', 255);
             $table->rememberToken();
             $table->timestamps();
         });

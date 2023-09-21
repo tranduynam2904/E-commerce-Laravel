@@ -4,7 +4,7 @@
         <ul class="nav side-menu">
             <li><a href="{{ route('FTM.employee.dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
             </li>
-            <li><a href="{{ route('admin.employee-list') }}"><i class="fa fa-edit"></i> Employee Table</a>
+            <li><a href="{{ route('FTM.employee.detail') }}"><i class="fa fa-edit"></i> Employee Table</a>
             </li>
             <li><a><i class="fa fa-desktop"></i> UI Elements <span
                         class="fa fa-chevron-down"></span></a>

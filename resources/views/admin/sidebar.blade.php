@@ -2,7 +2,9 @@
     <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
+            <li><a
+                {{-- class="nav-link {{ request()->route()->getName() === 'admin.dashboard'? 'active': '' }}" --}}
+                href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
             </li>
             <li><a href="{{ route('admin.employee-list.index') }}"><i class="fa fa-edit"></i> Employee Table</a>
 
@@ -15,15 +17,15 @@
                     <li><a href="tables_dynamic.html">Table Dynamic</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
+            <li><a><i class="fa fa-bar-chart-o"></i> Role and Permission <span
                         class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
+                {{-- <ul class="nav child_menu">
                     <li><a href="chartjs.html">Chart JS</a></li>
                     <li><a href="chartjs2.html">Chart JS2</a></li>
                     <li><a href="morisjs.html">Moris JS</a></li>
                     <li><a href="echarts.html">ECharts</a></li>
                     <li><a href="other_charts.html">Other Charts</a></li>
-                </ul>
+                </ul> --}}
             </li>
             <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">

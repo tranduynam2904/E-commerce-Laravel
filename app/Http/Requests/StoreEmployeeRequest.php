@@ -29,7 +29,6 @@ class StoreEmployeeRequest extends FormRequest
             'gender' => 'required',
             'phone' => 'required',
             'occupation' => 'required',
-            'password' => 'required',
         ];
     }
 }

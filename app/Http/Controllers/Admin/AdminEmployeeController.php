@@ -22,7 +22,6 @@ class AdminEmployeeController extends Controller
             ->leftJoin('job_categories', 'employee.job_categories_id', '=', 'job_categories.id')
             ->orderBy('created_at', 'DESC')
             ->paginate(1);
-        // dd($employees);
         return view('admin.pages.employee-list.list', ['employees' => $employees]);
     }
     public function create()
@@ -51,7 +50,7 @@ class AdminEmployeeController extends Controller
             'phone' => $request->phone,
             'job_categories_id' => $request->occupation,
             'description' => $request->description,
-            'password' => Hash::make($request->password),
+            // 'password' => Hash::make($request->password),
             'created_at' => Carbon::now(+7),
             'updated_at' => Carbon::now(+7)
         ]);

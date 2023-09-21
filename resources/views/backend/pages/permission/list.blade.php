@@ -7,8 +7,8 @@
     </style>
     <div class="right_col" role="main">
         <div class="">
-            <a href="{{ route('admin.employee-list.create') }}" style="float: right; margin-top:5px" type="button"
-                class="btn btn-primary">Create New Employee</a>
+            <a href="{{ route('backend.permissions.create') }}" style="float: right; margin-top:5px" type="button"
+                class="btn btn-primary">Create New Permission</a>
             <form method="get">
                 {{-- @csrf --}}
                 <div style="display: flex; justify-content:flex-end;align-items:center" class="page-title">
@@ -60,15 +60,8 @@
                                                 <input type="checkbox" id="check-all" class="flat">
                                             </th>
                                             <th class="column-title">ID</th>
-                                            <th class="column-title">Avatar</th>
                                             <th class="column-title">Name</th>
-                                            <th class="column-title">Slug</th>
-                                            <th class="column-title">Email </th>
-                                            <th class="column-title">Age </th>
-                                            <th class="column-title">Gender </th>
-                                            <th class="column-title">Phone </th>
-                                            <th class="column-title">Occupation </th>
-                                            <th class="column-title">Description </th>
+                                            <th class="column-title">Guard Name</th>
                                             <th class="column-title no-link last"><span class="nobr">Created_at</span>
                                             </th>
                                             <th class="column-title no-link last"><span class="nobr">Updated_at</span>
@@ -85,35 +78,22 @@
                                     </thead>
                                     <tbody>
 
-                                        @forelse($employees as $employee)
+                                        @forelse($permissions as $permission)
                                             <tr style="vertical-align: middle" class="even pointer">
                                                 <td class="a-center ">
                                                     <input type="checkbox" class="flat" name="table_records">
                                                 </td>
                                                 <td class=" ">{{ $loop->iteration }}</td>
-                                                <td class=" ">
-                                                    @php
-                                                        $imageLink = is_null($employee->avatar) || !file_exists('images/' . $employee->avatar) ? 'https://liftlearning.com/wp-content/uploads/2020/09/default-image.png' : asset('images/' . $product->image);
-                                                    @endphp
-                                                    <img width="50px" height="50px" src="{{ $imageLink }}"
-                                                        alt="{{ $employee->avatar }}">
-                                                </td>
-                                                <td class=" ">{{ $employee->name }}</td>
-                                                <td class=" ">{{ $employee->slug }}</td>
-                                                <td class=" ">{{ $employee->email }}</td>
-                                                <td class=" ">{{ $employee->age }}</td>
-                                                <td class=" ">{{ $employee->gender ? 'Male' : 'Female' }}</td>
-                                                <td class=" ">{{ $employee->phone }}</td>
-                                                <td class=" ">{{ $employee->job_name }}</td>
-                                                <td class=" ">{!! $employee->description !!}</td>
-                                                <td class=" ">{{ $employee->created_at }}</td>
-                                                <td class=" ">{{ $employee->updated_at }}</td>
+                                                <td class=" ">{{ $permission->name }}</td>
+                                                <td class=" ">{{ $permission->guard_name }}</td>
+                                                <td class=" ">{{ $permission->created_at }}</td>
+                                                <td class=" ">{{ $permission->updated_at }}</td>
                                                 <td class=" "><a class="btn btn-primary"
-                                                        href="{{ route('admin.employee-list.show', ['id' => $employee->id]) }}">Edit</a>
+                                                        href="{{ route('backend.permissions.show', ['permission' => $permission->id]) }}">Edit</a>
                                                 </td>
                                                 <td class=" "><a class="btn btn-danger"
-                                                        onclick=" return confirm('Are you sure you want to delete this employee?')"
-                                                        href="{{ route('admin.employee-list.destroy', ['id' => $employee->id]) }}">Delete</a>
+                                                        onclick=" return confirm('Are you sure you want to delete this permission?')"
+                                                        href="{{ route('backend.permissions.destroy', ['permission' => $permission->id]) }}">Delete</a>
                                                 </td>
                                             </tr>
                                         @empty
@@ -123,7 +103,7 @@
                                 </table>
                             </div>
                             <div style="display: flex; justify-content:flex-end" class="btn-group">
-                                {{ $employees->links('pagination::bootstrap-4') }}
+                                {{ $permissions->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

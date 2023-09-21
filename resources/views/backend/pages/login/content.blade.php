@@ -45,24 +45,19 @@ import ReactDOM from "react-dom";
         <div class="container-login100">
             <div class="wrap-login100">
                 <form method="post" action="{{ route('FTM.login.account') }}" class="login100-form validate-form">
-                
                     <span class="login100-form-title p-b-26">
                         FastTrack Management
                     </span>
                     <span class="login100-form-title p-b-48">
-                        {{-- <i class="zmdi zmdi-font"></i> --}}
-                        {{-- <icon/> --}}
                     </span>
-
                     <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
                         <input class="input100" type="text" name="email">
                         <span class="focus-input100" data-placeholder="Email"></span>
                         @error('email')
                             <div style="opacity: 1;max-width: 100%;margin-top:10px" class="alert alert-danger">
-                                {{ dd($message)}}</div>
+                                {{ dd($message) }}</div>
                         @enderror
                     </div>
-
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
                         <span class="btn-show-pass">
                             <i class="zmdi zmdi-eye"></i>

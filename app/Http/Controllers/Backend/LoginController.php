@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
@@ -12,23 +12,27 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.login.content');
+        return view('backend.pages.login.content');
     }
     public function login(LoginRequest $request)
     {
         // Get the credentials from the request
         $credentials = $request->only('email', 'password');
+        // dd(Auth::guard('web')->attempt($credentials));
         if (Auth::guard('web')->attempt($credentials)) {
             // Get the authenticated employee
-            $employee = Auth::guard('web')->user();
-            // dd($employee);
+            $users = Auth::guard('web')->user()->name;
             // Login the employee using the employee guard
-            Auth::guard('web')->login($employee);
-            // Redirect the employee to the dashboard or other page
-            return redirect()->route('admin.dashboard');
+            // Auth::guard('web')->login($users);
+            if ($users === 'admin') {
+                // Redirect the employee to the dashboard or other page
+                return redirect()->route('admin.dashboard');
+            } else if ($users === 'employee') {
+                return redirect()->route('FTM.employee.dashboard');
+            }
         } else {
             // Redirect back with an error message
-            return redirect()->back()->with('error', 'Invalid credentials');
+            return redirect()->route('FTM.login')->with('error', 'Invalid credentials');
         }
     }
 }
