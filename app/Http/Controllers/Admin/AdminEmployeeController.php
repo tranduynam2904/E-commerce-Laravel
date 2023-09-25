@@ -17,12 +17,10 @@ class AdminEmployeeController extends Controller
 {
     public function index()
     {
-        $employees = DB::table('employee')
-            ->select('employee.*', 'job_categories.occupation as job_name')
-            ->leftJoin('job_categories', 'employee.job_categories_id', '=', 'job_categories.id')
+        $employeeList = Employee::select()
             ->orderBy('created_at', 'DESC')
             ->paginate(1);
-        return view('admin.pages.employee-list.list', ['employees' => $employees]);
+        return view('admin.pages.employee-list.list', ['employeeList' => $employeeList]);
     }
     public function create()
     {
@@ -34,41 +32,46 @@ class AdminEmployeeController extends Controller
     }
     public function store(StoreEmployeeRequest $request)
     {
+        // dd($request->all());
         if ($request->hasFile('avatar')) {
             $fileOrginialName = $request->file('avatar')->getClientOriginalName();
             $fileName = pathinfo($fileOrginialName, PATHINFO_FILENAME);
             $fileName .= '_' . time() . '.' . $request->file('avatar')->getClientOriginalExtension();
             $request->file('avatar')->move(public_path('images'),  $fileName);
         }
-        $bool = DB::table('employee')->insert([
-            'avatar' => $fileName ?? null,
-            'name' => $request->name,
-            'slug' => $request->slug,
-            'email' => $request->email,
-            'age' => $request->age,
-            'gender' => $request->gender,
-            'phone' => $request->phone,
-            'job_categories_id' => $request->occupation,
-            'description' => $request->description,
-            // 'password' => Hash::make($request->password),
-            'created_at' => Carbon::now(+7),
-            'updated_at' => Carbon::now(+7)
-        ]);
-        $message = $bool ? 'Successfully created employee' : 'Failed to create employee';
+        //Eloquent
+        $employeeList = new Employee;
+        $employeeList->avatar = $fileName ?? null;
+        $employeeList->name = $request->name;
+        $employeeList->slug = $request->slug;
+        // $employees->email = $request->email;
+        $employeeList->age = $request->age;
+        $employeeList->gender = $request->gender;
+        $employeeList->phone = $request->phone;
+        $employeeList->job_category_id = $request->occupation;
+        $employeeList->description = $request->description;
+        $employeeList->created_at = Carbon::now(+7);
+        $employeeList->updated_at = Carbon::now(+7);
+        $check = $employeeList->save();
+        // $check = DB::table('employees')->insert([
+        //     'name' => $request->name,
+        // ]);
+
+        $message = $check ? 'Successfully created employee' : 'Failed to create employee';
         return redirect()->route('admin.employee-list.index')->with('message', $message);
     }
-    public function show($id)
+    public function show(Employee $employeeList)
     {
+        // dd($employee_list->id);
         $jobCategories = DB::table('job_categories')->get();
         // dd($jobCategories->id);
-        $employees = DB::table('employee')->find($id);
-        return view('admin.pages.employee-list.detail', ['employees' => $employees, 'jobCategories' => $jobCategories]);
+        // $employees = DB::table('employee')->find($id);
+        return view('admin.pages.employee-list.detail', ['employees' => $employeeList, 'jobCategories' => $jobCategories]);
     }
-    public function update(UpdateEmployeeRequest $request, $id)
+    public function update(UpdateEmployeeRequest $request, Employee $employeeList)
     {
-
-        $employee = DB::table('employee')->find($id);
-        $oldImageFileName = $employee->avatar;
+        // dd($employees->all());
+        $oldImageFileName = $employeeList->avatar;
         if ($request->hasFile('avatar')) {
             $fileOrginialName = $request->file('avatar')->getClientOriginalName();
             $fileName = pathinfo($fileOrginialName, PATHINFO_FILENAME);
@@ -78,25 +81,22 @@ class AdminEmployeeController extends Controller
                 unlink('images/' . $oldImageFileName);
             }
         }
-        $check = DB::table('employee')->where('id', $id)->update(
-            [
-                'avatar' => $fileName ?? $oldImageFileName,
-                'name' => $request->name,
-                'slug' => $request->slug,
-                'email' => $request->email,
-                'age' => $request->age,
-                'gender' => $request->gender,
-                'phone' => $request->phone,
-                'job_categories_id' => $request->occupation,
-                'updated_at' => Carbon::now(+7)
-            ]
-        );
+        $employeeList->avatar = $fileName ?? $oldImageFileName;
+        $employeeList->name = $request->name;
+        $employeeList->slug = $request->slug;
+        $employeeList->age = $request->age;
+        $employeeList->gender = $request->gender;
+        $employeeList->phone = $request->phone;
+        $employeeList->job_category_id = $request->occupation;
+        $employeeList->updated_at = Carbon::now(+7);
+        $check = $employeeList->save();
         $message = $check > 0 ? 'Successfully created employee' : 'Failed to create employee';
         return redirect()->route('admin.employee-list.index')->with('message', $message);
     }
-    public function destroy($id)
+    public function destroy(Employee $employeeList)
     {
-        $check = DB::table('employee')->where('id', $id)->delete();
+        // $check = DB::table('employee')->where('id', $id)->delete();
+        $check = $employeeList->delete();
         $message = $check > 0 ? 'Successfully deleted employee' : 'Failed to deleted employee';
         return redirect()->route('admin.employee-list.index')->with('message', $message);
     }
@@ -106,14 +106,11 @@ class AdminEmployeeController extends Controller
     }
     public function uploadImage(Request $request)
     {
-
-        dd($request->all());
         if ($request->hasFile('upload')) {
             $fileOrginialName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($fileOrginialName, PATHINFO_FILENAME);
             $fileName .= '_' . time() . '.' . $request->file('upload')->getClientOriginalExtension();
             $request->file('upload')->move(public_path('images'),  $fileName);
-
             $url = asset('images/' . $fileName);
             return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }

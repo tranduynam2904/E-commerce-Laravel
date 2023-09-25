@@ -1,84 +1,24 @@
-<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-    <div class="menu_section">
-        <h3>General</h3>
-        <ul class="nav side-menu">
-            <li><a
-                {{-- class="nav-link {{ request()->route()->getName() === 'admin.dashboard'? 'active': '' }}" --}}
-                href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i> Dashboard </a>
-            </li>
-            <li><a href="{{ route('admin.employee-list.index') }}"><i class="fa fa-edit"></i> Employee Table</a>
-
-            </li>
-            <li><a href="{{ route('admin.job-categories.index') }}"><i class="fa fa-desktop"></i> Job Categories</a>
-            </li>
-            <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="tables.html">Tables</a></li>
-                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-bar-chart-o"></i> Role and Permission <span
-                        class="fa fa-chevron-down"></span></a>
-                {{-- <ul class="nav child_menu">
-                    <li><a href="chartjs.html">Chart JS</a></li>
-                    <li><a href="chartjs2.html">Chart JS2</a></li>
-                    <li><a href="morisjs.html">Moris JS</a></li>
-                    <li><a href="echarts.html">ECharts</a></li>
-                    <li><a href="other_charts.html">Other Charts</a></li>
-                </ul> --}}
-            </li>
-            <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                    <li><a href="fixed_footer.html">Fixed Footer</a></li>
-                </ul>
-            </li>
-        </ul>
+<div class="sidebar-menu">
+    <div class="sidebar-header">
+        <div class="logo">
+            <a href="index.html"><img src="{{ asset('assets/images/icon/logo.png') }}" alt="logo"></a>
+        </div>
     </div>
-    <div class="menu_section">
-        <h3>Live On</h3>
-        <ul class="nav side-menu">
-            <li><a><i class="fa fa-bug"></i> Additional Pages <span
-                        class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="e_commerce.html">E-commerce</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="project_detail.html">Project Detail</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="page_403.html">403 Error</a></li>
-                    <li><a href="page_404.html">404 Error</a></li>
-                    <li><a href="page_500.html">500 Error</a></li>
-                    <li><a href="plain_page.html">Plain Page</a></li>
-                    <li><a href="login.html">Login Page</a></li>
-                    <li><a href="pricing_tables.html">Pricing Tables</a></li>
-                </ul>
-            </li>
-            <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span
-                        class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#level1_1">Level One</a>
-                    <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="level2.html">Level Two</a>
-                            </li>
-                            <li><a href="#level2_1">Level Two</a>
-                            </li>
-                            <li><a href="#level2_2">Level Two</a>
-                            </li>
-                        </ul>
+    <div class="main-menu">
+        <div class="menu-inner">
+            <nav>
+                <ul class="metismenu" id="menu">
+                    <li class="active"><a href="{{ route('admin.dashboard') }}"><i
+                                class="ti-dashboard"></i><span>Dashboard</span></a></li>
                     </li>
-                    <li><a href="#level1_2">Level One</a>
+                    <li class="active"><a href="{{ route('admin.employee-list.index') }}"><i class="fa fa-table"></i>
+                            <span>Employee List</span></a></li>
                     </li>
-                </ul>
-            </li>
-            <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span
-                        class="label label-success pull-right">Coming Soon</span></a></li>
-        </ul>
+                    <li class="active"><a href="{{ route('admin.job-categories.index') }}"><i class="fa fa-table"></i>
+                            <span>Job Categories</span></a></li>
+                    <li class="active"><a href="{{ route('admin.roles.index') }}"><i class="fa fa-table"></i>
+                            <span>Roles</span></a></li>
+            </nav>
+        </div>
     </div>
-
 </div>

@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Authenticatable
-
+class Employee extends Model
 {
     use HasFactory;
-    protected $table = 'employee';
+    protected $table = 'employees';
+    public function job_category()
+    {
+        return $this->belongsTo(JobCategory::class, 'job_category_id');
+    }
 }

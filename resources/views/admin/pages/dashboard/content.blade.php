@@ -1,471 +1,210 @@
 @extends('admin.layout.master')
 @section( 'content')
-<div class="right_col" role="main">
-    <div class="">
-        <div class="row top_tiles">
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                    <div class="count">179</div>
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                </div>
-            </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-comments-o"></i></div>
-                    <div class="count">179</div>
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                </div>
-            </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                    <div class="count">179</div>
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                </div>
-            </div>
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                    <div class="count">179</div>
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Transaction Summary <small>Weekly progress</small></h2>
-                        <div class="filter">
-                            <div id="reportrange" class="pull-right"
-                                style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+<div class="main-content-inner">
+    <div class="row">
+        <!-- seo fact area start -->
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-md-6 mt-5 mb-3">
+                    <div class="card">
+                        <div class="seo-fact sbg1">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="ti-thumb-up"></i> Likes</div>
+                                <h2>2,315</h2>
                             </div>
+                            <canvas id="seolinechart1" height="50"></canvas>
                         </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <div class="col-md-9 col-sm-12 col-xs-12">
-                            <div class="demo-container" style="height:280px">
-                                <div id="chart_plot_02" class="demo-placeholder"></div>
-                            </div>
-                            <div class="tiles">
-                                <div class="col-md-4 tile">
-                                    <span>Total Sessions</span>
-                                    <h2>231,809</h2>
-                                    <span class="sparkline11 graph" style="height: 160px;">
-                                        <canvas width="200" height="60"
-                                            style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                    </span>
-                                </div>
-                                <div class="col-md-4 tile">
-                                    <span>Total Revenue</span>
-                                    <h2>$231,809</h2>
-                                    <span class="sparkline22 graph" style="height: 160px;">
-                                        <canvas width="200" height="60"
-                                            style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                    </span>
-                                </div>
-                                <div class="col-md-4 tile">
-                                    <span>Total Sessions</span>
-                                    <h2>231,809</h2>
-                                    <span class="sparkline11 graph" style="height: 160px;">
-                                        <canvas width="200" height="60"
-                                            style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                    </span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <div>
-                                <div class="x_title">
-                                    <h2>Top Profiles</h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle"
-                                                data-toggle="dropdown" role="button"
-                                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <ul class="list-unstyled top_profiles scroll-view">
-                                    <li class="media event">
-                                        <a class="pull-left border-aero profile_thumb">
-                                            <i class="fa fa-user aero"></i>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media event">
-                                        <a class="pull-left border-green profile_thumb">
-                                            <i class="fa fa-user green"></i>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media event">
-                                        <a class="pull-left border-blue profile_thumb">
-                                            <i class="fa fa-user blue"></i>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media event">
-                                        <a class="pull-left border-aero profile_thumb">
-                                            <i class="fa fa-user aero"></i>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media event">
-                                        <a class="pull-left border-green profile_thumb">
-                                            <i class="fa fa-user green"></i>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="title" href="#">Ms. Mary Jane</a>
-                                            <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                                            <p> <small>12 Sales Today</small>
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Weekly Summary <small>Activity shares</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                    role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-
-                        <div class="row"
-                            style="border-bottom: 1px solid #E0E0E0; padding-bottom: 5px; margin-bottom: 5px;">
-                            <div class="col-md-7" style="overflow:hidden;">
-                                <span class="sparkline_one" style="height: 160px; padding: 10px 25px;">
-                                    <canvas width="200" height="60"
-                                        style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                                </span>
-                                <h4 style="margin:18px">Weekly sales progress</h4>
+                <div class="col-md-6 mt-md-5 mb-3">
+                    <div class="card">
+                        <div class="seo-fact sbg2">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon"><i class="ti-share"></i> Share</div>
+                                <h2>3,984</h2>
                             </div>
-
-                            <div class="col-md-5">
-                                <div class="row" style="text-align: center;">
-                                    <div class="col-md-4">
-                                        <canvas class="canvasDoughnut" height="110" width="110"
-                                            style="margin: 5px 10px 10px 0"></canvas>
-                                        <h4 style="margin:0">Bounce Rates</h4>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <canvas class="canvasDoughnut" height="110" width="110"
-                                            style="margin: 5px 10px 10px 0"></canvas>
-                                        <h4 style="margin:0">New Traffic</h4>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <canvas class="canvasDoughnut" height="110" width="110"
-                                            style="margin: 5px 10px 10px 0"></canvas>
-                                        <h4 style="margin:0">Device Share</h4>
-                                    </div>
-                                </div>
+                            <canvas id="seolinechart2" height="50"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-lg-0">
+                    <div class="card">
+                        <div class="seo-fact sbg3">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon">Impressions</div>
+                                <canvas id="seolinechart3" height="60"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="seo-fact sbg4">
+                            <div class="p-4 d-flex justify-content-between align-items-center">
+                                <div class="seofct-icon">New Users</div>
+                                <canvas id="seolinechart4" height="60"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Top Profiles <small>Sessions</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                    role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item One Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Three Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                    </div>
+        <!-- seo fact area end -->
+        <!-- Social Campain area start -->
+        <div class="col-lg-4 mt-5">
+            <div class="card">
+                <div class="card-body pb-0">
+                    <h4 class="header-title">Social ads Campain</h4>
+                    <div id="socialads" style="height: 245px;"></div>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Top Profiles <small>Sessions</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                    role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item One Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Three Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </article>
-                    </div>
+        </div>
+        <!-- Social Campain area end -->
+        <!-- Statistics area start -->
+        <div class="col-lg-8 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">User Statistics</h4>
+                    <div id="user-statistics"></div>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Top Profiles <small>Sessions</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                    role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item One Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <!-- Statistics area end -->
+        <!-- Advertising area start -->
+        <div class="col-lg-4 mt-5">
+            <div class="card h-full">
+                <div class="card-body">
+                    <h4 class="header-title">Advertising & Marketing</h4>
+                    <canvas id="seolinechart8" height="233"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Advertising area end -->
+        <!-- sales area start -->
+        <div class="col-xl-9 col-ml-8 col-lg-8 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Sales</h4>
+                    <div id="salesanalytic"></div>
+                </div>
+            </div>
+        </div>
+        <!-- sales area end -->
+        <!-- timeline area start -->
+        <div class="col-xl-3 col-ml-4 col-lg-4 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Timeline</h4>
+                    <div class="timeline-area">
+                        <div class="timeline-task">
+                            <div class="icon bg1">
+                                <i class="fa fa-envelope"></i>
                             </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <div class="tm-title">
+                                <h4>Rashed sent you an email</h4>
+                                <span class="time"><i class="ti-time"></i>09:35</span>
                             </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                            </p>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg2">
+                                <i class="fa fa-exclamation-triangle"></i>
                             </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Two Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <div class="tm-title">
+                                <h4>Rashed sent you an email</h4>
+                                <span class="time"><i class="ti-time"></i>09:35</span>
                             </div>
-                        </article>
-                        <article class="media event">
-                            <a class="pull-left date">
-                                <p class="month">April</p>
-                                <p class="day">23</p>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">Item Three Title</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                            </p>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg2">
+                                <i class="fa fa-exclamation-triangle"></i>
                             </div>
-                        </article>
+                            <div class="tm-title">
+                                <h4>Rashed sent you an email</h4>
+                                <span class="time"><i class="ti-time"></i>09:35</span>
+                            </div>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg3">
+                                <i class="fa fa-bomb"></i>
+                            </div>
+                            <div class="tm-title">
+                                <h4>Rashed sent you an email</h4>
+                                <span class="time"><i class="ti-time"></i>09:35</span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                            </p>
+                        </div>
+                        <div class="timeline-task">
+                            <div class="icon bg3">
+                                <i class="ti-signal"></i>
+                            </div>
+                            <div class="tm-title">
+                                <h4>Rashed sent you an email</h4>
+                                <span class="time"><i class="ti-time"></i>09:35</span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- timeline area end -->
+        <!-- map area start -->
+        <div class="col-xl-5 col-lg-12 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Marketing Area</h4>
+                    <div id="seomap"></div>
+                </div>
+            </div>
+        </div>
+        <!-- map area end -->
+        <!-- testimonial area start -->
+        <div class="col-xl-7 col-lg-12 mt-5">
+            <div class="card">
+                <div class="card-body bg1">
+                    <h4 class="header-title text-white">Client Feadback</h4>
+                    <div class="testimonial-carousel owl-carousel">
+                        <div class="tst-item">
+                            <div class="tstu-img">
+                                <img src="{{ asset('') }}assets/images/team/team-author1.jpg" alt="author image">
+                            </div>
+                            <div class="tstu-content">
+                                <h4 class="tstu-name">Abel Franecki</h4>
+                                <span class="profsn">Designer</span>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae laborum ut nihil numquam a aliquam alias necessitatibus ipsa soluta quam!</p>
+                            </div>
+                        </div>
+                        <div class="tst-item">
+                            <div class="tstu-img">
+                                <img src="{{ asset('assets/images/team/team-author2.jpg') }}" alt="author image">
+                            </div>
+                            <div class="tstu-content">
+                                <h4 class="tstu-name">Abel Franecki</h4>
+                                <span class="profsn">Designer</span>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae laborum ut nihil numquam a aliquam alias necessitatibus ipsa soluta quam!</p>
+                            </div>
+                        </div>
+                        <div class="tst-item">
+                            <div class="tstu-img">
+                                <img src="{{ asset('assets/images/team/team-author3.jpg') }}" alt="author image">
+                            </div>
+                            <div class="tstu-content">
+                                <h4 class="tstu-name">Abel Franecki</h4>
+                                <span class="profsn">Designer</span>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae laborum ut nihil numquam a aliquam alias necessitatibus ipsa soluta quam!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- testimonial area end -->
     </div>
 </div>
 @endsection

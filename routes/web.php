@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\AdminJobController;
-use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Employee\DashboardController;
 use App\Http\Controllers\Admin\AdminEmployeeController;
-use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\admin\AttendanceScheduleController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\employee\EmployeeController;
 use App\Http\Controllers\Employee\WidgetController;
 use App\Http\Controllers\ProfileController;
@@ -37,20 +37,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('FTM')->middleware('auth','role:employee')->name('FTM.')->group(function () {
+Route::prefix('FTM')->middleware('auth', 'role:employee')->name('FTM.')->group(function () {
     Route::get('employee/dashboard', [DashboardController::class, 'index'])->name('employee.dashboard');
     Route::get('employee/profile', [EmployeeController::class, 'detail'])->name('employee.detail');
     Route::get('widget', [WidgetController::class, 'index'])->name('widget');
 });
 
-Route::prefix('admin')->middleware('auth','role:admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin.')->group(function () {
     Route::get('employee-list', [AdminEmployeeController::class, 'index'])->name('employee-list.index');
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('employee-list/create', [AdminEmployeeController::class, 'create'])->name('employee-list.create');
     Route::post('employee-list/store', [AdminEmployeeController::class, 'store'])->name('employee-list.store');
-    Route::get('employee-list/detail/{id}', [AdminEmployeeController::class, 'show'])->name('employee-list.show');
-    Route::put('employee-list/update/{id}', [AdminEmployeeController::class, 'update'])->name('employee-list.update');
-    Route::get('employee-list/delete/{id}', [AdminEmployeeController::class, 'destroy'])->name('employee-list.destroy');
+    Route::get('employee-list/detail/{employee_list}', [AdminEmployeeController::class, 'show'])->name('employee-list.show');
+    Route::put('employee-list/update/{employee_list}', [AdminEmployeeController::class, 'update'])->name('employee-list.update');
+    Route::get('employee-list/delete/{employee_list}', [AdminEmployeeController::class, 'destroy'])->name('employee-list.destroy');
     Route::get('attendance-schedule', [AttendanceScheduleController::class, 'index'])->name('attendance-schedule');
     Route::post('employee-list/slug', [AdminEmployeeController::class, 'createSlug'])->name('employee-list.create.slug');
     Route::post('employee-list/ckeditor-upload-image', [AdminEmployeeController::class, 'uploadImage'])->name('employee-list.ckeditor.upload.image');
@@ -61,11 +61,12 @@ Route::get('admin', function () {
     return view('admin.layout.master');
 });
 Route::prefix('FTM')->name('FTM.')->group(function () {
-    Route::get('login', [LoginController::class, 'index'])->name('login');
-    Route::post('login/account', [LoginController::class, 'login'])->name('login.account');
+    // Route::get('login', [LoginController::class, 'index'])->name('login');
+    // Route::post('login/account', [LoginController::class, 'login'])->name('login.account');
 });
-Route::prefix('backend')->name('backend.')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('permissions', PermissionController::class);
+    Route::resource('roles', RoleController::class);
 });
 
 require __DIR__ . '/auth.php';

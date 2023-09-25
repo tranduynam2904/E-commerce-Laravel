@@ -24,11 +24,10 @@ class StoreEmployeeRequest extends FormRequest
         return [
             'avatar' => 'image',
             'name' => 'required|min:3|max:255',
-            'email' => ['required', 'email', 'unique:employee', 'regex:/@gmail.com$/'],
+            // 'email' => ['required', 'email', 'unique:employee', 'regex:/@gmail.com$/'],
             'age' => 'required|max:100',
             'gender' => 'required',
             'phone' => 'required',
-            'occupation' => 'required',
         ];
     }
 }
