@@ -255,7 +255,7 @@
                         <div class="col-md-6 divide-right">
                             <div class="row">
                                 <div class="col-md-5 col-sm-4 col-xs-12 product-img float-left">
-                                    <img src="{{ asset('assets/client/') }}img/products/01.jpg"
+                                    <img src="{{ asset('assets/client/img/products/01.jpg') }}"
                                         class="img-responsive" alt="01">
                                 </div>
                                 <div class="col-md-7 col-sm-8 col-xs-12 product-desc float-left">

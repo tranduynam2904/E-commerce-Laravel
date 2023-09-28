@@ -24,7 +24,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.permission.create');
+        return view('admin.pages.permissions.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class PermissionController extends Controller
     {
         $permissions = DB::table('permissions')->find($id);
         // dd($permissions);
-        return view('admin.pages.permission.detail', ['permissions' => $permissions]);
+        return view('admin.pages.permissions.detail', ['permissions' => $permissions]);
     }
 
     /**

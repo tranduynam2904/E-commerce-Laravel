@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        dd(Auth::role()->name);
+        dd(Auth::user()->name);
         if (Auth::check() && Auth::role()->name == 'admin') {
             return redirect()->route('admin.employee-list.index');
         }
