@@ -55,7 +55,6 @@
                                                 <td>{{ $employee->age }}</td>
                                                 <td>{{ $employee->gender ? 'Male' : 'Female' }}</td>
                                                 <td>{{ $employee->phone }}</td>
-                                                {{-- <td>{{ $employee->job_name }}</td> --}}
                                                 <td>{{ $employee->job_category->occupation }}</td>
                                                 <td>{!! $employee->description !!}</td>
                                                 <td>{{ $employee->created_at }}</td>

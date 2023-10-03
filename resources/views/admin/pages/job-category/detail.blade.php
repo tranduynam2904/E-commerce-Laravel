@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h4 class="header-title">Update Job Category</h4>
                         <form method="POST"
-                            action="{{ route('admin.job-categories.update', ['job_category' => $jobCategory->id]) }}"
+                            action="{{ route('admin.job-category.update', ['job_category' => $jobCategory->id]) }}"
                             class="form-horizontal form-label-left" novalidate>
                             @csrf
                             @method('put')
@@ -73,7 +73,7 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <button type="button"
-                                    onclick="window.location.href='{{ route('admin.job-categories.index') }}'"
+                                    onclick="window.location.href='{{ route('admin.job-category.index') }}'"
                                     class="btn btn-primary">Cancel</button>
                                 <button id="send" type="submit" class="btn btn-success">Submit</button>
                             </div>

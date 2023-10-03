@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Create Job Category</h4>
-                        <form method="post" action="{{ route('admin.job-categories.store') }}"
+                        <form method="post" action="{{ route('admin.job-category.store') }}"
                             class="form-horizontal form-label-left" novalidate>
                             <div class="form-group">
                                 <label class="control-label" for="name">Occupation</label>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="button"
-                                    onclick="window.location.href='{{ route('admin.job-categories.index') }}'"
+                                    onclick="window.location.href='{{ route('admin.job-category.index') }}'"
                                     class="btn btn-primary">Cancel</button>
                                 <button id="send" type="submit" class="btn btn-success">Submit</button>
                             </div>

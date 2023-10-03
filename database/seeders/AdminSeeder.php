@@ -22,6 +22,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'password' => Hash::make('admin23'),
+            'role_id' => '1'
         ])->assignRole('writer', 'admin');
         // $adminPermission = Permission::create(['name' => view('admin.pages.dashboard.content')]);
         // $adminRole->givePermission($adminPermission);
@@ -31,6 +32,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'password' => Hash::make('employeeftm23'),
+            'role_id' => '3'
         ])->assignRole('writer', 'employee');
     }
 }

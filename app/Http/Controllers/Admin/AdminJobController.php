@@ -17,7 +17,7 @@ class AdminJobController extends Controller
     public function index()
     {
         $jobCategories = JobCategory::all();
-        return view('admin.pages.job-categories.list', ['jobCategories' => $jobCategories]);
+        return view('admin.pages.job-category.list', ['jobCategories' => $jobCategories]);
     }
 
     /**
@@ -26,7 +26,7 @@ class AdminJobController extends Controller
     public function create()
     {
 
-        return view('admin.pages.job-categories.create');
+        return view('admin.pages.job-category.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class AdminJobController extends Controller
         //     ]
         // );
         $message = $check ? 'Successfully created job categories' : 'Failed created job categories';
-        return redirect()->route('admin.job-categories.index')->with('message', $message);
+        return redirect()->route('admin.job-category.index')->with('message', $message);
     }
 
     /**
@@ -66,7 +66,7 @@ class AdminJobController extends Controller
     {
 
         // $jobCategories = DB::table('job_categories')->find($id);
-        return view('admin.pages.job-categories.detail', ['jobCategory' => $jobCategory]);
+        return view('admin.pages.job-category.detail', ['jobCategory' => $jobCategory]);
     }
 
     /**
@@ -99,7 +99,7 @@ class AdminJobController extends Controller
         $jobCategory->updated_at = Carbon::now(+7);
         $check = $jobCategory->save();
         $message = $check ? 'Successfully created employee' : 'Failed to create employee';
-        return redirect()->route('admin.job-categories.index')->with('message', $message);
+        return redirect()->route('admin.job-category.index')->with('message', $message);
     }
 
     /**
@@ -110,6 +110,6 @@ class AdminJobController extends Controller
         // $check = DB::table('job_categories')->delete($id);
         $check = $jobCategory->delete();
         $message = $check ? 'Job categories deleted successfully' : 'Job categories failed to delete';
-        return redirect()->route('admin.job-categories.index')->with('message', $message);
+        return redirect()->route('admin.job-category.index')->with('message', $message);
     }
 }

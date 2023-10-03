@@ -45,63 +45,64 @@
         </div>
     </form>
 </x-guest-layout> --}}
-@include('admin.layout.my-links')
 <!-- login area start -->
-<div class="login-area login-s2">
-    <div class="container">
-        <div class="login-box ptb--100">
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <div class="login-form-head">
-                    <h4>Sign In</h4>
-                    {{-- <p>Hello there, Sign in and start managing your Admin Template</p> --}}
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-medium text-left">Sign in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="login-form-body">
+                <div class="modal-body mx-3">
                     <!-- Email -->
-                    <div class="form-gp">
+                    <div class="md-form mb-4">
                         <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" type="email" name="email" :value="old('email')"
-                            autocomplete="username" />
+                        <x-text-input placeholder="Your Email" id="email" type="email"
+                            class="form-control validate" name="email" :value="old('email')" autocomplete="username" />
                         <i class="ti-email"></i>
                         <div class="text-danger"></div>
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                     <!-- Password -->
-                    <div class="form-gp">
+                    <div class="md-form mb-4">
                         <x-input-label for="password" :value="__('Password')" />
-                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                            autocomplete="current-password" />
+                        <x-text-input id="password" class="form-control validate" placeholder="Your Password"
+                            type="password" name="password" required autocomplete="current-password" />
                         <i class="ti-lock"></i>
                         <div class="text-danger"></div>
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
                     <!-- Remember Me -->
-                    <div class="row mb-4 rmber-area">
-                        <div class="col-6">
-                            <div class="custom-control custom-checkbox mr-sm-2">
-                                <input  name="remember" type="checkbox" class="custom-control-input"
-                                    id="customControlAutosizing">
-                                <label class="custom-control-label"
-                                    for="customControlAutosizing">{{ __('Remember me') }}</label>
-                            </div>
+                    <div class="checkbox-link d-flex justify-content-between">
+                        <div class="left-col">
+                            <input name="remember" type="checkbox" id="customControlAutosizing">
+                            <label for="customControlAutosizing">{{ __('Remember me') }}</label>
                         </div>
-                        <div class="col-6 text-right">
+                        <div class="right-col">
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                             @endif
                         </div>
                     </div>
-                    <!-- Login -->
-                    <div class="submit-btn-area">
-                        <button id="form_submit" type="submit">{{ __('Log in') }} <i class="ti-arrow-right"></i></button>
-                    </div>
-                    {{-- <div class="form-footer text-center mt-5">
-                        <p class="text-muted">Don't have an account? <a href="register.html">Sign up</a></p>
-                    </div> --}}
                 </div>
-            </form>
-        </div>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <a style="font-size: 13px;
+                    letter-spacing: 1px;
+                    padding: 10px 20px;
+                    outline: none !important;
+                    display: inline-block;
+                    color: #ffffff !important;
+                    text-transform: capitalize;"
+                        href="{{ url('auth/google') }}" class="btn btn-danger">Sign in with gmail</a>
+                    <button type="submit" class="btn btn-primary">{{ __('Log in') }}</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-@include('admin.layout.my-scripts')
 <!-- login area end -->

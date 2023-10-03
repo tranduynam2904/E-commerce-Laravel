@@ -4,7 +4,7 @@
         <div class="row">
             <!-- table primary start -->
             <div class="col-lg-12 mt-5">
-                <div style="display: flex;justify-content:end"><a href="{{ route('admin.job-categories.create') }}"
+                <div style="display: flex;justify-content:end"><a href="{{ route('admin.job-category.create') }}"
                         style="color:white" class="btn btn-primary">Create New Job
                         Categories</a></div>
                 <div class="col-md-6 col-sm-8 clearfix">
@@ -48,12 +48,12 @@
                                                 <td>{{ $jobCategory->created_at }}</td>
                                                 <td>{{ $jobCategory->updated_at }}</td>
                                                 <td><a class="btn btn-primary"
-                                                        href="{{ route('admin.job-categories.show', ['job_category' => $jobCategory->id]) }}">
+                                                        href="{{ route('admin.job-category.show', ['job_category' => $jobCategory->id]) }}">
                                                         Edit</a>
                                                 </td>
                                                 <td>
                                                     <form
-                                                        action="{{ route('admin.job-categories.destroy', ['job_category' => $jobCategory->id]) }}"
+                                                        action="{{ route('admin.job-category.destroy', ['job_category' => $jobCategory->id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')

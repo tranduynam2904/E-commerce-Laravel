@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
@@ -12,7 +13,8 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $productCategories = ProductCategory::all();
+        return view('admin.pages.product-category.list', ['productCategories' => $productCategories]);
     }
 
     /**
@@ -20,7 +22,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.product-category.create');
     }
 
     /**
@@ -28,15 +30,20 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $productCategories = new ProductCategory;
+        $productCategories->name = $request->name;
+        $productCategories->status = $request->status;
+        $productCategories->save();
+        $message = $productCategories ? 'Created product category successfully' : 'Failed to create product category';
+        return redirect()->route('admin.product-category.index')->with('message', $message);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ProductCategory $product_category)
     {
-        //
+        return view('admin.pages.product-category.detail',['product_category' => $product_category]);
     }
 
     /**

@@ -18,8 +18,9 @@
                         </a></li>
                 </ul>
             </div>
+
             <div class="tab-content float-left w-100">
-                <div class="tab-pane active float-left w-100" id="ttfeatured-main" role="tabpanel"
+                {{-- <div class="tab-pane active float-left w-100" id="ttfeatured-main" role="tabpanel"
                     aria-labelledby="featured-tab">
                     <section id="ttfeatured" class="ttfeatured-products">
                         <div class="ttfeatured-content products grid owl-carousel" id="owl1">
@@ -486,7 +487,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> --}}
                 <div class="tab-pane float-left w-100" id="ttnew-main" role="tabpanel"
                     aria-labelledby="new-tab">
                     <section id="ttnew" class="ttnew-products">

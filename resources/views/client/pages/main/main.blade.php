@@ -1,3 +1,5 @@
+@extends('client.layout.master')
+@section('main')
 <main>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <!-- Slider start -->
@@ -29,3 +31,4 @@
         </div>
     </div>
 </main>
+@endsection

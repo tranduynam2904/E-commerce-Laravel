@@ -7,7 +7,7 @@
                         <div class="testimonial-block d-lg-flex d-md-flex d-sm-block align-items-center">
                             <div class="ttimage col-sm-3 float-left">
                                 <div class="testimonial-image float-left d-flex align-items-center">
-                                    <img alt="" src="img/banner/user1.jpg" />
+                                    <img alt="" src="{{ asset('assets/client/img/banner/user1.jpg') }}" />
                                     <div class="testimonial-user-title">
                                         <h4>John Duff</h4>
                                         <div class="user-designation">SEO & founder</div>
@@ -22,7 +22,6 @@
                                         placerat imperdiet.
                                     </p>
                                 </div>
-
                             </div>
                         </div>
                     </li>
@@ -30,8 +29,7 @@
                         <div class="testimonial-block d-lg-flex d-md-flex d-sm-block align-items-center">
                             <div class="ttimage  col-sm-3 float-left">
                                 <div class="testimonial-image float-left d-flex align-items-center">
-                                    <img alt=""
-                                        src="{{ asset('assets/client/img/banner/user1.jpg') }}" />
+                                    <img alt="" src="{{ asset('assets/client/img/banner/user1.jpg') }}" />
                                     <div class="testimonial-user-title">
                                         <h4>John Duff</h4>
                                         <div class="user-designation">SEO & founder</div>
@@ -54,8 +52,7 @@
                         <div class="testimonial-block d-lg-flex d-md-flex d-sm-block align-items-center">
                             <div class="ttimage col-sm-3 float-left">
                                 <div class="testimonial-image float-left d-flex align-items-center">
-                                    <img alt=""
-                                        src="{{ asset('assets/client/img/banner/user1.jpg') }}" />
+                                    <img alt="" src="{{ asset('assets/client/img/banner/user1.jpg') }}" />
                                     <div class="testimonial-user-title">
                                         <h4>John Duff</h4>
                                         <div class="user-designation">SEO & founder</div>

@@ -33,4 +33,5 @@
  <script src="{{ asset('assets/admin/js/plugins.js') }}"></script>
  <script src="{{ asset('assets/admin/js/scripts.js') }}"></script>
  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  @yield('js-custom')

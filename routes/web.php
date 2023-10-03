@@ -2,13 +2,17 @@
 
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\AdminJobController;
+use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Employee\DashboardController;
 use App\Http\Controllers\Admin\AdminEmployeeController;
 use App\Http\Controllers\admin\AttendanceScheduleController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\employee\EmployeeController;
 use App\Http\Controllers\Employee\WidgetController;
+use App\Http\Controllers\Login\GoogleController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,16 +27,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('client.layout.master');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('user/account/profile', function ($id) {
 
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('user/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -54,7 +58,9 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin.')->group(
     Route::get('attendance-schedule', [AttendanceScheduleController::class, 'index'])->name('attendance-schedule');
     Route::post('employee-list/slug', [AdminEmployeeController::class, 'createSlug'])->name('employee-list.create.slug');
     Route::post('employee-list/ckeditor-upload-image', [AdminEmployeeController::class, 'uploadImage'])->name('employee-list.ckeditor.upload.image');
-    Route::resource('job-categories', AdminJobController::class);
+    Route::resource('job-category', AdminJobController::class);
+    Route::resource('product-category', ProductCategoryController::class);
+    Route::resource('product', ProductController::class);
 });
 
 Route::get('admin', function () {
@@ -69,4 +75,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('roles', RoleController::class);
 });
 
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 require __DIR__ . '/auth.php';
