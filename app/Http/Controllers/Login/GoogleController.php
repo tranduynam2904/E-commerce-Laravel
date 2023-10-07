@@ -2,54 +2,62 @@
 
 namespace App\Http\Controllers\Login;
 
+use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
     public function redirectToGoogle()
     {
-        // try {
-        //     $url = Socialite::driver('google')->stateless()->redirect()->getTargetUrl();
-        //     return response()->json(['url' => $url,])->setStatusCode(Response::HTTP_OK);
-        // } catch (\Exception $exception) {
-        //     return $exception;
-        // }
+
         return Socialite::driver('google')->redirect();
     }
     public function handleGoogleCallback()
     {
-        try {
-            // Lấy thông tin người dùng từ Google
-            $user = Socialite::driver('google')->user();
+        // Start Google OAuth
+        $user = Socialite::driver('google')->user();
 
-            // Kiểm tra xem người dùng đã tồn tại trong database hay chưa
-            $findUser = User::where('google_id', $user->id)->first();
-            if ($findUser) {
-                // Nếu tồn tại, đăng nhập người dùng vào ứng dụng
+        // Find User in database
+        $findUser = User::where('google_id', $user->id)->first();
+        // dd($findUser->email_verified_at);
+        if ($findUser) {
+            if ($findUser->email_verified_at !== null) {
+                // If user verified email, login user
                 Auth::login($findUser);
-
-                return redirect('/');
             } else {
-                // Nếu không tồn tại, tạo một tài khoản mới cho người dùng và lưu vào database
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id' => $user->id,
-                    'password' => encrypt('123456dummy')
-                ]);
-
-                // Đăng nhập người dùng vào ứng dụng
-                Auth::login($newUser);
-                return redirect('/');
+                Auth::logout($findUser);
             }
-        } catch (Exception $e) {
-            // Nếu có lỗi, hiển thị thông báo lỗi
-            dd($e->getMessage());
+            return redirect()->route('home.index');
+        }
+
+        // If user don't exist, create new user
+        try {
+            $newUser = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'google_id' => $user->id,
+                'password' => Hash::make('123456dummy')
+            ]);
+            $newUser->sendEmailVerificationNotification();
+            // Send Email Verification
+            if ($newUser->hasVerifiedEmail()) {
+                $newUser->markEmailAsVerified();
+                $newUser->save();
+                Auth::login($newUser);
+            }
+            // else {
+            //     Auth::logout($newUser);
+            // }
+            return redirect()->route('home.index');
+        } catch (\Exception $e) {
+            // if something wrong, redirect with error message
+            return redirect('/error')->with('error', 'cannot create account');
         }
     }
 }

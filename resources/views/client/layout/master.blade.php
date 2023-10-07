@@ -21,9 +21,10 @@
     </div>
 
     <!-- Register modal -->
-    @include('auth.register')
+    {{-- @include('auth.register') --}}
+    {{-- @yield('register') --}}
     <!-- Login modal -->
-    @include('auth.login')
+    {{-- @include('auth.login') --}}
 
     <!-- product_view modal -->
     <div class="modal fade product_view" id="product_view" tabindex="-1" role="dialog" aria-hidden="true">

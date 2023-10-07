@@ -43,20 +43,9 @@ class AdminJobController extends Controller
         $jobCategories->created_at = Carbon::now(+7);
         $jobCategories->updated_at = Carbon::now(+7);
         $check = $jobCategories->save();
-        // $check = DB::table('job_categories')->insert(
-        //     [
-        //         'occupation' =>
-        //         $request->occupation,
-        //         'required_age' => $request->required_age,
-        //         'salary_range' => $request->salary_range,
-        //         'number_of_recruits' => $request->number_of_recruits,
-        //         'recruitment_status' => $request->recruitment_status,
-        //         'created_at' => Carbon::now(+7),
-        //         'updated_at' => Carbon::now(+7)
-        //     ]
-        // );
         $message = $check ? 'Successfully created job categories' : 'Failed created job categories';
         return redirect()->route('admin.job-category.index')->with('message', $message);
+        // return response()->json(['success'=>'Got Simple Ajax Request.']);
     }
 
     /**
@@ -109,7 +98,7 @@ class AdminJobController extends Controller
     {
         // $check = DB::table('job_categories')->delete($id);
         $check = $jobCategory->delete();
-        $message = $check ? 'Job categories deleted successfully' : 'Job categories failed to delete';
+        $message = $check ? 'Job category deleted successfully' : 'Job category failed to delete';
         return redirect()->route('admin.job-category.index')->with('message', $message);
     }
 }

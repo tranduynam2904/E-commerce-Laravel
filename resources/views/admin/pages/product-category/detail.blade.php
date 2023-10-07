@@ -6,7 +6,7 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Update Job Category</h4>
+                        <h4 class="header-title">Update Product Category</h4>
                         <form method="POST"
                             action="{{ route('admin.product-category.update', ['product_category' => $product_category->id]) }}"
                             class="form-horizontal form-label-left" novalidate>

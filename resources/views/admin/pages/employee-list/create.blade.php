@@ -44,6 +44,17 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="email">Email</label>
+                                <input value="{{ old('email') }}" id="email" class="form-control"
+                                    data-validate-length-range="6" data-validate-words="2" name="email"
+                                    placeholder="both name(s) e.g Jon Doe" type="text">
+                                @error('email')
+                                    <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                        class="alert alert-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="age">Age</label>
                                 <input value="{{ old('age') }}" type="number" id="age" name="age"
                                     class="form-control">

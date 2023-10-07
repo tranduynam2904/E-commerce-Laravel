@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('image', 255);
             $table->string('name', 255);
+            $table->string('slug', 255);
             $table->unsignedBigInteger('rating_id');
             $table->unsignedBigInteger('color_id');
-            $table->float('price')->default(0);
-            $table->float('discount_price')->default(0);
-            $table->string('size', 255);
+            $table->double('price')->default(0);
+            $table->integer('qty')->default(0);
+            $table->double('discount_price')->default(0);
+            $table->double('weight')->default(0);
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('product_category_id');
             //Add Foreign key
             $table->foreign('rating_id')->references('id')->on('rating');

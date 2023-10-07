@@ -3,9 +3,11 @@
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\AdminJobController;
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\client\OtpController;
 use App\Http\Controllers\Employee\DashboardController;
 use App\Http\Controllers\Admin\AdminEmployeeController;
 use App\Http\Controllers\admin\AttendanceScheduleController;
+use App\Http\Controllers\Admin\EmployeeAccountController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\employee\EmployeeController;
 use App\Http\Controllers\Employee\WidgetController;
 use App\Http\Controllers\Login\GoogleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +30,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('user/account/profile', function ($id) {
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -61,6 +63,9 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin.')->group(
     Route::resource('job-category', AdminJobController::class);
     Route::resource('product-category', ProductCategoryController::class);
     Route::resource('product', ProductController::class);
+    Route::post('product/slug', [ProductController::class, 'createSlug'])->name('product.create.slug');
+    Route::post('product/ckeditor-upload-image', [ProductController::class, 'uploadImage'])->name('product.ckeditor.upload.image');
+Route::resource('employee-account',EmployeeAccountController::class);
 });
 
 Route::get('admin', function () {
@@ -77,4 +82,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('otp/verification' ,[OtpController::class,'index'])->name('otp.verification');
+Route::post('otp/store',[OtpController::class,'store'])->name('otp.store');
+// Route::get('user/verification', function(){
+//     return view('auth.verify-email');
+// })->name('auth.verify-email');
 require __DIR__ . '/auth.php';
+
