@@ -32,9 +32,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+<<<<<<< HEAD
 
 Route::get('productCategory', [HomeController::class, 'showProductCategory'])->name('home.productCategory');
 Route::get('productCategory/{productCategory}', [HomeController::class, 'showProduct'])->name('home.product-category');
+=======
+
+
+>>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -67,7 +72,11 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin.')->group(
     Route::resource('product', ProductController::class);
     Route::post('product/slug', [ProductController::class, 'createSlug'])->name('product.create.slug');
     Route::post('product/ckeditor-upload-image', [ProductController::class, 'uploadImage'])->name('product.ckeditor.upload.image');
+<<<<<<< HEAD
     Route::resource('employee-account', EmployeeAccountController::class);
+=======
+Route::resource('employee-account',EmployeeAccountController::class);
+>>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
 });
 
 Route::get('admin', function () {
@@ -84,8 +93,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+<<<<<<< HEAD
 Route::get('otp/verification', [OtpController::class, 'index'])->name('otp.verification');
 Route::post('otp/store', [OtpController::class, 'store'])->name('otp.store');
 Route::get('otp/sms', [SendOtpSmsController::class, 'sendOtp']);
 
+=======
+Route::get('otp/verification' ,[OtpController::class,'index'])->name('otp.verification');
+Route::post('otp/store',[OtpController::class,'store'])->name('otp.store');
+// Route::get('user/verification', function(){
+//     return view('auth.verify-email');
+// })->name('auth.verify-email');
+>>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
 require __DIR__ . '/auth.php';
+

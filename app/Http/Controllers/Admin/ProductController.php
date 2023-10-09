@@ -41,6 +41,7 @@ class ProductController extends Controller
             $fileName .= '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(public_path('images'),  $fileName);
         }
+<<<<<<< HEAD
         if ($request->hasFile('second_image')) {
             $secondFileOrginialName = $request->file('second_image')->getClientOriginalName();
             $secondFileName = pathinfo($secondFileOrginialName, PATHINFO_FILENAME);
@@ -50,6 +51,10 @@ class ProductController extends Controller
         $products = Product::create([
             'image' => $request->image = $fileName ?? null,
             'second_image' => $request->second_image = $secondFileName ?? null,
+=======
+        $products = Product::create([
+            'image' => $request->image = $fileName ?? null,
+>>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
             'name' => $request->name,
             'status' => $request->status,
             'slug' => $request->slug,
@@ -89,7 +94,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $oldImageFileName = $product->image;
+<<<<<<< HEAD
         $oldSecondImageFileName = $product->second_image;
+=======
+>>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
         // dd($oldImageFileName);
         if ($request->hasFile('image')) {
             $fileOrginialName = $request->file('image')->getClientOriginalName();
@@ -100,6 +108,7 @@ class ProductController extends Controller
                 unlink('images/' . $oldImageFileName);
             }
         }
+<<<<<<< HEAD
         if ($request->hasFile('second_image')) {
             $secondFileOrginialName = $request->file('second_image')->getClientOriginalName();
             $secondFileName = pathinfo($secondFileOrginialName, PATHINFO_FILENAME);
@@ -111,6 +120,9 @@ class ProductController extends Controller
         }
         $product->image = $fileName ?? $oldImageFileName;
         $product->second_image = $secondFileName ?? $oldSecondImageFileName;
+=======
+        $product->image = $fileName ?? $oldImageFileName;
+>>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
         $product->name = $request->name;
         $product->status = $request->status;
         $product->slug = $request->slug;
