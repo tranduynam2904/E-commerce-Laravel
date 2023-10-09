@@ -16,4 +16,5 @@
   <script src="{{ asset('assets/client/js/imagesloaded.pkgd.min.js') }}"></script>
   <script src="{{ asset('assets/client/js/jquery.zoom.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="text/javascript" onload="initSendOTP(configuration)" src="https://control.msg91.com/app/assets/otp-provider/otp-provider.js"> </script>
   @yield('js-custom')

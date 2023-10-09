@@ -13,8 +13,11 @@
                     </li>
                     <li class="active"><a href="{{ route('admin.job-category.index') }}"><i class="fa fa-table"></i>
                             <span>Job Categories</span></a></li>
+                    <li class="active"><a href="{{ route('admin.employee-account.index') }}"><i class="fa fa-table"></i>
+                            <span>Employee Account</span></a></li>
+                    </li>
                     <li class="active"><a href="{{ route('admin.employee-list.index') }}"><i class="fa fa-table"></i>
-                            <span>Employee List</span></a></li>
+                            <span>Employee Detail</span></a></li>
                     </li>
                     <li class="active"><a href="{{ route('admin.product-category.index') }}"><i class="fa fa-table"></i>
                             <span>Product Categories</span></a></li>

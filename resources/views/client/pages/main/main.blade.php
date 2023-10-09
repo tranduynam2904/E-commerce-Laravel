@@ -10,9 +10,9 @@
         @include('client.pages.main.components.banner')
         <!-- Banner end -->
         <div id="main">
-            <!-- Product Category start -->
-            @include('client.pages.main.components.product-category')
-            <!-- Product Category end -->
+            <!-- Home Product start -->
+            @include('client.pages.main.components.home-product')
+            <!-- Home Product end -->
             <!-- SEO & Founder start -->
             @include('client.pages.main.components.seo-founder')
             <!-- SEO & Founder end -->

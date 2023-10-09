@@ -419,22 +419,26 @@
                             <div id="user-dropdown" class="user-menu">
                                 <ul>
                                     @if (Auth::check())
-                                        <li><a href="my-account.html" class="text-capitalize">my account</a></li>
+                                        <li><a href="{{ route('profile.edit') }}" class="text-capitalize">my
+                                                account</a></li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
                                             <li><x-dropdown-link id="logout" class="text-capitalize"
                                                     :href="route('logout')"
                                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();"
-                                                >
+                                                this.closest('form').submit();">
                                                     {{ __('Log Out') }}
                                                 </x-dropdown-link>
                                             </li>
                                         </form>
                                     @else
-                                        <li><a href="#" class="modal-view button" data-toggle="modal"
-                                                data-target="#modalRegisterForm">Register</a></li>
-                                        <li><a href="#" class="modal-view button" data-toggle="modal"
+                                        <li><a href="{{ route('register') }}" class="modal-view button"
+                                                {{-- data-toggle="modal"  --}}
+                                                data-target="#modalRegisterForm"
+
+                                                >Register</a></li>
+                                        <li><a href="{{ 'login' }}" class="modal-view button"
+                                            {{-- data-toggle="modal" --}}
                                                 data-target="#modalLoginForm">login</a>
                                         </li>
                                     @endif
@@ -500,32 +504,34 @@
     </div>
 </header>
 @section('js-custom')
-    <script>
-        // $(document).ready(function() {
-        //     $("#logout").on('click', function(e) {
-        //         e.preventDefault();
-        //         swal({
-        //                 title: "Are you sure?",
-        //                 text: "You will be logged out of this session.",
-        //                 icon: "warning",
-        //                 showCancelButton: true,
-        //                 confirmButtonColor: '#DD6B55',
-        //                 confirmButtonText: 'Yes, logout!',
-        //                 cancelButtonText: 'No, stay here!',
-        //                 closeOnConfirm: false,
-        //                 closeOnCancel: false
-        //             })
-        //             .then(function(isConfirm) {
-        //                 if (isConfirm) {
-        //                     // xử lý khi người dùng bấm xác nhận
-        //                     this.closest('form').submit(); // sử dụng this như bình thường
-        //                     swal("Goodbye!", "You have been logged out successfully.", "success");
-        //                 } else {
-        //                     // xử lý khi người dùng bấm hủy
-        //                     swal("Cancelled", "You are still logged in.", "info");
-        //                 }
-        //             }.bind(this)); // gán giá trị của this cho hàm callback
-        //     });
-        // });
-    </script>
+    {{-- <script>
+        $(document).ready(function() {
+            $("#logout").on('click', function(e) {
+                e.preventDefault();
+                swal({
+                        title: "Are you sure?",
+                        text: "You will be logged out of this session.",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: '#DD6B55',
+                        confirmButtonText: 'Yes, logout!',
+                        cancelButtonText: 'No, stay here!',
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    })
+                    .then(function(isConfirm) {
+                        if (isConfirm) {
+                            // xử lý khi người dùng bấm xác nhận
+                            this.closest('form').submit(); // sử dụng this như bình thường
+                            swal("Goodbye!", "You have been logged out successfully.", "success");
+                        } else {
+                            // xử lý khi người dùng bấm hủy
+                            swal("Cancelled", "You are still logged in.", "info");
+                        }
+                    }.bind(this)); // gán giá trị của this cho hàm callback
+            });
+        });
+    </script> --}}
+
+
 @endsection

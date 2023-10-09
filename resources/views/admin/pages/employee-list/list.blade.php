@@ -44,7 +44,7 @@
                                                 <td scope="row">{{ $loop->iteration }}</td>
                                                 <td>
                                                     @php
-                                                        $imageLink = is_null($employee->avatar) || !file_exists('images/' . $employee->avatar) ? 'https://liftlearning.com/wp-content/uploads/2020/09/default-image.png' : asset('images/' . $employee->image);
+                                                        $imageLink = is_null($employee->avatar) || !file_exists('images/' . $employee->avatar) ? 'https://liftlearning.com/wp-content/uploads/2020/09/default-image.png' : asset('images/' . $employee->avatar);
                                                     @endphp
                                                     <img width="50px" height="50px" src="{{ $imageLink }}"
                                                         alt="{{ $employee->avatar }}">

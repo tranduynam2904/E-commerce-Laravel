@@ -7,11 +7,10 @@
             <li class="breadcrumb-item active" aria-current="page">my-account</li>
         </ol>
     </nav>
-    <div class="main-content w-100 float-left blog-list">
+    <div  class="main-content w-100 float-left blog-list">
         <div class="container">
             <div class="row">
-
-                <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
+                <div style="padding-bottom:30px" class="products-grid col-xl-9 col-lg-8 order-lg-2">
                     <div class="row">
                         <div class="col-lg-12 order-lg-last account-content">
                             <h4>Edit Account Information</h4>
@@ -19,33 +18,11 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group required-field">
-                                                    <label for="acc-name">First Name <span class="required">*</span></label>
-                                                    <input type="text" class="form-control" id="acc-name"
-                                                        name="acc-name" required="">
-                                                </div>
-                                                <!-- End .form-group -->
-                                            </div>
-                                            <!-- End .col-md-4 -->
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="acc-mname">Middle Name <span
-                                                            class="required">*</span></label>
-                                                    <input type="text" class="form-control" id="acc-mname"
-                                                        name="acc-mname">
-                                                </div>
-                                                <!-- End .form-group -->
-                                            </div>
-                                            <!-- End .col-md-4 -->
-
-                                            <div class="col-md-4">
-                                                <div class="form-group required-field">
-                                                    <label for="acc-lastname">Last Name <span
-                                                            class="required">*</span></label>
-                                                    <input type="text" class="form-control" id="acc-lastname"
-                                                        name="acc-lastname" required="">
+                                                    <x-input-label for="name" :value="__('Name')" />
+                                                    <x-text-input id="name" name="name" class="form-control"
+                                                        type="text" :value="old('name', $user->name)" />
                                                 </div>
                                                 <!-- End .form-group -->
                                             </div>
@@ -53,23 +30,45 @@
                                         </div>
                                         <!-- End .row -->
                                     </div>
+                                    <?php
+                                    $hidden_email = preg_replace('/(.{2}).*(?=@)/', '$1************', $user->email);
+                                    ?>
                                     <!-- End .col-sm-11 -->
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group required-field">
+                                                    <x-input-label for="email" :value="__('Email')" />
+                                                    <x-text-input disabled id="email" name="email" class="form-control"
+                                                        type="email" :value="old('email', $hidden_email)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group required-field">
+                                                    <x-input-label for="phone" :value="__('Phone')" />
+                                                    <x-text-input disabled id="phone" name="phone" class="form-control"
+                                                        type="text" :value="old('phone', $user->phone)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group required-field">
+                                                    <label for="account-password">Password</label>
+                                                    <input type="password" class="form-control" id="account-password"
+                                                        name="account-password" required="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- End .row -->
-
-                                <div class="form-group required-field">
-                                    <label for="acc-email">Email</label>
-                                    <input type="email" class="form-control" id="acc-email" name="acc-email"
-                                        required="">
-                                </div>
-                                <!-- End .form-group -->
-
-                                <div class="form-group required-field">
-                                    <label for="account-password">Password</label>
-                                    <input type="password" class="form-control" id="account-password"
-                                        name="account-password" required="">
-                                </div>
-                                <!-- End .form-group -->
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="change-password-checkbox"
                                         value="1">

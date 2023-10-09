@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('occupation', 255);
             $table->string('required_age');
+            $table->softDeletes();
             $table->string('salary_range', 255);
             $table->integer('number_of_recruits')->nullable();
             $table->string('recruitment_status', 255);

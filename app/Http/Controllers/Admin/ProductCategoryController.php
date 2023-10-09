@@ -43,7 +43,7 @@ class ProductCategoryController extends Controller
      */
     public function show(ProductCategory $product_category)
     {
-        return view('admin.pages.product-category.detail',['product_category' => $product_category]);
+        return view('admin.pages.product-category.detail', ['product_category' => $product_category]);
     }
 
     /**
@@ -65,8 +65,10 @@ class ProductCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(ProductCategory $productCategory)
     {
-        //
+        $check = $productCategory->delete();
+        $message = $check ? 'Product category deleted successfully' : 'Product category failed to delete';
+        return redirect()->route('admin.product-category.index')->with('message', $message);
     }
 }

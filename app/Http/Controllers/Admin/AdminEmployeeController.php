@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
+use App\Models\JobCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -24,7 +25,7 @@ class AdminEmployeeController extends Controller
     }
     public function create()
     {
-        $jobCategories = DB::table('job_categories')->get();
+        $jobCategories = JobCategory::all();
         return view(
             'admin.pages.employee-list.create',
             ['jobCategories' => $jobCategories]
@@ -44,7 +45,7 @@ class AdminEmployeeController extends Controller
         $employeeList->avatar = $fileName ?? null;
         $employeeList->name = $request->name;
         $employeeList->slug = $request->slug;
-        // $employees->email = $request->email;
+        $employeeList->email = $request->email;
         $employeeList->age = $request->age;
         $employeeList->gender = $request->gender;
         $employeeList->phone = $request->phone;
@@ -63,7 +64,7 @@ class AdminEmployeeController extends Controller
     public function show(Employee $employeeList)
     {
         // dd($employee_list->id);
-        $jobCategories = DB::table('job_categories')->get();
+        $jobCategories = JobCategory::all();
         // dd($jobCategories->id);
         // $employees = DB::table('employee')->find($id);
         return view('admin.pages.employee-list.detail', ['employees' => $employeeList, 'jobCategories' => $jobCategories]);
@@ -84,6 +85,7 @@ class AdminEmployeeController extends Controller
         $employeeList->avatar = $fileName ?? $oldImageFileName;
         $employeeList->name = $request->name;
         $employeeList->slug = $request->slug;
+        $employeeList->email = $request->email;
         $employeeList->age = $request->age;
         $employeeList->gender = $request->gender;
         $employeeList->phone = $request->phone;

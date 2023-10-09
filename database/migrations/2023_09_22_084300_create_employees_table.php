@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('slug', 255)->nullable();
             $table->unsignedInteger('age');
+            $table->softDeletes();
             $table->string('gender', 255);
             $table->unsignedBigInteger('phone');
             $table->unsignedBigInteger('job_category_id');
