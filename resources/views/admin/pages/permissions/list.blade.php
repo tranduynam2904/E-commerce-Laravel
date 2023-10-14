@@ -1,10 +1,20 @@
 @extends('admin.layout.master')
 @section('content')
+    @if (session('message'))
+        <div id="flash-message" class="alert alert-success">
+            {{ session('message') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').style.display = 'none';
+            }, 3000); // 2 giây
+        </script>
+    @endif
     <div class="main-content-inner">
         <div class="row">
             <!-- table primary start -->
             <div class="col-lg-12 mt-5">
-                <div style="display: flex;justify-content:end"><a href="{{ route('admin.roles.create') }}"
+                <div style="display: flex;justify-content:end"><a href="{{ route('admin.permissions.create') }}"
                         style="color:white" class="btn btn-primary mb-3">Create New Permission</a></div>
                 <div style="" class="col-md-6 col-sm-8 clearfix">
                     <div class="search-box pull-left">
@@ -32,19 +42,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($roles as $role)
+                                        @forelse($permissions as $permission)
                                             <tr>
                                                 <td scope="row">{{ $loop->iteration }}</td>
-                                                <td>{{ $role->name }}</td>
-                                                <td>{{ $role->guard_name }}</td>
-                                                <td>{{ $role->created_at }}</td>
-                                                <td>{{ $role->updated_at }}</td>
+                                                <td>{{ $permission->name }}</td>
+                                                <td>{{ $permission->guard_name }}</td>
+                                                <td>{{ $permission->created_at }}</td>
+                                                <td>{{ $permission->updated_at }}</td>
                                                 <td><a class="btn btn-primary"
-                                                        href="{{ route('admin.roles.show', ['role' => $role->id]) }}">Edit</a>
+                                                        href="{{ route('admin.permissions.show', ['permission' => $permission->id]) }}">Edit</a>
                                                 </td>
-                                                <td class=" "><a class="btn btn-danger"
-                                                        onclick=" return confirm('Are you sure you want to delete this employee?')"
-                                                        href="{{ route('admin.roles.destroy', ['role' => $role->id]) }}">Delete</a>
+                                                <td class="">
+                                                    <form method="post"
+                                                        action="{{ route('admin.permissions.destroy', ['permission' => $permission->id]) }}">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <a class="btn btn-danger"
+                                                            onclick=" return confirm('Are you sure you want to delete this permission?')">Delete</a>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
@@ -56,7 +71,7 @@
                                 </table>
                             </div>
                             <div style="float: right; padding-top:1.25rem">
-                                {{ $roles->links('admin.pages.my-pagination.bootstrap-4') }}
+                                {{ $permissions->links('admin.pages.my-pagination.bootstrap-4') }}
                             </div>
                         </div>
                     </div>

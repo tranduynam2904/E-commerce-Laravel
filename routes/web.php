@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\EmployeeAccountController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\SendOtpSmsController;
 use App\Http\Controllers\employee\EmployeeController;
@@ -32,22 +33,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-<<<<<<< HEAD
-
-Route::get('productCategory', [HomeController::class, 'showProductCategory'])->name('home.productCategory');
-Route::get('productCategory/{productCategory}', [HomeController::class, 'showProduct'])->name('home.product-category');
-=======
-
-
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'role:client')->group(function () {
     Route::get('user/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('user/account/profile/updateProfile', [ProfileController::class, 'updateProfile'])->name('profile.edit.update-profile');
+    Route::get('user/account/profile/verify', [ProfileController::class, 'verifyOption'])->name('profile.verify');
+    Route::get('user/account/profile/verify-password', [ProfileController::class, 'verifyPassword'])->name('profile.verify-password');
+    Route::get('user/account/profile/new-password', [ProfileController::class, 'newPassword'])->name('profile.new-password');
+    Route::post('user/account/profile/new-password/store', [ProfileController::class, 'newPasswordStore'])->name('profile.new-password.store');
+    Route::post('user/account/profile/verify-password/store', [ProfileController::class, 'verifyPasswordStore'])->name('profile.verify-password.store');
+    Route::get('user/account/profile/phone-update', [ProfileController::class, 'phoneUpdateIndex'])->name('profile.phone.index');
+    Route::patch('user/account/profile/phone-update/update', [ProfileController::class, 'updatePhone'])->name('profile.phone.update-phone');
+    Route::get('user/account/profile/phone-update/otp', [ProfileController::class, 'verifyOtp'])->name('profile.phone.verifyOtp');
+    Route::post('user/account/profile/phone-update/otp', [ProfileController::class, 'verifyOtp'])->name('profile.phone.verifyOtp.store');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+    Route::get('product/add-to-cart/{productId}', [CartController::class, 'addToCart'])->name('product.add-to-cart');
+    Route::get('product/delete-item-in-cart/{productId}', [CartController::class, 'deleteItem'])->name('product.delete-item-in-cart');
+    Route::get('product/update-item-in-cart/{productId}/{qty?}', [CartController::class, 'updateItem'])->name('product.update-item-in-cart');
+    Route::get('product/delete-all-in-cart', [CartController::class, 'emptyCart'])->name('product.delete-all-in-cart');
+    Route::post('product/add-to-cart/notification');
+
+    // Route::get('phone-update',[OtpController::class,'phoneUserIndex'])->name('phone-update');
+    // Route::post('phone-update/update',[OtpController::class,'updatePhoneUser'])->name('phone-update.update');
 });
 
 Route::prefix('FTM')->middleware('auth', 'role:employee')->name('FTM.')->group(function () {
@@ -72,38 +83,15 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin.')->group(
     Route::resource('product', ProductController::class);
     Route::post('product/slug', [ProductController::class, 'createSlug'])->name('product.create.slug');
     Route::post('product/ckeditor-upload-image', [ProductController::class, 'uploadImage'])->name('product.ckeditor.upload.image');
-<<<<<<< HEAD
     Route::resource('employee-account', EmployeeAccountController::class);
-=======
-Route::resource('employee-account',EmployeeAccountController::class);
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
-});
-
-Route::get('admin', function () {
-    return view('admin.layout.master');
-});
-Route::prefix('FTM')->name('FTM.')->group(function () {
-    // Route::get('login', [LoginController::class, 'index'])->name('login');
-    // Route::post('login/account', [LoginController::class, 'login'])->name('login.account');
-});
-Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('permissions', PermissionController::class);
     Route::resource('roles', RoleController::class);
 });
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-<<<<<<< HEAD
-Route::get('otp/verification', [OtpController::class, 'index'])->name('otp.verification');
-Route::post('otp/store', [OtpController::class, 'store'])->name('otp.store');
-Route::get('otp/sms', [SendOtpSmsController::class, 'sendOtp']);
+Route::get('register/otp/phone-verification', [OtpController::class, 'index'])->name('otp.verification');
+Route::post('register/otp/phone-store', [OtpController::class, 'store'])->name('otp.store');
+Route::get('register/otp/phone-sms', [SendOtpSmsController::class, 'sendOtp']);
 
-=======
-Route::get('otp/verification' ,[OtpController::class,'index'])->name('otp.verification');
-Route::post('otp/store',[OtpController::class,'store'])->name('otp.store');
-// Route::get('user/verification', function(){
-//     return view('auth.verify-email');
-// })->name('auth.verify-email');
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
 require __DIR__ . '/auth.php';
-

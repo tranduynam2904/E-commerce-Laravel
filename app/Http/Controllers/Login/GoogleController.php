@@ -23,12 +23,12 @@ class GoogleController extends Controller
     {
         // Start Google OAuth
         $user = Socialite::driver('google')->user();
-<<<<<<< HEAD
+
         // Find User in database
         $findUser = User::where('google_id', $user->id)->first();
 
         if ($findUser) {
-            // If user exist, login user
+            // If user exists, login user
             $findUser->update([
                 'email_verified_at' => Carbon::now(+7)
             ]);
@@ -36,54 +36,19 @@ class GoogleController extends Controller
             return redirect()->route('home.index');
         }
 
-        // If user don't exist, create new user
+        // If user doesn't exist, create new user
         try {
             $newUser = User::create([
                 'name' => $user->name,
                 'email' => $user->email,
-                'google_id' => $user->id,
                 'email_verified_at' => Carbon::now(+7),
-                'password' => Hash::make('123456dummy')
-            ]);
-            Auth::login($newUser);
-
-=======
-
-        // Find User in database
-        $findUser = User::where('google_id', $user->id)->first();
-        // dd($findUser->email_verified_at);
-        if ($findUser) {
-            if ($findUser->email_verified_at !== null) {
-                // If user verified email, login user
-                Auth::login($findUser);
-            } else {
-                Auth::logout($findUser);
-            }
-            return redirect()->route('home.index');
-        }
-
-        // If user don't exist, create new user
-        try {
-            $newUser = User::create([
-                'name' => $user->name,
-                'email' => $user->email,
                 'google_id' => $user->id,
                 'password' => Hash::make('123456dummy')
-            ]);
-            $newUser->sendEmailVerificationNotification();
-            // Send Email Verification
-            if ($newUser->hasVerifiedEmail()) {
-                $newUser->markEmailAsVerified();
-                $newUser->save();
-                Auth::login($newUser);
-            }
-            // else {
-            //     Auth::logout($newUser);
-            // }
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
+            ])->assignRole('client');
+            Auth::login($newUser);
             return redirect()->route('home.index');
         } catch (\Exception $e) {
-            // if something wrong, redirect with error message
+            // if something goes wrong, redirect with error message
             return redirect('/error')->with('error', 'cannot create account');
         }
     }

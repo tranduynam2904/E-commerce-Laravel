@@ -7,11 +7,13 @@ use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Models\JobCategory;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class AdminEmployeeController extends Controller
@@ -41,25 +43,35 @@ class AdminEmployeeController extends Controller
             $request->file('avatar')->move(public_path('images'),  $fileName);
         }
         //Eloquent
-        $employeeList = new Employee;
-        $employeeList->avatar = $fileName ?? null;
-        $employeeList->name = $request->name;
-        $employeeList->slug = $request->slug;
-        $employeeList->email = $request->email;
-        $employeeList->age = $request->age;
-        $employeeList->gender = $request->gender;
-        $employeeList->phone = $request->phone;
-        $employeeList->job_category_id = $request->occupation;
-        $employeeList->description = $request->description;
-        $employeeList->created_at = Carbon::now(+7);
-        $employeeList->updated_at = Carbon::now(+7);
-        $check = $employeeList->save();
-        // $check = DB::table('employees')->insert([
-        //     'name' => $request->name,
-        // ]);
+        // $employeeList = new Employee;
+        // $employeeList->avatar = $fileName ?? null;
+        // $employeeList->name = $request->name;
+        // $employeeList->slug = $request->slug;
+        // $employeeList->email = $request->email;
+        // $employeeList->age = $request->age;
+        // $employeeList->gender = $request->gender;
+        // $employeeList->phone = $request->phone;
+        // $employeeList->job_category_id = $request->occupation;
+        // $employeeList->description = $request->description;
+        // $employeeList->created_at = Carbon::now(+7);
+        // $employeeList->updated_at = Carbon::now(+7);
+        // $check = $employeeList->save();
+        $employeeList = User::create([
+            'avatar' => $fileName ?? null,
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'email_id' => $request->email_id,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'job_category_id' => $request->job_category_id,
+            'description' => $request->description,
+            'created_at' => Carbon::now(+7),
+            'updated_at' => Carbon::now(+7)
+        ]);
 
-        $message = $check ? 'Successfully created employee' : 'Failed to create employee';
-        return redirect()->route('admin.employee-list.index')->with('message', $message);
+        $message = $employeeList ? 'Successfully created employee' : 'Failed to create employee';
+        return Redirect::route('admin.employee-list.index')->with('message', $message);
     }
     public function show(Employee $employeeList)
     {
@@ -85,22 +97,21 @@ class AdminEmployeeController extends Controller
         $employeeList->avatar = $fileName ?? $oldImageFileName;
         $employeeList->name = $request->name;
         $employeeList->slug = $request->slug;
-        $employeeList->email = $request->email;
+        $employeeList->email_id = $request->email_id;
         $employeeList->age = $request->age;
         $employeeList->gender = $request->gender;
         $employeeList->phone = $request->phone;
         $employeeList->job_category_id = $request->occupation;
         $employeeList->updated_at = Carbon::now(+7);
         $check = $employeeList->save();
-        $message = $check > 0 ? 'Successfully created employee' : 'Failed to create employee';
-        return redirect()->route('admin.employee-list.index')->with('message', $message);
+        $message = $check > 0 ? 'Created employee detail Successfully' : 'Failed to create employee detail';
+        return Redirect::route('admin.employee-list.index')->with('message', $message);
     }
     public function destroy(Employee $employeeList)
     {
-        // $check = DB::table('employee')->where('id', $id)->delete();
         $check = $employeeList->delete();
-        $message = $check > 0 ? 'Successfully deleted employee' : 'Failed to deleted employee';
-        return redirect()->route('admin.employee-list.index')->with('message', $message);
+        $message = $check > 0 ? 'Deleted employee detail Successfully ' : 'Failed to delete employee detail';
+        return Redirect::route('admin.employee-list.index')->with('message', $message);
     }
     public function createSlug(Request $request)
     {

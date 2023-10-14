@@ -170,7 +170,7 @@
     </div>
 
     <!-- cart-pop modal -->
-    @include('client.pages.cart')
+    @include('client.pages.add-to-cart')
     <!-- Compare Product -->
     @include('client.pages.compare')
     @include('client.layout.my-scripts')

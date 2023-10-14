@@ -8,6 +8,7 @@ use App\Models\JobCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminJobController extends Controller
 {
@@ -43,8 +44,8 @@ class AdminJobController extends Controller
         $jobCategories->created_at = Carbon::now(+7);
         $jobCategories->updated_at = Carbon::now(+7);
         $check = $jobCategories->save();
-        $message = $check ? 'Successfully created job categories' : 'Failed created job categories';
-        return redirect()->route('admin.job-category.index')->with('message', $message);
+        $message = $check ? 'Created job categories successfully ' : 'Failed to create job categories';
+        return Redirect::route('admin.job-category.index')->with('message', $message);
         // return response()->json(['success'=>'Got Simple Ajax Request.']);
     }
 
@@ -70,16 +71,6 @@ class AdminJobController extends Controller
      */
     public function update(Request $request, JobCategory $jobCategory)
     {
-        // $check = DB::table('job_categories')->where('id', $id)->update(
-        //     [
-        //         'occupation' => $request->occupation,
-        //         'required_age' => $request->required_age,
-        //         'salary_range' => $request->salary_range,
-        //         'number_of_recruits' => $request->number_of_recruits,
-        //         'recruitment_status' => $request->recruitment_status,
-        //         'updated_at' => Carbon::now(+7)
-        //     ]
-        // );
         $jobCategory->occupation = $request->occupation;
         $jobCategory->required_age = $request->required_age;
         $jobCategory->salary_range = $request->salary_range;
@@ -87,8 +78,8 @@ class AdminJobController extends Controller
         $jobCategory->recruitment_status = $request->recruitment_status;
         $jobCategory->updated_at = Carbon::now(+7);
         $check = $jobCategory->save();
-        $message = $check ? 'Successfully created employee' : 'Failed to create employee';
-        return redirect()->route('admin.job-category.index')->with('message', $message);
+        $message = $check ? 'Created employee Successfully' : 'Failed to create employee';
+        return Redirect::route('admin.job-category.index')->with('message', $message);
     }
 
     /**
@@ -96,9 +87,8 @@ class AdminJobController extends Controller
      */
     public function destroy(JobCategory $jobCategory)
     {
-        // $check = DB::table('job_categories')->delete($id);
         $check = $jobCategory->delete();
-        $message = $check ? 'Job category deleted successfully' : 'Job category failed to delete';
-        return redirect()->route('admin.job-category.index')->with('message', $message);
+        $message = $check ? 'Deleted job category successfully' : 'Failed to Job category  delete';
+        return Redirect::route('admin.job-category.index')->with('message', $message);
     }
 }

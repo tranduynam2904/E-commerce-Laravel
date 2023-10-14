@@ -15,7 +15,7 @@ class HomeController extends Controller
         // dd($featuredProductCategory);
         $latestProductCategory = ProductCategory::where('name', 'latest')->first();
         $bestsellerProductCategory = ProductCategory::where('name', 'bestseller')->first();
-        //Relational in Model
+        //Relational in Model Product
         if ($featuredProductCategory) {
             $featuredProducts = Product::with('product_category')->where('product_category_id', $featuredProductCategory->id)->get();
         }

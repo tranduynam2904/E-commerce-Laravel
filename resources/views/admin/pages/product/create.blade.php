@@ -9,6 +9,7 @@
                         <h4 class="header-title">Create Product</h4>
                         <form enctype="multipart/form-data" method="post" action="{{ route('admin.product.store') }}"
                             class="form-horizontal form-label-left" novalidate>
+                            @csrf
                             <div class="form-group">
                                 <label for="image" class="control-label">Image</label>
                                 <input id="image" class="form-control" data-validate-length-range="6"
@@ -21,11 +22,11 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-<<<<<<< HEAD
+
                                 <label for="second_image" class="control-label">Second Image</label>
                                 <input id="second_image" class="form-control" data-validate-length-range="6"
-                                    data-validate-words="2" name="second_image" multiple placeholder="both name(s) e.g Jon Doe"
-                                    type="file">
+                                    data-validate-words="2" name="second_image" multiple
+                                    placeholder="both name(s) e.g Jon Doe" type="file">
                                 @error('second_image')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">
@@ -33,8 +34,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
                                 <label class="control-label" for="name">Name</label>
                                 <input value="{{ old('name') }}" id="name" class="form-control"
                                     data-validate-length-range="6" data-validate-words="2" name="name"
@@ -58,7 +57,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="price" class="control-label">Price</label>
-                                <input type="text" name="price" data-validate-length="6,8" class="form-control">
+                                <input type="text" value="{{ old('price') }}" name="price" data-validate-length="6,8"
+                                    class="form-control">
                                 @error('price')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">
@@ -67,7 +67,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="discount_price" class="control-label">Discount Price</label>
-                                <input type="text" name="discount_price" data-validate-length="6,8" class="form-control">
+                                <input type="text" value="{{ old('discount_price') }}" name="discount_price"
+                                    data-validate-length="6,8" class="form-control">
                                 @error('discount_price')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">
@@ -76,7 +77,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="weight" class="control-label">Weight</label>
-                                <input type="text" name="weight" data-validate-length="6,8" class="form-control">
+                                <input type="text" value="{{ old('weight') }}" name="weight" data-validate-length="6,8"
+                                    class="form-control">
                                 @error('weight')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">
@@ -88,7 +90,10 @@
                                 <select id="product_category_id" name="product_category_id" class="form-control">
                                     <option value="">Choose option</option>
                                     @foreach ($productCategories as $productCategory)
-                                        <option value="{{ $productCategory->id }}"> {{ $productCategory->name }}
+                                        <option value="{{ $productCategory->id }}"
+                                            {{-- {{ old('product_category_id') === '$productCategory->id' ? 'selected' : '' }} --}}
+                                            >
+                                            {{ $productCategory->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -135,7 +140,7 @@
                                     class="btn btn-primary">Cancel</button>
                                 <button id="send" type="submit" class="btn btn-success">Submit</button>
                             </div>
-                            @csrf
+
                         </form>
                     </div>
                 </div>
@@ -155,7 +160,7 @@
             .catch(error => {
                 console.error(error);
             });
-            ClassicEditor
+        ClassicEditor
             .create(document.querySelector('#description'), {
                 ckfinder: {
                     // Upload the images to the server using the CKFinder QuickUpload command.

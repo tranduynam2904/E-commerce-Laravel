@@ -43,8 +43,8 @@
                 <div class="container">
                     <div class="header-left float-left d-flex d-lg-flex d-md-block d-xs-block">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('assets/client/img/logos/logo-01.png') }}"
-                                    alt="NatureCircle"></a>
+                            <a href="{{ route('home.index') }}"><img
+                                    src="{{ asset('assets/client/img/logos/logo-01.png') }}" alt="NatureCircle"></a>
                         </div>
                     </div>
                     <div class="header-middle float-none d-inline-block align-top">
@@ -433,13 +433,10 @@
                                         </form>
                                     @else
                                         <li><a href="{{ route('register') }}" class="modal-view button"
-                                                {{-- data-toggle="modal"  --}}
-                                                data-target="#modalRegisterForm"
-
-                                                >Register</a></li>
+                                                {{-- data-toggle="modal"  --}} data-target="#modalRegisterForm">Register</a>
+                                        </li>
                                         <li><a href="{{ 'login' }}" class="modal-view button"
-                                            {{-- data-toggle="modal" --}}
-                                                data-target="#modalLoginForm">login</a>
+                                                {{-- data-toggle="modal" --}} data-target="#modalLoginForm">login</a>
                                         </li>
                                     @endif
                                 </ul>
@@ -447,11 +444,20 @@
                         </div>
                         <!-- Shopping Cart -->
                         <div class="cart-wrapper">
-                            <button type="button" class="btn">
-                                <i class="material-icons">shopping_cart</i>
-                                <span class="ttcount">2</span>
-                            </button>
-                            <div id="cart-dropdown" class="cart-menu">
+                            <a href="{{ route('cart.index') }}">
+
+                                <button type="button" class="btn">
+                                    <i class="material-icons">shopping_cart</i>
+                                    {{-- @foreach ($totalCart as $item) --}}
+                                    <span id="total-items-cart"
+                                        class="ttcount">{{ count(session()->get('cart', [])) }}</span>
+
+                                    {{-- @endforeach --}}
+                                </button>
+
+                            </a>
+
+                            {{-- <div id="cart-dropdown" class="cart-menu">
                                 <ul class="w-100 float-left">
                                     <li>
                                         <table class="table table-striped">
@@ -494,44 +500,21 @@
                                         </form>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
+                              {{-- @php
+                            $cart = session()->get('cart', []);
+                            $total = 0;
+                            foreach ($cart as $item) {
+                                $total += $item['price'] * $item['qty'];
+                            }
+                        @endphp
+                             <span
+                                id="total-price-cart">${{ number_format($total, 2) }}</span> --}}
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </header>
-@section('js-custom')
-    {{-- <script>
-        $(document).ready(function() {
-            $("#logout").on('click', function(e) {
-                e.preventDefault();
-                swal({
-                        title: "Are you sure?",
-                        text: "You will be logged out of this session.",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: '#DD6B55',
-                        confirmButtonText: 'Yes, logout!',
-                        cancelButtonText: 'No, stay here!',
-                        closeOnConfirm: false,
-                        closeOnCancel: false
-                    })
-                    .then(function(isConfirm) {
-                        if (isConfirm) {
-                            // xử lý khi người dùng bấm xác nhận
-                            this.closest('form').submit(); // sử dụng this như bình thường
-                            swal("Goodbye!", "You have been logged out successfully.", "success");
-                        } else {
-                            // xử lý khi người dùng bấm hủy
-                            swal("Cancelled", "You are still logged in.", "info");
-                        }
-                    }.bind(this)); // gán giá trị của this cho hàm callback
-            });
-        });
-    </script> --}}
-
-
-@endsection

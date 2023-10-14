@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h4 class="header-title">Update Role</h4>
                         <form method="POST" enctype="multipart/form-data"
-                            action="{{ route('admin.employee-list.update', ['employee_list' => $employees->id]) }}"
+                            action="{{ route('admin.roles.update', ['role' => $role->id]) }}"
                             class="form-horizontal form-label-left" novalidate>
                             @method('put')
                             @csrf
@@ -17,7 +17,7 @@
                                 <label class="control-label" for="name">Name</label>
                                 <input id="name" class="form-control" data-validate-length-range="6"
                                     data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe"
-                                    type="text" value="{{ $employees->name }}">
+                                    type="text" value="{{ $role->name }}">
                                 @error('name')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">
@@ -25,8 +25,19 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label class="control-label" for="guard_name">Guard Name</label>
+                                <input readonly id="guard_name" class="form-control" data-validate-length-range="6"
+                                    data-validate-words="2" name="guard_name" placeholder="both name(s) e.g Jon Doe"
+                                    type="text" value="{{ $role->guard_name }}">
+                                @error('guard_name')
+                                    <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                        class="alert alert-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <button type="button"
-                                    onclick="window.location.href='{{ route('admin.employee-list.index') }}'"
+                                    onclick="window.location.href='{{ route('admin.roles.index') }}'"
                                     class="btn btn-primary">Cancel</button>
                                 <button id="submit" type="submit" class="btn btn-success">Submit</button>
                             </div>

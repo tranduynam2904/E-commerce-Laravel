@@ -29,7 +29,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (Auth::check() && Auth::user()->role_id == '1') {
+        // Using laravel spatie role/permission method hasRole to point out the role of the user has
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
             return redirect()->route('admin.dashboard');
             if (Auth::user()->email_verified_at == null) {
                 return redirect()->route('login');

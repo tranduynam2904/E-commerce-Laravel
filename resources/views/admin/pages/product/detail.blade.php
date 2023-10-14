@@ -25,7 +25,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-<<<<<<< HEAD
                                 <label for="second_image" class="control-label">Second Image</label>
                                 <input id="second_image" class="form-control" data-validate-length-range="6"
                                     data-validate-words="2" name="second_image" multiple placeholder="both name(s) e.g Jon Doe"
@@ -37,8 +36,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
                                 <label class="control-label" for="name">Name</label>
                                 <input value="{{ old('name', $product->name) }}" id="name" class="form-control"
                                     data-validate-length-range="6" data-validate-words="2" name="name"
@@ -129,13 +126,13 @@
                                 <label for="status" class="control-label">Status</label>
                                 <select class="form-control" name="status" id="status">
                                     <option value="">Choose option</option>
-<<<<<<< HEAD
+
                                     <option {{ old('status',$product->status) === 1 ? 'selected' : '' }} value="1">Show</option>
                                     <option {{ old('status',$product->status) === 0 ? 'selected' : '' }} value="0">Hide</option>
-=======
+
                                     <option {{ old('status') === 1 ? 'selected' : '' }} value="1">Show</option>
                                     <option {{ old('status') === 0 ? 'selected' : '' }} value="0">Hide</option>
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
+
                                 </select>
                                 @error('status')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"

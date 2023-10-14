@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -32,7 +34,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         // Get Original Image Name
         if ($request->hasFile('image')) {
@@ -41,7 +43,6 @@ class ProductController extends Controller
             $fileName .= '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move(public_path('images'),  $fileName);
         }
-<<<<<<< HEAD
         if ($request->hasFile('second_image')) {
             $secondFileOrginialName = $request->file('second_image')->getClientOriginalName();
             $secondFileName = pathinfo($secondFileOrginialName, PATHINFO_FILENAME);
@@ -51,10 +52,6 @@ class ProductController extends Controller
         $products = Product::create([
             'image' => $request->image = $fileName ?? null,
             'second_image' => $request->second_image = $secondFileName ?? null,
-=======
-        $products = Product::create([
-            'image' => $request->image = $fileName ?? null,
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
             'name' => $request->name,
             'status' => $request->status,
             'slug' => $request->slug,
@@ -66,9 +63,11 @@ class ProductController extends Controller
             'product_category_id' => $request->product_category_id,
             'rating_id' => 1,
             'color_id' => 1,
+            'created_at' => Carbon::now(+7),
+            'updated_at' => Carbon::now(+7)
         ]);
         $message = $products ? 'Create product successfully' : 'Failed to create product';
-        return redirect()->route('admin.product.index')->with('message', $message);
+        return Redirect::route('admin.product.index')->with('message', $message);
     }
 
     /**
@@ -94,10 +93,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $oldImageFileName = $product->image;
-<<<<<<< HEAD
         $oldSecondImageFileName = $product->second_image;
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
         // dd($oldImageFileName);
         if ($request->hasFile('image')) {
             $fileOrginialName = $request->file('image')->getClientOriginalName();
@@ -108,7 +104,6 @@ class ProductController extends Controller
                 unlink('images/' . $oldImageFileName);
             }
         }
-<<<<<<< HEAD
         if ($request->hasFile('second_image')) {
             $secondFileOrginialName = $request->file('second_image')->getClientOriginalName();
             $secondFileName = pathinfo($secondFileOrginialName, PATHINFO_FILENAME);
@@ -120,9 +115,6 @@ class ProductController extends Controller
         }
         $product->image = $fileName ?? $oldImageFileName;
         $product->second_image = $secondFileName ?? $oldSecondImageFileName;
-=======
-        $product->image = $fileName ?? $oldImageFileName;
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
         $product->name = $request->name;
         $product->status = $request->status;
         $product->slug = $request->slug;
@@ -137,7 +129,7 @@ class ProductController extends Controller
         $product->updated_at = Carbon::now(+7);
         $check = $product->save();
         $message = $check ? 'Successfully created product' : 'Failed to create product';
-        return redirect()->route('admin.product.index')->with('message', $message);
+        return Redirect::route('admin.product.index')->with('message', $message);
     }
 
     /**
@@ -147,7 +139,7 @@ class ProductController extends Controller
     {
         $check = $product->delete();
         $message = $check ? 'Delete product successfully' : ' Failed to delete product';
-        return redirect()->route('admin.product.index')->with('message', $message);
+        return Redirect::route('admin.product.index')->with('message', $message);
     }
     public function createSlug(Request $request)
     {

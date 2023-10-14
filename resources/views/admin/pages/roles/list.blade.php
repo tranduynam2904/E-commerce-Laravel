@@ -1,5 +1,15 @@
 @extends('admin.layout.master')
 @section('content')
+@if (session('message'))
+<div id="flash-message" class="alert alert-success">
+    {{ session('message') }}
+</div>
+<script>
+    setTimeout(function() {
+        document.getElementById('flash-message').style.display = 'none';
+    }, 3000); // 2 giây
+</script>
+@endif
     <div class="main-content-inner">
         <div class="row">
             <!-- table primary start -->
@@ -42,10 +52,14 @@
                                                 <td><a class="btn btn-primary"
                                                         href="{{ route('admin.roles.show', ['role' => $role->id]) }}">Edit</a>
                                                 </td>
-                                                <td class=" "><a class="btn btn-danger"
-                                                        onclick=" return confirm('Are you sure you want to delete this employee?')"
-                                                        href="{{ route('admin.roles.destroy', ['role' => $role->id]) }}">Delete</a>
-                                                </td>
+                                                <td class=" ">
+                                                    <form method="post" action="{{ route('admin.roles.destroy', ['role' => $role->id]) }}">
+                                                    @method('delete')
+                                                        <button class="btn btn-danger"
+                                                        onclick=" return confirm('Are you sure you want to delete this role?')"
+                                                        >Delete</button>
+                                                    </form>
+                                                    </td>
                                             </tr>
                                         @empty
                                             <tr>

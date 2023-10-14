@@ -13,7 +13,7 @@ class Employee extends Model
         'avatar',
         'name',
         'slug',
-        'email',
+        'email_id',
         'age',
         'gender',
         'phone',
@@ -23,5 +23,9 @@ class Employee extends Model
     public function job_category()
     {
         return $this->belongsTo(JobCategory::class, 'job_category_id');
+    }
+    public function email()
+    {
+        return $this->belongsTo(Email::class, 'email_id');
     }
 }

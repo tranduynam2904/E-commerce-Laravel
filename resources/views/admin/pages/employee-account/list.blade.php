@@ -1,5 +1,15 @@
 @extends('admin.layout.master')
 @section('content')
+    @if (session('message'))
+        <div id="flash-message" class="alert alert-success">
+            {{ session('message') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').style.display = 'none';
+            }, 3000); // 2 giây
+        </script>
+    @endif
     <div class="main-content-inner">
         <div class="row">
             <!-- table primary start -->
@@ -14,6 +24,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Thead Primary</h4>
@@ -25,6 +36,8 @@
                                             <th scope="col">ID</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Role</th>
                                             <th scope="col">Created_at</th>
                                             <th scope="col">Updated_at</th>
                                             <th scope="col">Detail</th>
@@ -35,20 +48,33 @@
                                         @forelse($employees as $employee)
                                             <tr>
                                                 <td scope="row">{{ $loop->iteration }}</td>
-
                                                 <td>{{ $employee->name }}</td>
                                                 <td>{{ $employee->email }}</td>
-                                                {{-- <td>{{ $employee->gender ? 'Male' : 'Female' }}</td> --}}
+                                                <td>{{ $employee->status }}</td>
+                                                {{-- <td>{{ $employee->roles->name }}</td> --}}
+                                                <td>
+                                                    @forelse ($employee->roles as $role)
+                                                        {{ $role->name }}
+                                                    @empty
+                                                        No role assigned
+                                                    @endforelse
+                                                </td>
                                                 <td>{{ $employee->created_at }}</td>
                                                 <td>{{ $employee->updated_at }}</td>
-
                                                 <td><a class="btn btn-primary"
                                                         href="{{ route('admin.employee-account.show', ['employee_account' => $employee->id]) }}">Edit</a>
                                                 </td>
-                                                <td class=" "><a class="btn btn-danger"
-                                                        onclick=" return confirm('Are you sure you want to delete this employee?')"
-                                                        href="{{ route('admin.employee-account.destroy', ['employee_account' => $employee->id]) }}">Delete</a>
+
+                                                <td class="">
+                                                    <form method="post"
+                                                        action="{{ route('admin.employee-account.destroy', ['employee_account' => $employee->id]) }}">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick=" return confirm('Are you sure you want to delete this employee?')">Delete</button>
+                                                    </form>
                                                 </td>
+
                                             </tr>
                                         @empty
                                             <tr>

@@ -7,6 +7,7 @@ use App\Models\Permission;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class PermissionController extends Controller
 {
@@ -15,7 +16,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = Permission::select()->paginate(5);
+        $permissions = Permission::paginate(5);
         return view('admin.pages.permissions.list', ['permissions' => $permissions]);
     }
 
@@ -32,24 +33,31 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        $check = DB::table('permissions')->insert([
+        // $check = DB::table('permissions')->insert([
+        //     'name' => $request->name,
+        //     'guard_name' => $request->guard_name,
+        //     'created_at' => Carbon::now(+7),
+        //     'updated_at' => Carbon::now(+7)
+        // ]);
+
+        $permission = Permission::create([
             'name' => $request->name,
             'guard_name' => $request->guard_name,
             'created_at' => Carbon::now(+7),
             'updated_at' => Carbon::now(+7)
         ]);
-        $message = $check ? 'Created permission successfully' : 'Failed to create permission';
-        return redirect()->route('admin.permissions.index')->with('message', $message);
+        $message = $permission ? 'Created permission successfully' : 'Failed to create permission';
+        return Redirect::route('admin.permissions.index')->with('message', $message);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Permission $permission)
     {
-        $permissions = DB::table('permissions')->find($id);
+        // $permissions = DB::table('permissions')->find($id);
         // dd($permissions);
-        return view('admin.pages.permissions.detail', ['permissions' => $permissions]);
+        return view('admin.pages.permissions.detail', ['permission' => $permission]);
     }
 
     /**
@@ -63,16 +71,23 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Permission $permission)
     {
-        // $check = DB::table('')
+        $permission->name = $request->name;
+        $permission->guard_name = $request->guard_name;
+        $permission->created_at = Carbon::now(+7);
+        $check = $permission->save();
+        $message = $check ? 'Updated permission successfully' : 'Failed to update permission';
+        return Redirect::route('admin.permissions.index')->with('message', $message);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Permission $permission)
     {
-        //
+        $check = $permission->delete();
+        $message = $check ? 'Deleted permission successfully' : 'Failed to delete permission';
+        return Redirect::route('admin.permissions.index')->with('message', $message);
     }
 }

@@ -7,14 +7,27 @@
             <li class="breadcrumb-item active" aria-current="page">my-account</li>
         </ol>
     </nav>
-    <div  class="main-content w-100 float-left blog-list">
+
+    <div class="main-content w-100 float-left blog-list">
+
         <div class="container">
             <div class="row">
                 <div style="padding-bottom:30px" class="products-grid col-xl-9 col-lg-8 order-lg-2">
                     <div class="row">
                         <div class="col-lg-12 order-lg-last account-content">
                             <h4>Edit Account Information</h4>
-                            <form action="#" class="myacoount-form">
+                            @if (session('message'))
+                                <div id="flash-message" class="alert alert-success ">
+                                    {{ session('message') }}
+                                </div>
+                                <script>
+                                    setTimeout(function() {
+                                        document.getElementById('flash-message').style.display = 'none';
+                                    }, 3000); // 3 sec
+                                </script>
+                            @endif
+                            <form method="post" action="{{ route('profile.edit.update-profile') }}" class="myacoount-form">
+                                @csrf
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="row">
@@ -30,17 +43,18 @@
                                         </div>
                                         <!-- End .row -->
                                     </div>
-                                    <?php
+                                    @php
                                     $hidden_email = preg_replace('/(.{2}).*(?=@)/', '$1************', $user->email);
-                                    ?>
+                                    $hidden_phone = preg_replace('/(\d)(\d+)(\d)/', '$1******' . str_repeat('*', strlen('$2')) . '$3', $user->phone);
+                                    @endphp
                                     <!-- End .col-sm-11 -->
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group required-field">
                                                     <x-input-label for="email" :value="__('Email')" />
-                                                    <x-text-input disabled id="email" name="email" class="form-control"
-                                                        type="email" :value="old('email', $hidden_email)" />
+                                                    <x-text-input disabled id="email" name="email"
+                                                        class="form-control" type="email" :value="old('email', $hidden_email)" />
                                                 </div>
                                             </div>
                                         </div>
@@ -50,8 +64,11 @@
                                             <div class="col-md-6">
                                                 <div class="form-group required-field">
                                                     <x-input-label for="phone" :value="__('Phone')" />
-                                                    <x-text-input disabled id="phone" name="phone" class="form-control"
-                                                        type="text" :value="old('phone', $user->phone)" />
+                                                    <x-text-input style="margin-bottom: 10px;" disabled id="phone"
+                                                        name="phone" class="form-control" type="text"
+                                                        :value="old('phone', $hidden_phone)" />
+                                                    <a class="btn btn-primary btn-primary"
+                                                        href="{{ route('profile.phone.index') }}">Change Phone Number</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -60,21 +77,24 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group required-field">
-                                                    <label for="account-password">Password</label>
+                                                    {{-- <label for="account-password">Password</label>
                                                     <input type="password" class="form-control" id="account-password"
-                                                        name="account-password" required="">
+                                                        name="account-password" required=""> --}}
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- End .row -->
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="change-password-checkbox"
-                                        value="1">
-                                    <label class="custom-control-label" for="change-password-checkbox">Change
-                                        Password</label>
-                                </div>
+
+
+                                <a style="background-color: red !important;
+                                border:none;"
+                                    class="btn btn-primary" href="{{ route('profile.verify') }}">Change
+                                    Password</a>
+
                                 <!-- End .custom-checkbox -->
 
                                 <div id="account-change-password" class="">
@@ -106,8 +126,7 @@
 
                                 <div class="required text-right">* Required Field</div>
                                 <div class="form-footer d-flex justify-content-between align-items-center">
-                                    <a href="#"><i class="material-icons">navigate_before</i>Back</a>
-
+                                    <a href="ưin"><i class="material-icons">navigate_before</i>Back</a>
                                     <div class="form-footer-right">
                                         <button type="submit" class="btn btn-primary btn-primary">Save</button>
                                     </div>
@@ -184,6 +203,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

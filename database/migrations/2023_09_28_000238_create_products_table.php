@@ -24,10 +24,7 @@ return new class extends Migration
             $table->double('weight')->default(0);
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
-<<<<<<< HEAD
             $table->softDeletes();
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
             $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('product_category_id');
             //Add Foreign key

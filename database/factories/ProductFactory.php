@@ -2,13 +2,9 @@
 
 namespace Database\Factories;
 
-<<<<<<< HEAD
 use App\Models\Color;
 use App\Models\ProductCategory;
 use App\Models\Rating;
-=======
-use App\Models\ProductCategory;
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -32,11 +28,8 @@ class ProductFactory extends Factory
         // $productCategory = DB::table('product_categories')->get();
         //Laravel Eloquent
         $productCategoryIds = ProductCategory::select('id')->get();
-<<<<<<< HEAD
         $ratingIds = Rating::select('id')->get();
         $colorIds = Color::select('id')->get();
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
         return [
             "name" => $name,
             "slug" => $slug,
@@ -45,19 +38,12 @@ class ProductFactory extends Factory
             "short_description" => fake()->text(),
             "description" => fake()->text(),
             "qty" => fake()->randomDigitNotZero(),
-<<<<<<< HEAD
-=======
-            "shipping" => fake()->text('10'),
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
             "weight" => fake()->randomFloat(2, 0, 9),
             "status" => fake()->boolean(),
             "product_category_id" => fake()->randomElement($productCategoryIds),
             "image" => null,
-<<<<<<< HEAD
             'rating_id' => fake()->randomElement($ratingIds),
             'color_id' => fake()->randomElement($colorIds),
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
         ];

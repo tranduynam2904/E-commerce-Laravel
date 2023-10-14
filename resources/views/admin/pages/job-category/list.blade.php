@@ -1,5 +1,15 @@
 @extends('admin.layout.master')
 @section('content')
+@if (session('message'))
+<div id="flash-message" class="alert alert-success">
+    {{ session('message') }}
+</div>
+<script>
+    setTimeout(function() {
+        document.getElementById('flash-message').style.display = 'none';
+    }, 3000); // 2 giây
+</script>
+@endif
     <div class="main-content-inner">
         <div class="row">
             <!-- table primary start -->

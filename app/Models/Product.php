@@ -10,10 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $fillable = [
         'image',
-<<<<<<< HEAD
         'second_image',
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
         'name',
         'status',
         'price',
@@ -31,10 +28,7 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
     public function rating()
     {
         return $this->hasMany(Rating::class, 'rating_id');

@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-<<<<<<< HEAD
         // \App\Models\ProductCategory::factory(3)->create();
         $productCategories = [
             [
@@ -41,11 +40,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Rating::factory(10)->create();
         \App\Models\Color::factory(10)->create();
         \App\Models\Product::factory(10)->create();
-=======
-        \App\Models\ProductCategory::factory(20)->create();
-        \App\Models\Rating::factory(10)->create();
-        \App\Models\Color::factory(10)->create();
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
         $this->call(RoleSeeder::class);
         $this->call(AdminSeeder::class);
     }

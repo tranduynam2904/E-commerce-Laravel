@@ -24,13 +24,13 @@
                             <x-input-error style="color: red" :messages="$errors->get('phone')" class="mt-2" />
                         </div>
                         <!-- Enter Otp -->
+
                         <div class="md-form mb-4">
-                            <x-input-label for="email" :value="__('Email')" />
+                            <x-input-label for="email" :value="__('Otp')" />
                             <x-text-input placeholder="Enter Otp" id="email" class="form-control" type="email"
                                 name="email" :value="old('email')" required autocomplete="username" />
-                            <x-input-error style="color: red" :messages="$errors->get('email')" class="mt-2" />
+                            <x-input-error style="color: red" :messages="$errors->get('otp')" class="mt-2" />
                         </div>
-
 
                         <div class="modal-footer d-flex justify-content-center">
                             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

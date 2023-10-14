@@ -33,10 +33,12 @@
                                             </a>
                                             <div class="button-wrapper">
                                                 <div class="button-group text-center">
-                                                    <button type="button" class="btn btn-primary btn-cart"
-                                                        data-target="#cart-pop" data-toggle="modal"><i
-                                                            class="material-icons">shopping_cart</i><span>Add
-                                                            to cart</span></button>
+                                                    <a class="btn btn-primary btn-cart add-to-cart"
+                                                        data-target="#cart-pop" data-toggle="modal"
+                                                        data-url="{{ route('product.add-to-cart', ['productId' => $featuredProduct->id]) }}">
+                                                        <i class="material-icons">shopping_cart</i><span>Add
+                                                            to cart</span>
+                                                    </a>
                                                     <a href="wishlist.html" class="btn btn-primary btn-wishlist"><i
                                                             class="material-icons">favorite</i><span>wishlist</span></a>
                                                     <button type="button" class="btn btn-primary btn-compare"><i
@@ -91,11 +93,12 @@
 
                                             <div class="button-wrapper">
                                                 <div class="button-group text-center">
-                                                    <button type="button" class="btn btn-primary btn-cart"
+                                                    <a class="btn btn-primary btn-cart add-to-cart"
                                                         data-target="#cart-pop" data-toggle="modal"
-                                                        ><i
-                                                            class="material-icons">shopping_cart</i><span>Add
-                                                            to cart</span></button>
+                                                        data-url="{{ route('product.add-to-cart', ['productId' => $latestProduct->id]) }}">
+                                                        <i class="material-icons">shopping_cart</i><span>Add
+                                                            to cart</span>
+                                                    </a>
                                                     <a href="wishlist.html" class="btn btn-primary btn-wishlist"><i
                                                             class="material-icons">favorite</i><span>wishlist</span></a>
                                                     <button type="button" class="btn btn-primary btn-compare"><i
@@ -110,7 +113,8 @@
                                         <div class="thumb-description">
                                             <div class="caption">
                                                 <h4 class="product-title text-capitalize"><a
-                                                        href="product-details.html">{{ $latestProduct->name }}</a></h4>
+                                                        href="product-details.html">{{ $latestProduct->name }}</a>
+                                                </h4>
                                             </div>
                                             <div class="rating">
                                                 <div class="product-ratings d-inline-block align-middle">
@@ -127,8 +131,8 @@
                                                 </div>
                                             </div>
                                             <div class="price">
-                                                <div class="regular-price">$100.00</div>
-                                                <div class="old-price">$150.00</div>
+                                                <div class="regular-price">{{ $latestProduct->price }}</div>
+
                                             </div>
 
                                         </div>
@@ -153,11 +157,12 @@
                                             </a>
                                             <div class="button-wrapper">
                                                 <div class="button-group text-center">
-                                                    <button type="button" class="btn btn-primary btn-cart"
-                                                        data-toggle="modal" data-target="#product_view"
-                                                        ><i
-                                                            class="material-icons">shopping_cart</i><span>Add
-                                                            to cart</span></button>
+                                                    <a class="btn btn-primary btn-cart add-to-cart"
+                                                        data-target="#cart-pop" data-toggle="modal"
+                                                        data-url="{{ route('product.add-to-cart', ['productId' => $bestsellerProduct->id]) }}">
+                                                        <i class="material-icons">shopping_cart</i><span>Add
+                                                            to cart</span>
+                                                    </a>
                                                     <a href="wishlist.html" class="btn btn-primary btn-wishlist"><i
                                                             class="material-icons">favorite</i><span>wishlist</span></a>
                                                     <button type="button" class="btn btn-primary btn-compare"><i
@@ -191,10 +196,9 @@
                                                 </div>
                                             </div>
                                             <div class="price">
-                                                <div class="regular-price">$100.00</div>
-                                                <div class="old-price">$150.00</div>
-                                            </div>
+                                                <div class="regular-price">{{ $bestsellerProduct->price }}</div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -203,6 +207,63 @@
                     </section>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+@section('js-custom')
+    <script>
+        $(document).ready(function() {
+            $('.add-to-cart').on('click', function(event) {
+                event.preventDefault();
+                var url = $(this).data('url');
+                $.ajax({
+                    method: 'get', //method form
+                    url: url, //action form
+                    success: function(response) {
+                        console.log(response);
+                        Swal.fire({
+                            icon: 'success',
+                            // title: 'Notification',
+                            text: response.message,
+                        });
+                        $('#total-items-cart').html(response.total_items);
+                        $('#total-price-cart').html('$' + response.total_price.toFixed(2)
+                            .replace(
+                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                    },
+                    statusCode: {
+                        401: function() {
+                            window.location.href = '{{ route('login') }}';
+                        },
+                        404: function() {
+                            Swal.fire({
+                                icon: 'error',
+                                text: "Can't add product to cart",
+                            });
+                        },
+                    },
+                });
+            });
+        });
+        // Cấu hình carousel
+        $(document).ready(function() {
+            var owl = $("#owl1");
+            owl.owlCarousel({
+                rewind: true
+            });
+        });
+        $(document).ready(function() {
+            var owl = $("#owl2");
+            owl.owlCarousel({
+                rewind: true
+            });
+        });
+        $(document).ready(function() {
+            var owl = $("#owl3");
+            owl.owlCarousel({
+                rewind: true
+            });
+        });
+    </script>
+@endsection

@@ -9,22 +9,23 @@
             <nav>
                 <ul class="metismenu" id="menu">
                     <li class="active"><a href="{{ route('admin.dashboard') }}"><i
-                                class="ti-dashboard"></i><span>Dashboard</span></a></li>
+                                class="ti-dashboard"></i><span>Dashboard</span></a>
                     </li>
                     <li class="active"><a href="{{ route('admin.job-category.index') }}"><i class="fa fa-table"></i>
                             <span>Job Categories</span></a></li>
                     <li class="active"><a href="{{ route('admin.employee-account.index') }}"><i class="fa fa-table"></i>
                             <span>Employee Account</span></a></li>
-                    </li>
                     <li class="active"><a href="{{ route('admin.employee-list.index') }}"><i class="fa fa-table"></i>
                             <span>Employee Detail</span></a></li>
-                    </li>
                     <li class="active"><a href="{{ route('admin.product-category.index') }}"><i class="fa fa-table"></i>
                             <span>Product Categories</span></a></li>
                     <li class="active"><a href="{{ route('admin.product.index') }}"><i class="fa fa-table"></i>
                             <span>Product List</span></a></li>
                     <li class="active"><a href="{{ route('admin.roles.index') }}"><i class="fa fa-table"></i>
                             <span>Roles</span></a></li>
+                    <li class="active"><a href="{{ route('admin.permissions.index') }}"><i class="fa fa-table"></i>
+                            <span>Permissions</span></a></li>
+                </ul>
             </nav>
         </div>
     </div>

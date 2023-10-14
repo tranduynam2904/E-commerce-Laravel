@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductCategoryController extends Controller
 {
@@ -30,12 +32,14 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $productCategories = new ProductCategory;
-        $productCategories->name = $request->name;
-        $productCategories->status = $request->status;
-        $productCategories->save();
+        $productCategories = ProductCategory::create([
+            'name' => $request->name,
+            'status' => $request->status,
+            'created_at' => Carbon::now(+7),
+            'updated_at' => Carbon::now(+7)
+        ]);
         $message = $productCategories ? 'Created product category successfully' : 'Failed to create product category';
-        return redirect()->route('admin.product-category.index')->with('message', $message);
+        return Redirect::route('admin.product-category.index')->with('message', $message);
     }
 
     /**
@@ -57,9 +61,14 @@ class ProductCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, ProductCategory $productCategory)
     {
-        //
+        $productCategory->name = $request->name;
+        $productCategory->status = $request->status;
+        $productCategory->updated_at = Carbon::now(+7);
+        $check = $productCategory->save();
+        $message = $check ? 'Updated product category successfully' : 'Failed to update product category';
+        return Redirect::route('admin.product-category.index')->with('message', $message);
     }
 
     /**
@@ -68,7 +77,7 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         $check = $productCategory->delete();
-        $message = $check ? 'Product category deleted successfully' : 'Product category failed to delete';
-        return redirect()->route('admin.product-category.index')->with('message', $message);
+        $message = $check ? 'Deleted product category successfully' : 'failed to delete product category';
+        return Redirect::route('admin.product-category.index')->with('message', $message);
     }
 }

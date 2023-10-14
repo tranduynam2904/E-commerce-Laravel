@@ -1,5 +1,15 @@
 @extends('admin.layout.master')
 @section('content')
+@if (session('message'))
+<div id="flash-message" class="alert alert-success">
+    {{ session('message') }}
+</div>
+<script>
+    setTimeout(function() {
+        document.getElementById('flash-message').style.display = 'none';
+    }, 3000); // 2 giây
+</script>
+@endif
     <div class="main-content-inner">
         <div class="row">
             <!-- table primary start -->
@@ -24,10 +34,7 @@
                                         <tr class="text-white">
                                             <th scope="col">ID</th>
                                             <th scope="col">Image</th>
-<<<<<<< HEAD
                                             <th scope="col">Second Image</th>
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
                                             <th scope="col">Name</th>
                                             <th scope="col">Slug</th>
                                             <th scope="col">Status</th>
@@ -54,7 +61,7 @@
                                                     <img width="50px" height="50px" src="{{ $imageLink }}"
                                                         alt="{{ $product->image }}">
                                                 </td>
-<<<<<<< HEAD
+
                                                 <td>
                                                     @php
                                                         $secondImageLink = is_null($product->second_image) || !file_exists('images/' . $product->second_image) ? 'https://liftlearning.com/wp-content/uploads/2020/09/default-image.png' : asset('images/' . $product->second_image);
@@ -62,8 +69,7 @@
                                                     <img width="50px" height="50px" src="{{ $secondImageLink }}"
                                                         alt="{{ $product->second_image }}">
                                                 </td>
-=======
->>>>>>> 9a4d2e1466d1bbbff54fc706ab064f547d02ec43
+
                                                 <td>{{ $product->name }}</td>
                                                 <td>{{ $product->slug }}</td>
                                                 <td>{{ $product->status ? 'Show' : 'Hide' }}</td>

@@ -1,61 +1,220 @@
-<div class="modal fade" id="cart-pop" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header alert-success">
-                <h4 class="modal-title w-100w-100w-100">Product successfully added to your shopping cart</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 divide-right">
-                        <div class="row">
-                            <div class="col-md-5 col-sm-4 col-xs-12 product-img float-left">
-                                <img src="{{ asset('assets/client/img/products/01.jpg') }}"
-                                    class="img-responsive" alt="01">
-                            </div>
-                            <div class="col-md-7 col-sm-8 col-xs-12 product-desc float-left">
-                                <h4 class="product-title text-capitalize">aliquam quaerat voluptatem</h4>
-                                <div class="rating">
-                                    <div class="product-ratings d-inline-block align-middle">
-                                        <span class="fa fa-stack"><i class="material-icons">star</i></span>
-                                        <span class="fa fa-stack"><i class="material-icons">star</i></span>
-                                        <span class="fa fa-stack"><i class="material-icons">star</i></span>
-                                        <span class="fa fa-stack"><i class="material-icons off">star</i></span>
-                                        <span class="fa fa-stack"><i class="material-icons off">star</i></span>
-                                    </div>
-                                </div>
-                                <h3 class="price float-left w-100"><span
-                                        class="regular-price align-middle">$75.00</span><span
-                                        class="old-price align-middle">$60.00</span></h3>
-                            </div>
+@extends('client.layout.master')
+@section('main')
+    <nav aria-label="breadcrumb" class="w-100 float-left">
+        <ol class="breadcrumb parallax justify-content-center" data-source-url="img/banner/parallax.jpg"
+            style="background-image: url(&quot;img/banner/parallax.jpg&quot;); background-position: 50% 0.809717%;">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">cart</li>
+
+        </ol>
+    </nav>
+    <div class="cart-area table-area pt-110 pb-95 float-left w-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-sm-12 float-left cart-wrapper">
+                    <div class="table-responsive">
+                        <table class="table product-table text-center">
+                            <thead>
+                                <tr>
+                                    <th class="table-remove text-capitalize">remove</th>
+                                    <th class="table-image text-capitalize">image</th>
+                                    <th class="table-p-name text-capitalize">product</th>
+                                    <th class="table-p-price text-capitalize">price</th>
+                                    <th class="table-p-qty text-capitalize">quantity</th>
+                                    <th class="table-total text-capitalize">total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-cart">
+                                @php $total = 0 @endphp
+                                @foreach ($cart as $productId => $item)
+                                    @php $total += $item['qty'] * $item['price'] @endphp
+                                    <tr id="{{ $productId }}">
+                                        <td class="table-remove">
+                                            <button style="cursor: pointer;" data-id="{{ $productId }}"
+                                                data-url="{{ route('product.delete-item-in-cart', ['productId' => $productId]) }}"
+                                                class="icon_close"><i class="material-icons">delete</i>
+                                            </button>
+                                        </td>
+                                        <td class="table-image"><a href="product-details.html"><img
+                                                    src="{{ $item['image'] }}" alt=""></a></td>
+                                        <td class="table-p-name text-capitalize"><a
+                                                href="product-details.html">{{ $item['name'] }}</a></td>
+                                        <td class="table-p-price">
+                                            <p>${{ number_format($item['price'], 2) }}</p>
+                                        </td>
+                                        <td style="display:flex" data-price="{{ $item['price'] }}"
+                                            data-url="{{ route('product.update-item-in-cart', ['productId' => $productId]) }}"
+                                            data-id="{{ $productId }}" class="table-p-qty">
+                                            <span class="btn-primary inc qtybtn">+</span>
+                                            <input style="margin: 0" class="qty-input" value="{{ $item['qty'] }}"
+                                                type="text">
+                                            <span class="btn-primary dec qtybtn">-</span>
+                                        </td>
+                                        <td class="table-p-total">
+                                            <p id="total-price-product" style="margin-top:1rem">
+                                                ${{ number_format($item['qty'] * $item['price'], 2) }}</p>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-bottom-wrapper">
+                        <div
+                            class="table-coupon d-flex d-xs-block d-lg-flex d-sm-flex fix justify-content-start float-left">
+                            <input type="text" placeholder="Coupon code">
+                            <button type="submit" class="btn-primary btn">Apply coupon</button>
+                        </div>
+                        <div class="table-update d-flex d-xs-block d-lg-flex d-sm-flex justify-content-end">
+                            <a data-url="{{ route('product.delete-all-in-cart') }}"
+                                class="btn-primary btn delete-cart">Delete cart</a>
                         </div>
                     </div>
-                    <div class="col-md-6 divide-left">
-                        <p class="cart-products-count">There are 2 items in your cart.</p>
-                        <p class="total-products float-left w-100">
-                            <strong>Total products:</strong> $150.00
-                        </p>
-                        <p class="shipping float-left w-100">
-                            <strong>Total shipping:</strong> free
-                        </p>
-                        <p class="total-price float-left w-100">
-                            <strong>Total:</strong> $150.00(tax incl.)
-                        </p>
-                        <div class="cart-content-btn float-left w-100">
-                            <form action="#">
-                                <input class="btn pull-right mt_10 btn-primary" value="Continue shopping"
-                                    type="submit">
-                            </form>
-                            <form action="checkout_page.html">
-                                <input class="btn pull-right mt_10 btn-secondary" value="Proceed to checkout"
-                                    type="submit">
-                            </form>
+                </div>
+                <div
+                    class="table-total-wrapper d-flex justify-content-end pt-60 col-md-12 col-sm-12 col-lg-4 float-left  align-items-center">
+                    <div class="table-total-content">
+                        <h2 class="pb-20">Cart totals</h2>
+                        <div class="table-total-amount">
+                            <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
+                                @php
+                                    $total_qty = 0;
+                                    $cart = session()->get('cart', []);
+                                    foreach ($cart as $item) {
+                                        $total_qty += $item['qty'];
+                                    }
+                                @endphp
+                                <strong>Total item</strong>
+                                <span id="total-items-qty">
+                                    {{ $total_qty }}
+                                </span>
+                            </div>
+                            <div class="single-total-content d-flex justify-content-between float-left w-100">
+                                <strong>Shipping</strong>
+                                <span class="c-total-price"><span>Flat Rate:</span> $5.00</span>
+                            </div>
+                            <div class="single-total-content d-flex justify-content-end float-left w-100">
+                                <a href="#">Calculate shipping</a>
+                            </div>
+                            <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
+                                <strong>Sub Total</strong>
+                                <span id="cart-subtotal" class="c-total-price">${{ number_format($total, 2) }}</span>
+                            </div>
+                            <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
+                                <strong>Total</strong>
+                                {{-- @php
+                                    $shipFee = $total * 0.05;
+                                    $totalAfterFee = $total - $shipFee;
+                                @endphp --}}
+                                <span id ="cart-total" class="c-total-price">
+                                    ${{ number_format($total, 2) }}
+                                </span>
+                            </div>
+                            <a href="checkout_page.html" class="btn btn-primary float-left w-100 text-center">Proceed to
+                                checkout</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
+@endsection
+@section('js-custom')
+    <script>
+        $(document).ready(function() {
+            $('.icon_close').on('click', function() {
+                var url = $(this).data('url');
+                var id = $(this).data('id');
+                $.ajax({
+                    method: 'get',
+                    url: url,
+                    data: {
+                        'name': '1'
+                    },
+                    success:
+                    function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: response.message,
+                        });
+                        $('tr#' + id).empty();
+                    }
+                });
+            });
+
+            $('.qtybtn').on('click', function() {
+
+                var button = $(this);
+                var id = button.parent().data('id');
+                var $input = button.siblings('.qty-input');
+                var qty = parseInt($input.val());
+                var url = $(this).parent().data('url');
+                if (button.hasClass('inc')) {
+                    qty += 1;
+                } else {
+                    qty = (qty < 0) ? 0 : (qty -= 1);
+                }
+                //Call Back Input
+                $input.val(qty);
+                var price = parseFloat(button.parent().data('price'));
+
+                var totalPrice = price * qty;
+                // var totalAfterFee = totalPrice * 0.05;
+                url += '/' + qty;
+
+                $.ajax({
+                    method: 'GET',
+                    url: url,
+                    success: function(response) {
+                        // Swal.fire({
+                        //     icon: 'success',
+                        //     text: response.message,
+                        // });
+                        if (qty === 0) {
+                            $('tr#' + id).empty();
+                        }
+                        $('tr#' + id)
+                        .find('#total-price-product')
+                        .html("$" + totalPrice.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                        reloadView(response);
+                    }
+                });
+            });
+
+            $('.delete-cart').on('click', function(event) {
+                event.preventDefault();
+                var url = $(this).data('url');
+                $.ajax({
+                    method: 'get',
+                    url: url,
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: response.message,
+                        });
+
+                        reloadView(response);
+                        $('#table-cart').empty();
+                    }
+                });
+            });
+
+            function reloadView(response) {
+                // console.log(response.total_items);
+                $('#total-items-qty').html(response.total_qty);
+                $('#total-items-cart').html(response.total_items);
+                $('#total-price-cart').html('$' + response.total_price.toFixed(2)
+                    .replace(
+                        /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+
+                $('#cart-subtotal').html('$' + response.total_price.toFixed(
+                    2).replace(
+                    /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                $('#cart-total').html('$' + response.total_price.toFixed(
+                    2).replace(
+                    /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
+        });
+    </script>
+@endsection
