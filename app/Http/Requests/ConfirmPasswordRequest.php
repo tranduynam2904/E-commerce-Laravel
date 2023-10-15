@@ -26,4 +26,11 @@ class ConfirmPasswordRequest extends FormRequest
             'password_confirm' => 'required|same:new_password',
         ];
     }
+    public function messages(): array
+    {
+        return [
+            // :attribute = new_password
+            'new_password.regex' => 'The :attribute must contain at least one uppercase and one lowercase letter.'
+        ];
+    }
 }

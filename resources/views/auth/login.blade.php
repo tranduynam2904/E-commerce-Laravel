@@ -100,9 +100,12 @@
                                     <a href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                                 @endif
                             </div>
+
+                        </div>
+                        <div class="right-col">
+                                <a href="{{ route('register') }}">{{ __('Register Account') }}</a>
                         </div>
                     </div>
-
                     <div class="modal-footer d-flex justify-content-center">
                         <a style="font-size: 13px;
                     letter-spacing: 1px;

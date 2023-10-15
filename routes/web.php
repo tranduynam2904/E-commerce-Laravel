@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\AdminJobController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\client\OtpController;
 use App\Http\Controllers\Employee\DashboardController;
 use App\Http\Controllers\Admin\AdminEmployeeController;
 use App\Http\Controllers\admin\AttendanceScheduleController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EmployeeAccountController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
@@ -32,10 +32,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [HomeController::class, 'index'])->name('home.index')->middleware(['auth', 'verified']);
 
 Route::middleware(['auth','role:client'] )->group(function () {
     Route::get('user/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -56,9 +53,6 @@ Route::middleware(['auth','role:client'] )->group(function () {
     Route::get('product/update-item-in-cart/{productId}/{qty?}', [CartController::class, 'updateItem'])->name('product.update-item-in-cart');
     Route::get('product/delete-all-in-cart', [CartController::class, 'emptyCart'])->name('product.delete-all-in-cart');
     Route::post('product/add-to-cart/notification');
-
-    // Route::get('phone-update',[OtpController::class,'phoneUserIndex'])->name('phone-update');
-    // Route::post('phone-update/update',[OtpController::class,'updatePhoneUser'])->name('phone-update.update');
 });
 
 Route::prefix('FTM')->middleware('auth', 'role:employee')->name('FTM.')->group(function () {
@@ -90,10 +84,9 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin.')->group(
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
 // Route::get('register/otp/phone-verification', [OtpController::class, 'index'])->name('otp.verification');
 // Route::post('register/otp/phone-store', [OtpController::class, 'store'])->name('otp.store');
 // Route::get('register/otp/phone-sms', [SendOtpSmsController::class, 'sendOtp']);
 
-// Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
-// Route::post('/email/verify/link', [App\Http\Controllers\Auth\VerificationController::class, 'verifyEmail'])->name('verification.verify.link');
 require __DIR__ . '/auth.php';

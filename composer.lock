@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de2fdd7572e10a40a9b4b61f73d1e28e",
+    "content-hash": "8a918ee2126f33cd746665a81065d439",
     "packages": [
         {
             "name": "biscolab/laravel-recaptcha",
@@ -6623,16 +6623,16 @@
         },
         {
             "name": "laravel/breeze",
-            "version": "v1.23.0",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/breeze.git",
-                "reference": "f981800876acd6334c0d95e33950911c9667f779"
+                "reference": "d62371252246d45417d077ca8019b6abd679343c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/f981800876acd6334c0d95e33950911c9667f779",
-                "reference": "f981800876acd6334c0d95e33950911c9667f779",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/d62371252246d45417d077ca8019b6abd679343c",
+                "reference": "d62371252246d45417d077ca8019b6abd679343c",
                 "shasum": ""
             },
             "require": {
@@ -6681,7 +6681,7 @@
                 "issues": "https://github.com/laravel/breeze/issues",
                 "source": "https://github.com/laravel/breeze"
             },
-            "time": "2023-08-08T15:06:40+00:00"
+            "time": "2023-10-06T13:24:19+00:00"
         },
         {
             "name": "laravel/pint",

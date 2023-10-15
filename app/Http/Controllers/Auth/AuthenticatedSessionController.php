@@ -25,21 +25,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-
         $request->authenticate();
 
         $request->session()->regenerate();
-        // Using laravel spatie role/permission method hasRole to point out the role of the user has
         if (Auth::check() && Auth::user()->hasRole('admin')) {
             return redirect()->route('admin.dashboard');
         }
         if (Auth::user()->email_verified_at == null) {
             $request->user()->sendEmailVerificationNotification();
-            if ($request->user()->hasVerifiedEmail()) {
-                $request->user()->markEmailAsVerified();
-                $request->user()->save();
-                // Auth::login($request->user());
-            }
             Auth::logout();
             return redirect()->route('login')->with('message', 'This email has not been verified');
         }
