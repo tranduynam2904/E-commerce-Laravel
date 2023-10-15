@@ -72,11 +72,11 @@
                     </div>
                 </div>
                 <div
-                    class="table-total-wrapper d-flex justify-content-end pt-60 col-md-12 col-sm-12 col-lg-4 float-left  align-items-center">
+                    class="table-total-wrapper d-flex justify-content-end pt-60 col-md-12 col-sm-12 col-lg-4 float-left align-items-center">
                     <div class="table-total-content">
                         <h2 class="pb-20">Cart totals</h2>
                         <div class="table-total-amount">
-                            <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
+                            <div class="single-total-content d-flex justify-content-between float-left w-100">
                                 @php
                                     $total_qty = 0;
                                     $cart = session()->get('cart', []);
@@ -102,22 +102,21 @@
                             </div>
                             <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
                                 <strong>Total</strong>
-                                {{-- @php
+                                @php
                                     $shipFee = $total * 0.05;
                                     $totalAfterFee = $total - $shipFee;
-                                @endphp --}}
+                                @endphp
                                 <span id ="cart-total" class="c-total-price">
-                                    ${{ number_format($total, 2) }}
+                                    ${{ number_format($totalAfterFee, 2) }}
                                 </span>
                             </div>
-                            <a href="checkout_page.html" class="btn btn-primary float-left w-100 text-center">Proceed to
+                            <a href="{{ route('checkout') }}" class="btn btn-primary float-left w-100 text-center">Proceed to
                                 checkout</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 @section('js-custom')

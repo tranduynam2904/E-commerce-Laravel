@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,9 +33,10 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('admin.dashboard');
         }
         if (Auth::user()->email_verified_at == null) {
-            $request->user()->sendEmailVerificationNotification();
-            Auth::logout();
-            return redirect()->route('login')->with('message', 'This email has not been verified');
+            event(new Registered(Auth::user()));
+            Auth::login(Auth::user());
+            // return redirect()->route('login')->with('message', 'This email has not been verified');
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
