@@ -44,13 +44,13 @@
 @section('auth')
     <div id="modalRegisterForm">
         <div class="modal-dialog" role="document">
-            <form id="register" {{-- onsubmit="event.preventDefault()" --}} method="POST" action="{{ route('register') }}">
+            <form  method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header text-center">
                         <h4 class="modal-title w-100 font-weight-medium text-left">Sign up</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span onclick="window.location.href='{{ url('/') }}'" aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body mx-3">
@@ -63,25 +63,28 @@
                         </div>
                         <!-- Phone -->
                         <div class="md-form mb-4">
-                            <x-input-label for="phone" :value="__('Phone')" />
-                            <x-text-input onkeypress="return isNumberKey(event)" placeholder="Your Phone" id="phone"
-                                class="form-control" type="text" name="phone" :value="old('phone')" required autofocus
-                                autocomplete="name" />
-                            <x-input-error style="color: red" :messages="$errors->get('phone')" class="mt-2" />
+                            <x-input-label for="phone" :value="__('Email')" />
+                            <x-text-input
+                            {{-- onkeypress="return isNumberKey(event)"  --}}
+                            placeholder="Your Email" id="email"
+                                class="form-control" type="email" name="email" :value="old('email')" required autofocus
+                                autocomplete="email" />
+                            <x-input-error style="color: red" :messages="$errors->get('email')" class="mt-2" />
                         </div>
-                        <script>
+                        {{-- <script>
+                            //Prevent to press char on keyboard, only number can press
                             function isNumberKey(evt) {
                                 var charCode = (evt.which) ? evt.which : evt.keyCode;
                                 if (charCode > 31 && (charCode < 48 || charCode > 57))
                                     return false;
                                 return true;
                             }
-                        </script>
+                        </script> --}}
                         <!-- Password -->
                         <div class="md-form mb-4">
                             <x-input-label for="password" :value="__('Password')" />
                             <x-text-input placeholder="Your Password" id="password" class="form-control" type="password"
-                                name="password" required autocomplete="new-password" />
+                                name="password" required autocomplete="password" />
                             <x-input-error style="color: red" :messages="$errors->get('password')" class="mt-2" />
                         </div>
                         <!-- Confirm Password -->

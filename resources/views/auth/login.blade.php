@@ -48,6 +48,17 @@
 <!-- login area start -->
 @extends('auth.master')
 @section('auth')
+@if (session('message'))
+<div style="text-align: center" id="flash-message" class="alert alert-danger">
+    {{ session('message') }}
+</div>
+<script>
+    setTimeout(function() {
+        document.getElementById('flash-message').style.display = 'none';
+    }, 3000); // 2 giây
+</script>
+<x-auth-session-status class="mb-4" :status="session('status')" />
+@endif
     <div id="modalLoginForm">
         <div class="modal-dialog" role="document">
             <form method="POST" action="{{ route('login') }}">
@@ -56,7 +67,7 @@
                     <div class="modal-header text-center">
                         <h4 class="modal-title w-100 font-weight-medium text-left">Sign in</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span onclick="window.location.href='{{ url('/') }}'" aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body mx-3">

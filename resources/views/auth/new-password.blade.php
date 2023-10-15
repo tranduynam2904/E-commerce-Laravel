@@ -15,14 +15,14 @@
                     <div class="modal-body mx-3">
                         <!-- Phone -->
                         <div class="md-form mb-4">
-                            <x-input-label for="new_password" :value="__('New password')" />
-                            <x-text-input placeholder="Your Old Password" id="new_password" class="form-control" type="password"
+                            <x-input-label for="new_password" :value="__('New Password')" />
+                            <x-text-input placeholder="Your New Password" id="new_password" class="form-control" type="password"
                                 name="new_password" value="" autofocus autocomplete="new_password" />
                             <x-input-error style="color: red" :messages="$errors->get('new_password')" class="mt-2" />
                         </div>
                         <div class="md-form mb-4">
-                            <x-input-label for="password_confirm" :value="__('Password confirm')" />
-                            <x-text-input placeholder="Your New Password" id="phone" class="form-control" type="password"
+                            <x-input-label for="password_confirm" :value="__('Password Confirm')" />
+                            <x-text-input placeholder="Your Password Confirm" id="phone" class="form-control" type="password"
                                 name="password_confirm" value="" autofocus autocomplete="password_confirm" />
                             <x-input-error style="color: red" :messages="$errors->get('password_confirm')" class="mt-2" />
                         </div>

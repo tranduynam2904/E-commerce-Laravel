@@ -32,11 +32,17 @@ class AuthenticatedSessionController extends Controller
         // Using laravel spatie role/permission method hasRole to point out the role of the user has
         if (Auth::check() && Auth::user()->hasRole('admin')) {
             return redirect()->route('admin.dashboard');
-            if (Auth::user()->email_verified_at == null) {
-                return redirect()->route('login');
-            }
         }
-
+        if (Auth::user()->email_verified_at == null) {
+            $request->user()->sendEmailVerificationNotification();
+            if ($request->user()->hasVerifiedEmail()) {
+                $request->user()->markEmailAsVerified();
+                $request->user()->save();
+                // Auth::login($request->user());
+            }
+            Auth::logout();
+            return redirect()->route('login')->with('message', 'This email has not been verified');
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

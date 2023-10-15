@@ -123,10 +123,8 @@
                                     <!-- End .row -->
                                 </div>
                                 <!-- End #account-chage-pass -->
-
-                                <div class="required text-right">* Required Field</div>
                                 <div class="form-footer d-flex justify-content-between align-items-center">
-                                    <a href="ưin"><i class="material-icons">navigate_before</i>Back</a>
+                                    <a onclick="window.location.href='{{ url('/') }}'"><i class="material-icons">navigate_before</i>Back</a>
                                     <div class="form-footer-right">
                                         <button type="submit" class="btn btn-primary btn-primary">Save</button>
                                     </div>

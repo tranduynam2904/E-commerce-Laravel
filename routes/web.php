@@ -33,11 +33,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth', 'role:client')->group(function () {
+Route::middleware(['auth','role:client'] )->group(function () {
     Route::get('user/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('user/account/profile/updateProfile', [ProfileController::class, 'updateProfile'])->name('profile.edit.update-profile');
     Route::get('user/account/profile/verify', [ProfileController::class, 'verifyOption'])->name('profile.verify');
@@ -90,8 +90,10 @@ Route::prefix('admin')->middleware('auth', 'role:admin')->name('admin.')->group(
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-Route::get('register/otp/phone-verification', [OtpController::class, 'index'])->name('otp.verification');
-Route::post('register/otp/phone-store', [OtpController::class, 'store'])->name('otp.store');
-Route::get('register/otp/phone-sms', [SendOtpSmsController::class, 'sendOtp']);
+// Route::get('register/otp/phone-verification', [OtpController::class, 'index'])->name('otp.verification');
+// Route::post('register/otp/phone-store', [OtpController::class, 'store'])->name('otp.store');
+// Route::get('register/otp/phone-sms', [SendOtpSmsController::class, 'sendOtp']);
 
+// Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
+// Route::post('/email/verify/link', [App\Http\Controllers\Auth\VerificationController::class, 'verifyEmail'])->name('verification.verify.link');
 require __DIR__ . '/auth.php';
