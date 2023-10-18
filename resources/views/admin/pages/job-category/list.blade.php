@@ -14,23 +14,23 @@
         <div class="row">
             <!-- table primary start -->
             <div class="col-lg-12 mt-5">
-                <div style="display: flex;justify-content:end"><a href="{{ route('admin.job-category.create') }}"
+                <div style="display: flex;justify-content:end;margin-bottom:30px;"><a href="{{ route('admin.job-category.create') }}"
                         style="color:white" class="btn btn-primary">Create New Job
                         Categories</a></div>
-                <div class="col-md-6 col-sm-8 clearfix">
+                {{-- <div class="col-md-6 col-sm-8 clearfix">
                     <div class="search-box pull-left">
                         <form method="get">
                             <input class="form-control" type="text" name="keyword" placeholder="Search..." required>
                             <button type="submit"><i class="ti-search"></i></button>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Thead Primary</h4>
                         <div class="single-table">
                             <div class="table-responsive">
-                                <table class="table text-center">
+                                <table id ="table" class="table text-center">
                                     <thead class="text-uppercase bg-primary">
                                         <tr class="text-white">
                                             <th scope="col">ID</th>
@@ -50,9 +50,10 @@
                                             <tr>
                                                 <td scope="row">{{ $loop->iteration }}</td>
                                                 <td>{{ $jobCategory->occupation }}</td>
+                                                <td>{{ $jobCategory->required_age }}</td>
                                                 <td>{{ $jobCategory->salary_range }}</td>
                                                 <td>{{ $jobCategory->number_of_recruits }}</td>
-                                                <td>{{ $jobCategory->required_age }}</td>
+
                                                 <td>{{ $jobCategory->recruitment_status ? 'No recruitment' : 'Still recruiting' }}
                                                 </td>
                                                 <td>{{ $jobCategory->created_at }}</td>
@@ -85,5 +86,12 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js-custom')
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
 @endsection
 

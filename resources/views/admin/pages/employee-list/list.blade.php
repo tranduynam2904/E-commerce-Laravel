@@ -14,29 +14,29 @@
         <div class="row">
             <!-- table primary start -->
             <div class="col-lg-12 mt-5">
-                <div style="display: flex;justify-content:end"><a href="{{ route('admin.employee-list.create') }}"
+                <div style="display: flex;justify-content:end;margin-bottom:30px;"><a href="{{ route('admin.employee-list.create') }}"
                         style="color:white" class="btn btn-primary mb-3">Create New Employee</a></div>
-                <div style="" class="col-md-6 col-sm-8 clearfix">
+                {{-- <div style="" class="col-md-6 col-sm-8 clearfix">
                     <div class="search-box pull-left">
                         <form method="get">
                             <input class="form-control" type="text" name="keyword" placeholder="Search..." required>
                             <button style="background:white" type="submit"><i class="ti-search"></i></button>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Thead Primary</h4>
                         <div class="single-table">
                             <div class="table-responsive">
-                                <table class="table text-center">
+                                <table id="table" class="table text-center">
                                     <thead class="text-uppercase bg-primary">
                                         <tr class="text-white">
                                             <th scope="col">ID</th>
                                             <th scope="col">Avatar</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Slug</th>
-                                            <th scope="col">Email</th>
+                                            {{-- <th scope="col">Email</th> --}}
                                             <th scope="col">Age</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Phone</th>
@@ -61,11 +61,12 @@
                                                 </td>
                                                 <td>{{ $employee->name }}</td>
                                                 <td>{{ $employee->slug }}</td>
-                                                <td>{{ $employee->email_id->email }}</td>
+                                                {{-- <td>{{ $employee->email }}</td> --}}
                                                 <td>{{ $employee->age }}</td>
                                                 <td>{{ $employee->gender ? 'Male' : 'Female' }}</td>
                                                 <td>{{ $employee->phone }}</td>
                                                 <td>{{ $employee->job_category->occupation }}</td>
+                                                {{-- <td>{{ $employee->occupation }}</td> --}}
                                                 <td>{!! $employee->description !!}</td>
                                                 <td>{{ $employee->created_at }}</td>
                                                 <td>{{ $employee->updated_at }}</td>
@@ -97,3 +98,11 @@
         </div>
     </div>
 @endsection
+@section('js-custom')
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
+@endsection
+

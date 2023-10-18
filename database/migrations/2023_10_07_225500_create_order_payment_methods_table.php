@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('order_id')->references('id')->on('orders');
             $table->string('payment_provider',255)->nullable();
             $table->string('status', 255)->nullable();
-            $table->float('total')->nullable()->unsigned();
+            $table->double('total')->nullable()->unsigned();
             $table->string('note',255)->nullable();
             $table->softDeletes();
             $table->timestamps();

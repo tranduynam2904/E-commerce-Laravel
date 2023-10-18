@@ -9,7 +9,7 @@ class Color extends Model
 {
     use HasFactory;
     protected $table = 'colors';
-    public function products(){
+    public function product(){
         $this->belongsTo(Product::class,'color_id');
     }
 }

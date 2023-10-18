@@ -30,7 +30,7 @@
                                     <option {{ old('status', $product_category->status) === 0 ? 'selected' : '' }}
                                         value="0">Hide</option>
                                 </select>
-                                @error('name')
+                                @error('status')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">{{ $message }}</div>
                                 @enderror

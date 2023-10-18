@@ -32,6 +32,9 @@
  <!-- others plugins -->
  <script src="{{ asset('assets/admin/js/plugins.js') }}"></script>
  <script src="{{ asset('assets/admin/js/scripts.js') }}"></script>
+ <script src="{{ asset('assets/admin/js/vendor/modernizr-2.8.3.min.js') }}"></script>
  <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
  @yield('js-custom')

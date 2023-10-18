@@ -11,15 +11,18 @@
         </div>
         <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
-                <img class="avatar user-thumb" src="{{ asset('assets/admin/images/author/author-img6.avif') }}" alt="avatar">
-                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Admin<i class="fa fa-angle-down"></i></h4>
+                <img class="avatar user-thumb" src="{{ asset('assets/admin/images/author/author-img6.avif') }}"
+                    alt="avatar">
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}<i
+                        class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">
+                    {{-- <a href="{{ route('admin.profile', ['profile' => Auth::user()->id]) }}">Profile</a> --}}
                     <a class="dropdown-item" href="#">Message</a>
                     <a class="dropdown-item" href="#">Settings</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-dropdown-link class="dropdown-item" :href="route('logout')"
-                                onclick="event.preventDefault();
+                            onclick="event.preventDefault();
                                             this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </x-dropdown-link>

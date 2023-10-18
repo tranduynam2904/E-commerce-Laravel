@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +18,12 @@ class MailToAdmin extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $order;
+    public $user;
+    public function __construct(Order $order, User $user)
     {
-        //
+        $this->order = $order;
+        $this->user = $user;
     }
 
     /**
@@ -27,7 +32,7 @@ class MailToAdmin extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mail To Admin',
+            subject: 'New Order From Customer',
         );
     }
 
@@ -37,7 +42,8 @@ class MailToAdmin extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.mail-to-admin',
+            with: ['order' => $this->order, 'user' => $this->user]
         );
     }
 

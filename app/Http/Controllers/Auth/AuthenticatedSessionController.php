@@ -29,13 +29,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (Auth::check() && Auth::user()->hasRole('admin')) {
+        if (Auth::check() && Auth::user()->hasAnyRole(['admin', 'employee'])) {
             return redirect()->route('admin.dashboard');
         }
         if (Auth::user()->email_verified_at == null) {
             event(new Registered(Auth::user()));
             Auth::login(Auth::user());
-            // return redirect()->route('login')->with('message', 'This email has not been verified');
             return redirect()->intended(RouteServiceProvider::HOME);
         }
         return redirect()->intended(RouteServiceProvider::HOME);

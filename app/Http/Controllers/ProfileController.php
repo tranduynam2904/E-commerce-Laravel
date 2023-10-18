@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UpdatePhoneEvent;
 use App\Http\Requests\ConfirmPasswordRequest;
 use App\Http\Requests\OtpRequest;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -50,33 +51,7 @@ class ProfileController extends Controller
      */
     public function updatePhone(UpdatePhoneRequest $request): RedirectResponse
     {
-        // dd($request->phone);
-        session(['update_request' => $request->all()]);
-        if ($request->user()->phone == $request->phone) {
-            return Redirect::route('profile.edit')->with('message', 'Nothing to update');
-        } else {
-            $phoneNumber = '+84' . $request->phone;
-            $otp = random_int(100000, 999999); // Generate 6 random numbers
-
-            session(['otp' => $otp]); // Save the 6 random numbers to the session
-
-            $twilioSid = env('TWILIO_ACCOUNT_SID');
-            $twilioToken = env('TWILIO_AUTH_TOKEN');
-            $twilioNumber = env('TWILIO_PHONE_NUMBER');
-
-            $client = new Client($twilioSid, $twilioToken);
-
-            $client->messages->create(
-                $phoneNumber,
-                [
-                    'from' => $twilioNumber,
-                    'body' => 'Your OTP is: ' . $otp
-                ]
-            );
-        }
-        // $request->user()->phone = $request->phone;
-        // $request->user()->save();
-
+        event(new UpdatePhoneEvent($request));
         return Redirect::route('profile.phone.verifyOtp');
     }
     public function verifyOtp(OtpRequest $request)

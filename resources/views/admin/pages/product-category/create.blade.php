@@ -9,6 +9,7 @@
                         <h4 class="header-title">Create Product Category</h4>
                         <form method="post" action="{{ route('admin.product-category.store') }}"
                             class="form-horizontal form-label-left" novalidate>
+                            @csrf
                             <div class="form-group">
                                 <label for="name" class="control-label">Name</label>
                                 <input type="text" name="name" data-validate-length="6,8" class="form-control">
@@ -37,7 +38,6 @@
                                     class="btn btn-primary">Cancel</button>
                                 <button id="send" type="submit" class="btn btn-success">Submit</button>
                             </div>
-                            @csrf
                         </form>
                     </div>
                 </div>

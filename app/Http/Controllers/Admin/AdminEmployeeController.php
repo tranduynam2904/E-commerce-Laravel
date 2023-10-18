@@ -35,36 +35,23 @@ class AdminEmployeeController extends Controller
     }
     public function store(StoreEmployeeRequest $request)
     {
-        // dd($request->all());
+
         if ($request->hasFile('avatar')) {
             $fileOrginialName = $request->file('avatar')->getClientOriginalName();
             $fileName = pathinfo($fileOrginialName, PATHINFO_FILENAME);
             $fileName .= '_' . time() . '.' . $request->file('avatar')->getClientOriginalExtension();
             $request->file('avatar')->move(public_path('images'),  $fileName);
         }
-        //Eloquent
-        // $employeeList = new Employee;
-        // $employeeList->avatar = $fileName ?? null;
-        // $employeeList->name = $request->name;
-        // $employeeList->slug = $request->slug;
-        // $employeeList->email = $request->email;
-        // $employeeList->age = $request->age;
-        // $employeeList->gender = $request->gender;
-        // $employeeList->phone = $request->phone;
-        // $employeeList->job_category_id = $request->occupation;
-        // $employeeList->description = $request->description;
-        // $employeeList->created_at = Carbon::now(+7);
-        // $employeeList->updated_at = Carbon::now(+7);
-        // $check = $employeeList->save();
-        $employeeList = User::create([
+
+        $employeeList = Employee::create([
             'avatar' => $fileName ?? null,
             'name' => $request->name,
             'slug' => $request->slug,
-            'email_id' => $request->email_id,
+            // 'email_id' => $request->email_id,
             'age' => $request->age,
             'gender' => $request->gender,
             'phone' => $request->phone,
-            'job_category_id' => $request->job_category_id,
+            'job_category_id' => $request->occupation,
             'description' => $request->description,
             'created_at' => Carbon::now(+7),
             'updated_at' => Carbon::now(+7)
@@ -75,10 +62,7 @@ class AdminEmployeeController extends Controller
     }
     public function show(Employee $employeeList)
     {
-        // dd($employee_list->id);
         $jobCategories = JobCategory::all();
-        // dd($jobCategories->id);
-        // $employees = DB::table('employee')->find($id);
         return view('admin.pages.employee-list.detail', ['employees' => $employeeList, 'jobCategories' => $jobCategories]);
     }
     public function update(UpdateEmployeeRequest $request, Employee $employeeList)
@@ -97,7 +81,7 @@ class AdminEmployeeController extends Controller
         $employeeList->avatar = $fileName ?? $oldImageFileName;
         $employeeList->name = $request->name;
         $employeeList->slug = $request->slug;
-        $employeeList->email_id = $request->email_id;
+        // $employeeList->email_id = $request->email_id;
         $employeeList->age = $request->age;
         $employeeList->gender = $request->gender;
         $employeeList->phone = $request->phone;

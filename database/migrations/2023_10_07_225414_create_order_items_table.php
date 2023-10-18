@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('product_name', 255)->nullable();
-            $table->float('product_price')->nullable()->unsigned();
+            $table->double('product_price')->nullable()->unsigned();
             $table->integer('qty')->nullable()->unsigned();
             $table->softDeletes();
             $table->timestamps();

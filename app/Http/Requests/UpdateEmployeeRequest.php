@@ -24,7 +24,7 @@ class UpdateEmployeeRequest extends FormRequest
         return [
             'avatar' => 'image',
             'name' => 'required|min:3|max:255',
-            'email' => ['required', 'email', 'unique:employee,email,' . $this->id , 'regex:/@gmail.com$/'],
+            // 'email' => ['required', 'email', 'unique:employee,email,' . $this->id , 'regex:/@gmail.com$/'],
             'age' => 'required|max:100',
             'gender' => 'required',
             'phone' => 'required',

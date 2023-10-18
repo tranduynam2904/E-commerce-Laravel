@@ -24,8 +24,10 @@
                                     <th class="table-total text-capitalize">total</th>
                                 </tr>
                             </thead>
+
                             <tbody id="table-cart">
                                 @php $total = 0 @endphp
+                                {{-- Foreach will prevent to value change when reload page --}}
                                 @foreach ($cart as $productId => $item)
                                     @php $total += $item['qty'] * $item['price'] @endphp
                                     <tr id="{{ $productId }}">
@@ -104,13 +106,14 @@
                                 <strong>Total</strong>
                                 @php
                                     $shipFee = $total * 0.05;
-                                    $totalAfterFee = $total - $shipFee;
+                                    $totalAfterFee = $total + $shipFee;
                                 @endphp
                                 <span id ="cart-total" class="c-total-price">
                                     ${{ number_format($totalAfterFee, 2) }}
                                 </span>
                             </div>
-                            <a href="{{ route('checkout') }}" class="btn btn-primary float-left w-100 text-center">Proceed to
+                            <a href="{{ route('checkout') }}" class="btn btn-primary float-left w-100 text-center">Proceed
+                                to
                                 checkout</a>
                         </div>
                     </div>
@@ -131,8 +134,7 @@
                     data: {
                         'name': '1'
                     },
-                    success:
-                    function(response) {
+                    success: function(response) {
                         Swal.fire({
                             icon: 'success',
                             text: response.message,
@@ -159,7 +161,8 @@
                 var price = parseFloat(button.parent().data('price'));
 
                 var totalPrice = price * qty;
-                // var totalAfterFee = totalPrice * 0.05;
+                var shipFee = totalPrice * 0.05
+                var totalAfterFee = totalPrice - shipFee;
                 url += '/' + qty;
 
                 $.ajax({
@@ -174,8 +177,9 @@
                             $('tr#' + id).empty();
                         }
                         $('tr#' + id)
-                        .find('#total-price-product')
-                        .html("$" + totalPrice.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                            .find('#total-price-product')
+                            .html("$" + totalPrice.toFixed(2).replace(
+                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
                         reloadView(response);
                     }
                 });
@@ -198,8 +202,9 @@
                     }
                 });
             });
-
+            // Value will change when change value, don't need to reload page
             function reloadView(response) {
+                var shipFee = response.total_price * 0.05
                 // console.log(response.total_items);
                 $('#total-items-qty').html(response.total_qty);
                 $('#total-items-cart').html(response.total_items);
@@ -210,7 +215,8 @@
                 $('#cart-subtotal').html('$' + response.total_price.toFixed(
                     2).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-                $('#cart-total').html('$' + response.total_price.toFixed(
+                var cartTotal = response.total_price + shipFee;
+                $('#cart-total').html('$' + cartTotal.toFixed(
                     2).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
             }

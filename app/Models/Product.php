@@ -29,11 +29,11 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
-    public function rating()
+    public function ratings()
     {
         return $this->hasMany(Rating::class, 'rating_id');
     }
-    public function color()
+    public function colors()
     {
         return $this->hasMany(Color::class, 'color_id');
     }

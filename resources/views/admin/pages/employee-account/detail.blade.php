@@ -8,10 +8,10 @@
                     <div class="card-body">
                         <h4 class="header-title">Update Employee</h4>
                         <form method="POST" enctype="multipart/form-data"
-                            action="{{ route('admin.employee-account.update', ['employee_account' => $employee_account->id]) }}" class="form-horizontal form-label-left" novalidate>
+                            action="{{ route('admin.employee-account.update', ['employee_account' => $employee_account->id]) }}"
+                            class="form-horizontal form-label-left" novalidate>
                             @method('put')
                             @csrf
-                            <span class="section">Personal Info</span>
                             <div class="form-group">
                                 <label class="control-label" for="name">Name</label>
                                 <input id="name" class="form-control" data-validate-length-range="6"
@@ -35,6 +35,24 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="role">Role</label>
+                                <select id="role" name="role" class="form-control">
+                                    <option value="">Choose option</option>
+                                    @foreach ($roles as $role)
+                                        @foreach ($employee_account->roles as $employee_role)
+                                            <option {{ old('role', $employee_role->name) == $role->name ? 'selected' : '' }}
+                                                value="{{ $role->name }}"> {{ $role->name }}
+                                            </option>
+                                        @endforeach
+                                    @endforeach
+                                </select>
+                                @error('role')
+                                    <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                        class="alert alert-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <button type="button"
                                     onclick="window.location.href='{{ route('admin.employee-account.index') }}'"
                                     class="btn btn-primary">Cancel</button>
@@ -44,5 +62,6 @@
                     </div>
                 </div>
             </div>
-        @endsection
-
+        </div>
+    </div>
+@endsection

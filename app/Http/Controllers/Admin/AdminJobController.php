@@ -56,6 +56,7 @@ class AdminJobController extends Controller
     {
 
         // $jobCategories = DB::table('job_categories')->find($id);
+        dd($jobCategory);
         return view('admin.pages.job-category.detail', ['jobCategory' => $jobCategory]);
     }
 

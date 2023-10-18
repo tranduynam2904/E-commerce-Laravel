@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use View;
 
@@ -14,13 +16,15 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function __construct(){
-    //     $this->middleware
-    // }
+
     public function index()
     {
         $roles = Role::select()->paginate(5);
-        return view('admin.pages.roles.list', ['roles' => $roles]);
+
+        // $adminRole = Role::findByName('admin');
+        // $permission = Permission::findByName('look-dashboard');
+        // $adminRole->givePermissionTo($permission);
+        return view('admin.pages.role.list', ['roles' => $roles]);
     }
 
     /**
@@ -28,7 +32,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.roles.create');
+        return view('admin.pages.role.create');
     }
 
     /**
@@ -44,7 +48,7 @@ class RoleController extends Controller
             'updated_at' => Carbon::now(+7)
         ]);
         $message = $role ? 'Created role successfully' : 'Failed to create role';
-        return Redirect::route('admin.roles.index')->with('message', $message);
+        return Redirect::route('admin.role.index')->with('message', $message);
     }
 
     /**
@@ -52,7 +56,12 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return view('admin.pages.roles.detail', ['role' => $role]);
+        // $rolesWithPermissions = Role::with('permissions')->get();
+        $permissions = Permission::all();
+        return view('admin.pages.role.detail', [
+            'role' => $role,
+            'permissions' => $permissions
+        ]);
     }
 
     /**
@@ -73,7 +82,7 @@ class RoleController extends Controller
         $role->updated_at = Carbon::now(+7);
         $check = $role->save();
         $message = $check ? 'Updated role successfully' : 'Failed to update role';
-        return Redirect::route('admin.roles.index')->with('message', $message);
+        return Redirect::route('admin.role.index')->with('message', $message);
     }
 
     /**
@@ -83,6 +92,22 @@ class RoleController extends Controller
     {
         $check = $role->delete();
         $message = $check ? 'Deleted role successfully' : 'Failed to delete role';
-        return Redirect::route('admin.roles.index')->with('message', $message);
+        return Redirect::route('admin.role.index')->with('message', $message);
+    }
+    public function givePermission(Request $request, Role $role)
+    {
+        if ($role->hasPermissionTo($request->permission)) {
+            return back()->with('message', 'Role already has this permission');
+        }
+        $role->givePermissionTo($request->permission);
+        return back()->with('message', 'Permission has been added to role');
+    }
+    public function revokePermission(Role $role, Permission $permission)
+    {
+        if ($role->hasPermissionTo($permission->name)) {
+            $role->revokePermissionTo($permission->name);
+            return back()->with('message', 'Permission has been removed from role');
+        }
+        return back()->with('message', 'Permission not exists.');
     }
 }

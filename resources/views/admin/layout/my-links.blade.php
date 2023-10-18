@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/default-css.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/admin//css/responsive.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
     <!-- modernizr css -->
-    <script src="{{ asset('assets/admin/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+
 </head>

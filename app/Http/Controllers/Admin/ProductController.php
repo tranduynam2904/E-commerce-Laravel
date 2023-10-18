@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
@@ -19,6 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        // DataTables::of($products)->make(true);
         return view('admin.pages.product.list', ['products' => $products]);
     }
 

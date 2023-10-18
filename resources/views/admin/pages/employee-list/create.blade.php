@@ -43,7 +43,7 @@
                                         {{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="email">Email</label>
                                 <input value="{{ old('email_id') }}" id="email_id" class="form-control"
                                     data-validate-length-range="6" data-validate-words="2" name="email_id"
@@ -53,7 +53,7 @@
                                         class="alert alert-danger">
                                         {{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="age">Age</label>
                                 <input value="{{ old('age') }}" type="number" id="age" name="age"

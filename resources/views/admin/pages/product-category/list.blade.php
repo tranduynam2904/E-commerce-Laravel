@@ -14,23 +14,23 @@
         <div class="row">
             <!-- table primary start -->
             <div class="col-lg-12 mt-5">
-                <div style="display: flex;justify-content:end"><a href="{{ route('admin.product-category.create') }}"
+                <div style="display: flex;justify-content:end; margin-bottom:30px;"><a href="{{ route('admin.product-category.create') }}"
                         style="color:white" class="btn btn-primary">Create New Product
                         Category</a></div>
-                <div class="col-md-6 col-sm-8 clearfix">
+                {{-- <div class="col-md-6 col-sm-8 clearfix">
                     <div class="search-box pull-left">
                         <form method="get">
                             <input class="form-control" type="text" name="keyword" placeholder="Search..." required>
                             <button type="submit"><i class="ti-search"></i></button>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Thead Primary</h4>
                         <div class="single-table">
                             <div class="table-responsive">
-                                <table class="table text-center">
+                                <table id="table" class="table text-center">
                                     <thead class="text-uppercase bg-primary">
                                         <tr class="text-white">
                                             <th scope="col">ID</th>
@@ -78,5 +78,12 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js-custom')
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
 @endsection
 

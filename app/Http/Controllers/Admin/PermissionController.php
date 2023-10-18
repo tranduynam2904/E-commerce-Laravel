@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
+use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::paginate(5);
-        return view('admin.pages.permissions.list', ['permissions' => $permissions]);
+        return view('admin.pages.permission.list', ['permissions' => $permissions]);
     }
 
     /**
@@ -25,7 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.permissions.create');
+        return view('admin.pages.permission.create');
     }
 
     /**
@@ -47,7 +48,7 @@ class PermissionController extends Controller
             'updated_at' => Carbon::now(+7)
         ]);
         $message = $permission ? 'Created permission successfully' : 'Failed to create permission';
-        return Redirect::route('admin.permissions.index')->with('message', $message);
+        return Redirect::route('admin.permission.index')->with('message', $message);
     }
 
     /**
@@ -55,9 +56,8 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        // $permissions = DB::table('permissions')->find($id);
-        // dd($permissions);
-        return view('admin.pages.permissions.detail', ['permission' => $permission]);
+        $roles = Role::all();
+        return view('admin.pages.permission.detail', ['permission' => $permission, 'roles' => $roles]);
     }
 
     /**
@@ -78,7 +78,7 @@ class PermissionController extends Controller
         $permission->created_at = Carbon::now(+7);
         $check = $permission->save();
         $message = $check ? 'Updated permission successfully' : 'Failed to update permission';
-        return Redirect::route('admin.permissions.index')->with('message', $message);
+        return Redirect::route('admin.permission.index')->with('message', $message);
     }
 
     /**
@@ -88,6 +88,22 @@ class PermissionController extends Controller
     {
         $check = $permission->delete();
         $message = $check ? 'Deleted permission successfully' : 'Failed to delete permission';
-        return Redirect::route('admin.permissions.index')->with('message', $message);
+        return Redirect::route('admin.permission.index')->with('message', $message);
+    }
+    public function assignRole(Request $request, Permission $permission)
+    {
+        if ($permission->hasRole($request->role)) {
+            return back()->with('message', 'This permission already has role');
+        }
+        $permission->assignRole($request->role);
+        return back()->with('message', 'Assign role successfully');
+    }
+    public function removeRole(Role $role, Permission $permission)
+    {
+        if ($permission->hasRole($role)) {
+            $permission->removeRole($role);
+            return back()->with('message', 'Remove role successfully');
+        }
+        return back()->with('message', 'Role not exists');
     }
 }
