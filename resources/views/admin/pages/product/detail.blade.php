@@ -88,6 +88,16 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="size" class="control-label">Size</label>
+                                <input type="text" value="{{ old('size', $product->size) }}" name="size"
+                                    data-validate-length="6,8" class="form-control">
+                                @error('size')
+                                    <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                        class="alert alert-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="product_category_id">Product Category</label>
                                 <select id="product_category_id" name="product_category_id" class="form-control">
                                     <option value="">Choose option</option>
@@ -130,8 +140,6 @@
                                     <option {{ old('status',$product->status) === 1 ? 'selected' : '' }} value="1">Show</option>
                                     <option {{ old('status',$product->status) === 0 ? 'selected' : '' }} value="0">Hide</option>
 
-                                    <option {{ old('status') === 1 ? 'selected' : '' }} value="1">Show</option>
-                                    <option {{ old('status') === 0 ? 'selected' : '' }} value="0">Hide</option>
 
                                 </select>
                                 @error('status')

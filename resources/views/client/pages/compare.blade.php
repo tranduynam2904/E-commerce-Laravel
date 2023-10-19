@@ -1,4 +1,4 @@
-<div class="compare-wrapper float-left w-100">
+{{-- <div class="compare-wrapper float-left w-100">
     <div class="compare-inner d-flex align-items-center p-20">
         <span class="close"><i class='material-icons'>
                 close
@@ -37,4 +37,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

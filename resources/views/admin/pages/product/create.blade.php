@@ -86,6 +86,16 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="size" class="control-label">Size</label>
+                                <input type="text" value="{{ old('size') }}" name="size" data-validate-length="6,8"
+                                    class="form-control">
+                                @error('size')
+                                    <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                        class="alert alert-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="product_category_id">Product Category</label>
                                 <select id="product_category_id" name="product_category_id" class="form-control">
                                     <option value="">Choose option</option>
@@ -140,7 +150,6 @@
                                     class="btn btn-primary">Cancel</button>
                                 <button id="send" type="submit" class="btn btn-success">Submit</button>
                             </div>
-
                         </form>
                     </div>
                 </div>

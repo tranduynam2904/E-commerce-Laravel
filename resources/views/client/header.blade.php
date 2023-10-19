@@ -72,7 +72,7 @@
                                             </li>
                                             <li class="nav-item dropdown mega-dropdown">
                                                 <a class="nav-link dropdown-toggle text-uppercase"
-                                                    href="category.html">Category</a>
+                                                    href="">Category</a>
                                                 <div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3"
                                                     aria-labelledby="navbarDropdownMenuLink3">
                                                     <div class="row">
@@ -83,17 +83,17 @@
                                                             <!--Featured image-->
                                                             <ul class="list-unstyled">
                                                                 <li>
-                                                                    <a class="menu-item pl-0" href="filter-toggle.html">
+                                                                    <a class="menu-item pl-0" href="">
                                                                         filter toggle </a>
                                                                 </li>
                                                                 <li>
                                                                     <a class="menu-item pl-0"
-                                                                        href="off-canvas-left.html">
+                                                                        href="">
                                                                         off canvas left </a>
                                                                 </li>
                                                                 <li>
                                                                     <a class="menu-item pl-0"
-                                                                        href="off-canvas-right.html">
+                                                                        href="">
                                                                         off canvas right </a>
                                                                 </li>
                                                             </ul>
@@ -105,12 +105,12 @@
                                                             <ul class="list-unstyled">
                                                                 <li>
                                                                     <a class="menu-item pl-0"
-                                                                        href="category-5-col.html">
+                                                                        href="">
                                                                         5 columns mode </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        <div class="col-md-6 col-xl-4 sub-menu mb-0">
+                                                        {{-- <div class="col-md-6 col-xl-4 sub-menu mb-0">
                                                             <ul class="list-unstyled">
                                                                 <li>
                                                                     <span class="menu-banner"><img
@@ -118,12 +118,12 @@
                                                                             alt="menu-banner" /></span>
                                                                 </li>
                                                             </ul>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle text-uppercase" href="category.html">
+                                                <a class="nav-link dropdown-toggle text-uppercase" href="">
                                                     Shop
                                                     <span class="sr-only">(current)</span> </a>
                                                 <div
@@ -131,25 +131,25 @@
                                                     <div class="sub-menu mb-xl-0 mb-4">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <a class="menu-item pl-0" href="product-grid.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     product grid </a>
                                                             </li>
                                                             <li>
                                                                 <a class="menu-item pl-0"
-                                                                    href="product-sticky-right.html">
+                                                                    href="">
                                                                     sticky right </a>
                                                             </li>
                                                             <li>
                                                                 <a class="menu-item pl-0"
-                                                                    href="product-extended-layout.html">
+                                                                    href="">
                                                                     Extended layout </a>
                                                             </li>
                                                             <li>
-                                                                <a class="menu-item pl-0" href="product-details.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     Default layout </a>
                                                             </li>
                                                             <li>
-                                                                <a class="menu-item pl-0" href="product-compact.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     compact layout </a>
                                                             </li>
                                                         </ul>
@@ -158,7 +158,7 @@
                                                 </div>
                                             </li>
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link text-uppercase" href="category.html">Blog</a>
+                                                <a class="nav-link text-uppercase" href="">Blog</a>
                                                 {{-- <div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3"
                                                     aria-labelledby="navbarDropdownMenuLink5">
                                                     <div class="sub-menu">
@@ -193,13 +193,13 @@
                                             </li>
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle text-uppercase"
-                                                    href="category.html">Pages</a>
+                                                    href="">Pages</a>
                                                 <div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3"
                                                     aria-labelledby="navbarDropdownMenuLink5">
                                                     <div class="sub-menu">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <a class="menu-item pl-0" href="about-us.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     About us </a>
                                                             </li>
                                                         </ul>
@@ -207,7 +207,7 @@
                                                 </div>
                                             </li>
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link text-uppercase" href="contact-us.html">contact
+                                                <a class="nav-link text-uppercase" href="">contact
                                                     us</a>
                                             </li>
                                         </ul>
@@ -253,17 +253,17 @@
                                                             <ul class="list-unstyled">
                                                                 <li>
                                                                     <a class="menu-item pl-0"
-                                                                        href="filter-toggle.html">
+                                                                        href="">
                                                                         filter toggle </a>
                                                                 </li>
                                                                 <li>
                                                                     <a class="menu-item pl-0"
-                                                                        href="off-canvas-left.html">
+                                                                        href="">
                                                                         off canvas left </a>
                                                                 </li>
                                                                 <li>
                                                                     <a class="menu-item pl-0"
-                                                                        href="off-canvas-right.html">
+                                                                        href="">
                                                                         off canvas right </a>
                                                                 </li>
                                                             </ul>
@@ -275,12 +275,12 @@
                                                             <ul class="list-unstyled">
                                                                 <li>
                                                                     <a class="menu-item pl-0"
-                                                                        href="category-5-col.html">
+                                                                        href="">
                                                                         grid 5 column </a>
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                        <div class="col-md-6 col-xl-4 sub-menu mb-0">
+                                                        {{-- <div class="col-md-6 col-xl-4 sub-menu mb-0">
 
                                                             <ul class="list-unstyled">
                                                                 <li>
@@ -289,7 +289,7 @@
                                                                             alt="menu-banner" /></span>
                                                                 </li>
                                                             </ul>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </li>
@@ -308,25 +308,25 @@
                                                             Featured</h6>
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <a class="menu-item pl-0" href="product-grid.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     product grid </a>
                                                             </li>
                                                             <li>
                                                                 <a class="menu-item pl-0"
-                                                                    href="product-sticky-right.html">
+                                                                    href="">
                                                                     sticky right </a>
                                                             </li>
                                                             <li>
                                                                 <a class="menu-item pl-0"
-                                                                    href="product-extended-layout.html">
+                                                                    href="">
                                                                     Extended layout </a>
                                                             </li>
                                                             <li>
-                                                                <a class="menu-item pl-0" href="product-details.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     Default layout </a>
                                                             </li>
                                                             <li>
-                                                                <a class="menu-item pl-0" href="product-compact.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     compact layout </a>
                                                             </li>
                                                         </ul>
@@ -347,7 +347,7 @@
                                                             Featured</h6>
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <a class="menu-item pl-0" href="blog-2-column.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     blog 2 column </a>
                                                             </li>
                                                         </ul>
@@ -355,7 +355,7 @@
                                                 </div>
                                             </li>
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link text-uppercase" href="contact-us.html">contact
+                                                <a class="nav-link text-uppercase" href="">contact
                                                     us</a>
                                             </li>
                                             <li class="nav-item dropdown">
@@ -370,7 +370,7 @@
                                                             Featured</h6>
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <a class="menu-item pl-0" href="about-us.html">
+                                                                <a class="menu-item pl-0" href="">
                                                                     About us </a>
                                                             </li>
                                                         </ul>

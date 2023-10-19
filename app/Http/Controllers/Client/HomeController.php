@@ -14,7 +14,8 @@ class HomeController extends Controller
         $featuredProductCategory = ProductCategory::where('name', 'featured')->first();
         // dd($featuredProductCategory);
         $latestProductCategory = ProductCategory::where('name', 'latest')->first();
-        $bestsellerProductCategory = ProductCategory::where('name', 'bestseller')->first();
+        $bestSellerProductCategory = ProductCategory::where('name', 'bestseller')->first();
+        $saleProductCategory = ProductCategory::where('name', 'special')->first();
         //Relational in Model Product
         if ($featuredProductCategory) {
             $featuredProducts = Product::with('product_category')->where('product_category_id', $featuredProductCategory->id)->get();
@@ -24,8 +25,11 @@ class HomeController extends Controller
             $latestProducts = Product::with('product_category')->where('product_category_id', $latestProductCategory->id)->get();
         }
 
-        if ($bestsellerProductCategory) {
-            $bestsellerProducts = Product::with('product_category')->where('product_category_id', $bestsellerProductCategory->id)->get();
+        if ($bestSellerProductCategory) {
+            $bestSellerProducts = Product::with('product_category')->where('product_category_id', $bestSellerProductCategory->id)->get();
+        }
+        if ($saleProductCategory) {
+            $saleProducts = Product::with('product_category')->where('product_category_id', $saleProductCategory->id)->get();
         }
         // foreach ($featuredProduct as $product) {
         //     $featuredProduct = $product->category->name;
@@ -37,10 +41,12 @@ class HomeController extends Controller
             [
                 'featuredProductCategory' => $featuredProductCategory,
                 'latestProductCategory' => $latestProductCategory,
-                'bestsellerProductCategory' => $bestsellerProductCategory,
+                'bestSellerProductCategory' => $bestSellerProductCategory,
+                'saleProductCategory' => $saleProductCategory,
                 'featuredProducts' => $featuredProducts,
                 'latestProducts' => $latestProducts,
-                'bestsellerProducts' => $bestsellerProducts,
+                'bestSellerProducts' => $bestSellerProducts,
+                'saleProducts' => $saleProducts,
             ]
         );
     }

@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         }
         \App\Models\Rating::factory(10)->create();
         \App\Models\Color::factory(10)->create();
-        \App\Models\Product::factory(10)->create();
+        // \App\Models\Product::factory(10)->create();
         $this->call(RolePermissionSeeder::class);
         $this->call(AdminSeeder::class);
     }

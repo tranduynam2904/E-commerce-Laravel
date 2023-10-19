@@ -8,11 +8,11 @@
                     <div class="item">
                         <div class="ttblog_image_holder">
                             <a href="#">
-                                <img src="{{ asset('assets/client/img/banner/blog-01.jpg') }}" alt="blog-01">
+                                <img src="{{ asset('assets/client/img/banner/samsung-z-fold-01.jpg') }}" alt="blog-01">
                             </a>
                             <span class="blogicons">
                                 <a title="Click to view Full Image"
-                                    href="{{ asset('assets/client/img/banner/blog-01.jpg') }}"
+                                    href="{{ asset('assets/client/img/banner/samsung-z-fold-01.jpg') }}"
                                     data-lightbox="example-set" class="icon zoom"><i
                                         class="material-icons">search</i></a>
                             </span>
@@ -34,10 +34,10 @@
                     <div class="item">
                         <div class="ttblog_image_holder">
                             <a href="#">
-                                <img src="{{ asset('assets/client/img/banner/blog-02.jpg') }}"
+                                <img src="{{ asset('assets/client/img/banner/ipad-01.jpg') }}"
                                     alt="blog-02"> </a>
                             <span class="blogicons">
-                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/blog-02.jpg') }}"
+                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/ipad-01.jpg') }}"
                                     data-lightbox="example-set" class="icon zoom"><i
                                         class="material-icons">search</i></a>
                             </span>
@@ -59,10 +59,10 @@
                     <div class="item">
                         <div class="ttblog_image_holder">
                             <a href="#">
-                                <img src="{{ asset('assets/client/img/banner/blog-03.jpg') }}"
+                                <img src="{{ asset('assets/client/img/banner/lg-ultrawide-01.jpg') }}"
                                     alt="blog-03"> </a>
                             <span class="blogicons">
-                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/blog-03.jpg') }}"
+                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/lg-ultrawide-01.jpg') }}"
                                     data-lightbox="example-set" class="icon zoom"><i
                                         class="material-icons">search</i></a>
                             </span>
@@ -85,10 +85,10 @@
                     <div class="item">
                         <div class="ttblog_image_holder">
                             <a href="#">
-                                <img src="{{ asset('assets/client/img/banner/blog-04.jpg') }}"
+                                <img src="{{ asset('assets/client/img/banner/earbud-wireless-01.jpg') }}"
                                     alt="blog-04"> </a>
                             <span class="blogicons">
-                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/blog-04.jpg') }}"
+                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/earbud-wireless-01.jpg') }}"
                                     data-lightbox="example-set" class="icon zoom"><i
                                         class="material-icons">search</i></a>
                             </span>
@@ -110,10 +110,10 @@
                     <div class="item">
                         <div class="ttblog_image_holder">
                             <a href="#">
-                                <img src="{{ asset('assets/client/img/banner/blog-05.jpg') }}"
+                                <img src="{{ asset('assets/client/img/banner/cooler-master-sneaker-01.jpg') }}"
                                     alt="blog-05"> </a>
                             <span class="blogicons">
-                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/blog-05.jpg') }}"
+                                <a title="Click to view Full Image" href="{{ asset('assets/client/img/banner/cooler-master-sneaker-01.jpg') }}"
                                     data-lightbox="example-set" class="icon zoom"><i
                                         class="material-icons">search</i></a>
                             </span>

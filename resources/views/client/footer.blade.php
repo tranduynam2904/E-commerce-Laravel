@@ -85,7 +85,7 @@
                 <div class="col-sm-12 footer-content float-left">
                     <div class="col-md-4 footer-column float-left">
                         <div class="title">
-                            <a href="#company" class="font-weight-normal text-capitalize mb-10"
+                            <a href="#" class="font-weight-normal text-capitalize mb-10"
                                 data-toggle="collapse" aria-expanded="false">company</a>
                         </div>
                         <ul id="company" class="list-unstyled collapse">
@@ -105,42 +105,42 @@
                     </div>
                     <div class="col-md-4 footer-column float-left">
                         <div class="title">
-                            <a href="#products" class="font-weight-normal text-capitalize mb-10"
+                            <a href="#" class="font-weight-normal text-capitalize mb-10"
                                 data-toggle="collapse" aria-expanded="false">products</a>
                         </div>
                         <ul id="products" class="list-unstyled collapse">
                             <li>
-                                <a href="blog-details.html">blog</a>
+                                <a href="">blog</a>
                             </li>
                             <li>
-                                <a href="about-us.html">about us</a>
+                                <a href="">about us</a>
                             </li>
                             <li>
-                                <a href="contact-us.html">contact us</a>
+                                <a href="">contact us</a>
                             </li>
                             <li>
-                                <a href="my-account.html">my account</a>
+                                <a href="">my account</a>
                             </li>
                         </ul>
 
                     </div>
                     <div class="col-md-4 footer-column float-left">
                         <div class="title">
-                            <a href="#account" class="font-weight-normal text-capitalize mb-10"
+                            <a href="#" class="font-weight-normal text-capitalize mb-10"
                                 data-toggle="collapse" aria-expanded="false">your account</a>
                         </div>
                         <ul id="account" class="list-unstyled collapse">
                             <li>
-                                <a href="blog-details.html">personal info</a>
+                                <a href="">personal info</a>
                             </li>
                             <li>
                                 <a href="#">orders</a>
                             </li>
                             <li>
-                                <a href="contact-us.html">addresses</a>
+                                <a href="">addresses</a>
                             </li>
                             <li>
-                                <a href="my-account.html">my wishlists</a>
+                                <a href="">my wishlists</a>
                             </li>
                         </ul>
 
@@ -151,7 +151,7 @@
         </div>
     </div>
     <!-- Copyright -->
-    <div class="footer-bottom-wrap">
+    {{-- <div class="footer-bottom-wrap">
         <div class="container">
             <div class="row">
                 <div class="footer-copyright text-center py-3">
@@ -159,7 +159,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <a href="#" id="goToTop" title="Back to top" class="btn-primary show"><i
             class="material-icons arrow-up">keyboard_arrow_up</i></a>
 </footer>

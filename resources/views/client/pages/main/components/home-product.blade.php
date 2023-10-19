@@ -13,7 +13,7 @@
                         </a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ttbestseller-main"
                             id="bestseller-tab">
-                            <div class="tab-title">{{ $bestsellerProductCategory->name }}</div>
+                            <div class="tab-title">{{ $bestSellerProductCategory->name }}</div>
                         </a></li>
                 </ul>
             </div>
@@ -25,10 +25,16 @@
                             @foreach ($featuredProducts as $key => $featuredProduct)
                                 <div class="product-layouts">
                                     <div class="product-thumb">
+                                        @php
+                                            $imagesLink = is_null($featuredProduct->image) || !file_exists('images/' . $featuredProduct->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $featuredProduct->image);
+                                        @endphp
+                                        @php
+                                            $secondImagesLink = is_null($featuredProduct->second_image) || !file_exists('images/' . $featuredProduct->second_image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $featuredProduct->second_image);
+                                        @endphp
                                         <div class="image vertical_scrolling_top_to_bottom">
-                                            <a href="product-details.html">
-                                                <img src="{{ $featuredProduct->image }}" alt="01" />
-                                                <img src="{{ $featuredProduct->second_image }}" alt="02"
+                                            <a href="#">
+                                                <img style="height: 220px" src="{{ $imagesLink }}" alt="01" />
+                                                <img style="height: 220px" src="{{ $secondImagesLink }}" alt="02"
                                                     class="second_image img-responsive" />
                                             </a>
                                             <div class="button-wrapper">
@@ -39,12 +45,13 @@
                                                         <i class="material-icons">shopping_cart</i><span>Add
                                                             to cart</span>
                                                     </a>
-                                                    <a href="wishlist.html" class="btn btn-primary btn-wishlist"><i
+                                                    <a href="#" class="btn btn-primary btn-wishlist"><i
                                                             class="material-icons">favorite</i><span>wishlist</span></a>
                                                     <button type="button" class="btn btn-primary btn-compare"><i
                                                             class="material-icons">equalizer</i><span>Compare</span></button>
                                                     <button type="button" class="btn btn-primary btn-quickview"
-                                                        data-toggle="modal" data-target="#product_view"><i
+                                                        {{-- data-toggle="modal" data-target="#product_view" --}}
+                                                        ><i
                                                             class="material-icons">visibility</i><span>Quick
                                                             View</span></button>
                                                 </div>
@@ -53,7 +60,7 @@
                                         <div class="thumb-description">
                                             <div class="caption">
                                                 <h4 class="product-title text-capitalize"><a
-                                                        href="product-details.html">{{ $featuredProduct->name }}</a>
+                                                        href="#">{{ $featuredProduct->name }}</a>
                                                 </h4>
                                             </div>
                                             <div class="rating">
@@ -68,8 +75,8 @@
                                                 </div>
                                             </div>
                                             <div class="price">
-                                                <div class="regular-price">$100.00</div>
-                                                <div class="old-price">$150.00</div>
+                                                <div class="regular-price">${{ $featuredProduct->price }}</div>
+                                                {{-- <div class="old-price">${{ $featuredProduct->price}}</div> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -84,13 +91,18 @@
                             @foreach ($latestProducts as $key => $latestProduct)
                                 <div class="product-layouts">
                                     <div class="product-thumb">
+                                        @php
+                                            $imagesLink = is_null($latestProduct->image) || !file_exists('images/' . $latestProduct->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $latestProduct->image);
+                                        @endphp
+                                        @php
+                                            $secondImagesLink = is_null($latestProduct->second_image) || !file_exists('images/' . $latestProduct->second_image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $latestProduct->second_image);
+                                        @endphp
                                         <div class="image vertical_scrolling_top_to_bottom">
-                                            <a href="product-details.html">
-                                                <img src="{{ $latestProduct->image }}" alt="01" />
-                                                <img src="{{ $latestProduct->second_image }}" alt="02"
+                                            <a href="#">
+                                                <img style="height: 220px" src="{{ $imagesLink }}" alt="01" />
+                                                <img style="height: 220px" src="{{ $secondImagesLink }}" alt="02"
                                                     class="second_image img-responsive" />
                                             </a>
-
                                             <div class="button-wrapper">
                                                 <div class="button-group text-center">
                                                     <a class="btn btn-primary btn-cart add-to-cart"
@@ -99,12 +111,13 @@
                                                         <i class="material-icons">shopping_cart</i><span>Add
                                                             to cart</span>
                                                     </a>
-                                                    <a href="wishlist.html" class="btn btn-primary btn-wishlist"><i
+                                                    <a href="#" class="btn btn-primary btn-wishlist"><i
                                                             class="material-icons">favorite</i><span>wishlist</span></a>
                                                     <button type="button" class="btn btn-primary btn-compare"><i
                                                             class="material-icons">equalizer</i><span>Compare</span></button>
                                                     <button type="button" class="btn btn-primary btn-quickview"
-                                                        data-toggle="modal" data-target="#product_view"><i
+                                                        {{-- data-toggle="modal" data-target="#product_view" --}}
+                                                        ><i
                                                             class="material-icons">visibility</i><span>Quick
                                                             View</span></button>
                                                 </div>
@@ -113,7 +126,7 @@
                                         <div class="thumb-description">
                                             <div class="caption">
                                                 <h4 class="product-title text-capitalize"><a
-                                                        href="product-details.html">{{ $latestProduct->name }}</a>
+                                                        href="#">{{ $latestProduct->name }}</a>
                                                 </h4>
                                             </div>
                                             <div class="rating">
@@ -146,29 +159,37 @@
                     aria-labelledby="bestseller-tab">
                     <section id="ttbestseller" class="ttbestseller-products">
                         <div class="ttbestseller-content products grid owl-carousel" id="owl3">
-                            @foreach ($bestsellerProducts as $key => $bestsellerProduct)
+                            @foreach ($bestSellerProducts as $key => $bestSellerProduct)
                                 <div class="product-layouts">
                                     <div class="product-thumb">
+                                        @php
+                                            $imagesLink = is_null($bestSellerProduct->image) || !file_exists('images/' . $bestSellerProduct->image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $bestSellerProduct->image);
+                                        @endphp
+                                        @php
+                                            $secondImagesLink = is_null($bestSellerProduct->second_image) || !file_exists('images/' . $bestSellerProduct->second_image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : asset('images/' . $bestSellerProduct->second_image);
+                                        @endphp
                                         <div class="image vertical_scrolling_top_to_bottom">
-                                            <a href="product-details.html">
-                                                <img src="{{ $bestsellerProduct->image }}" alt="01" />
-                                                <img src="{{ $bestsellerProduct->second_image }}" alt="02"
+                                            <a href="#">
+                                                <img style="height: 220px" src="{{ $imagesLink }}" alt="01" />
+                                                <img style="height: 220px" src="{{ $secondImagesLink }}" alt="02"
                                                     class="second_image img-responsive" />
                                             </a>
                                             <div class="button-wrapper">
                                                 <div class="button-group text-center">
                                                     <a class="btn btn-primary btn-cart add-to-cart"
                                                         data-target="#cart-pop" data-toggle="modal"
-                                                        data-url="{{ route('product.add-to-cart', ['productId' => $bestsellerProduct->id]) }}">
+                                                        data-url="{{ route('product.add-to-cart', ['productId' => $bestSellerProduct->id]) }}">
                                                         <i class="material-icons">shopping_cart</i><span>Add
                                                             to cart</span>
                                                     </a>
-                                                    <a href="wishlist.html" class="btn btn-primary btn-wishlist"><i
+                                                    <a href="#" class="btn btn-primary btn-wishlist"><i
                                                             class="material-icons">favorite</i><span>wishlist</span></a>
                                                     <button type="button" class="btn btn-primary btn-compare"><i
                                                             class="material-icons">equalizer</i><span>Compare</span></button>
                                                     <button type="button" class="btn btn-primary btn-quickview"
-                                                        data-toggle="modal" data-target="#product_view"><i
+                                                        {{-- data-toggle="modal"
+                                                        data-target="#product_view" --}}
+                                                        ><i
                                                             class="material-icons">visibility</i><span>Quick
                                                             View</span></button>
                                                 </div>
@@ -177,7 +198,7 @@
                                         <div class="thumb-description">
                                             <div class="caption">
                                                 <h4 class="product-title text-capitalize"><a
-                                                        href="product-details.html">{{ $bestsellerProduct->name }}</a>
+                                                        href="#">{{ $bestSellerProduct->name }}</a>
                                                 </h4>
                                             </div>
 
@@ -196,7 +217,7 @@
                                                 </div>
                                             </div>
                                             <div class="price">
-                                                <div class="regular-price">{{ $bestsellerProduct->price }}</div>
+                                                <div class="regular-price">{{ $bestSellerProduct->price }}</div>
 
                                             </div>
                                         </div>

@@ -60,6 +60,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount_price' => $request->discount_price,
             'weight' => $request->weight,
+            'size' => $request->size,
             'short_description' => $request->short_description,
             'description' => $request->description,
             'product_category_id' => $request->product_category_id,
@@ -92,7 +93,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(StoreProductRequest $request, Product $product)
     {
         $oldImageFileName = $product->image;
         $oldSecondImageFileName = $product->second_image;
@@ -123,6 +124,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->discount_price = $request->discount_price;
         $product->weight = $request->weight;
+        $product->size = $request->size;
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->product_category_id = $request->product_category_id;

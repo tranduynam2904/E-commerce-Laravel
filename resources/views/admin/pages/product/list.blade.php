@@ -40,7 +40,8 @@
                                             <th scope="col">Status</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Discount price</th>
-                                            <th scope="col">weight</th>
+                                            <th scope="col">Weight</th>
+                                            <th scope="col">Size</th>
                                             <th scope="col">Description</th>
                                             <th scope="col">Short description</th>
                                             <th scope="col">Product category</th>
@@ -76,6 +77,7 @@
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->discount_price }}</td>
                                                 <td>{{ $product->weight }}</td>
+                                                <td>{{ $product->size }}</td>
                                                 <td>{!! $product->description !!}</td>
                                                 <td>{!! $product->short_description !!}</td>
                                                 <td>{{ $product->product_category->name }}</td>

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->double('price')->default(0);
             $table->integer('qty')->default(0);
             $table->double('discount_price')->default(0);
-            $table->double('weight')->default(0);
+            $table->string('weight',30)->default(0)->nullable();
+            $table->string('size',30)->default(0)->nullable();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->softDeletes();
