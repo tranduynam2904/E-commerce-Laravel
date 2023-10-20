@@ -102,7 +102,8 @@ class ProfileController extends Controller
     }
     public function verifyPasswordStore(Request $request)
     {
-        if (Auth::check() && Hash::check("$request->current_password", Auth::user()->password)) {
+        if (Auth::check() && Hash::check("$request->current_password", Auth::user()->password
+        )) {
             return Redirect::route('profile.new-password');
         }
         return Redirect::route('profile.verify-password')->with('message', 'Wrong Password');

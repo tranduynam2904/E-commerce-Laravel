@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index')->middleware(['auth', 'verified']);
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('user/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');

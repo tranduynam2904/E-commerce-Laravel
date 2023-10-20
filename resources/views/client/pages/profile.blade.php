@@ -9,7 +9,6 @@
     </nav>
 
     <div class="main-content w-100 float-left blog-list">
-
         <div class="container">
             <div class="row">
                 <div style="padding-bottom:30px" class="products-grid col-xl-9 col-lg-8 order-lg-2">
@@ -135,7 +134,7 @@
                     </div>
                 </div>
                 <div class="sidebar col-xl-3 col-lg-3 order-lg-1">
-                    <div class="sidebar-product left-sidebar w-100 float-left">
+                    {{-- <div class="sidebar-product left-sidebar w-100 float-left">
                         <div class="title">
                             <a data-toggle="collapse" href="#sidebar-product" aria-expanded="false"
                                 aria-controls="sidebar-product" class="d-lg-none block-toggler">sale products</a>
@@ -199,7 +198,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
