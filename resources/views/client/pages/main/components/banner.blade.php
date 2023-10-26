@@ -1,21 +1,34 @@
-<div id="ttcmsbanner" class="ttcmsbanner my-40 my-sm-25">
-    <div class="ttbannerblock container text-center">
+<div class="li-static-banner">
+    <div class="container">
         <div class="row">
-            <div class="ttbanner1 ttbanner col-sm-6 col-xs-6 left-to-right hb-animate-element">
-                <div class="ttbanner-img m-0"><a href="#"><img
-                            src="{{ asset('assets/client/img/banner/bluetoothspeaker-01.jpg') }}" alt="cms-05"></a>
+            <!-- Begin Single Banner Area -->
+            <div class="col-lg-4 col-md-4 text-center">
+                <div class="single-banner">
+                    <a href="#">
+                        <img src="{{ asset('assets/client/images/banner/1_3.jpg') }}" alt="Li's Static Banner">
+                    </a>
                 </div>
             </div>
-            <div class="ttbanner2 ttbanner col-sm-6 col-xs-6 right-to-left hb-animate-element">
-                <div class="ttbanner-img m-0"><a href="#"><img
-                            src="{{ asset('assets/client/img/banner/macbook-01.jpg') }}" alt="cms-06"></a>
+            <!-- Single Banner Area End Here -->
+            <!-- Begin Single Banner Area -->
+            <div class="col-lg-4 col-md-4 text-center pt-xs-30">
+                <div class="single-banner">
+                    <a href="#">
+                        <img src="{{ asset('assets/client/images/banner/1_4.jpg') }}" alt="Li's Static Banner">
+                    </a>
                 </div>
             </div>
-            <div class="ttbanner3 ttbanner col-sm-12 col-xs-12 right-to-left hb-animate-element mt-30">
-                <div class="ttbanner-img m-0"><a href="#"><img
-                            src="{{ asset('assets/client/img/banner/cms-07.jpg') }}" alt="cms-07"></a>
+            <!-- Single Banner Area End Here -->
+            <!-- Begin Single Banner Area -->
+            <div class="col-lg-4 col-md-4 text-center pt-xs-30">
+                <div class="single-banner">
+                    <a href="#">
+                        <img src="{{ asset('assets/client/images/banner/1_5.jpg') }}" alt="Li's Static Banner">
+                    </a>
                 </div>
             </div>
+            <!-- Single Banner Area End Here -->
         </div>
     </div>
 </div>
+

@@ -50,7 +50,7 @@
                                                 <td>{{ $role->created_at }}</td>
                                                 <td>{{ $role->updated_at }}</td>
                                                 <td><a class="btn btn-primary"
-                                                        href="{{ route('admin.role.show', ['role' => $role->id]) }}">Edit</a>
+                                                        href="{{ route('admin.role.show', ['role' => $role->id]) }}">Give Permission</a>
                                                 </td>
                                                 <td class=" ">
                                                     <form method="post"

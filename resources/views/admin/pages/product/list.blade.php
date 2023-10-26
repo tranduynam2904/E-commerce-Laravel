@@ -1,21 +1,22 @@
 @extends('admin.layout.master')
 @section('content')
-@if (session('message'))
-<div id="flash-message" class="alert alert-success">
-    {{ session('message') }}
-</div>
-<script>
-    setTimeout(function() {
-        document.getElementById('flash-message').style.display = 'none';
-    }, 3000); // 2 giây
-</script>
-@endif
+    @if (session('message'))
+        <div id="flash-message" class="alert alert-success">
+            {{ session('message') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                document.getElementById('flash-message').style.display = 'none';
+            }, 3000); // 2 giây
+        </script>
+    @endif
     <div class="main-content-inner">
         <div class="row">
             <!-- table primary start -->
             <div class="col-lg-12 mt-5">
-                <div style="display: flex;justify-content:end;margin-bottom:30px;"><a href="{{ route('admin.product.create') }}"
-                        style="color:white" class="btn btn-primary">Create New Product</a></div>
+                <div style="display: flex;justify-content:end;margin-bottom:30px;"><a
+                        href="{{ route('admin.product.create') }}" style="color:white" class="btn btn-primary">Create New
+                        Product</a></div>
                 {{-- <div class="col-md-6 col-sm-8 clearfix">
                     <div class="search-box pull-left">
                         <form method="get">
@@ -40,11 +41,12 @@
                                             <th scope="col">Status</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Discount price</th>
+                                            <th scope="col">Qty</th>
                                             <th scope="col">Weight</th>
                                             <th scope="col">Size</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Short description</th>
                                             <th scope="col">Product category</th>
+                                            {{-- <th scope="col">Description</th> --}}
+                                            <th scope="col">Short description</th>
                                             <th scope="col">Created_at</th>
                                             <th scope="col">Updated_at</th>
                                             <th scope="col">Detail</th>
@@ -76,11 +78,12 @@
                                                 <td>{{ $product->status ? 'Show' : 'Hide' }}</td>
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->discount_price }}</td>
+                                                <td>{{ $product->qty }}</td>
                                                 <td>{{ $product->weight }}</td>
                                                 <td>{{ $product->size }}</td>
-                                                <td>{!! $product->description !!}</td>
-                                                <td>{!! $product->short_description !!}</td>
                                                 <td>{{ $product->product_category->name }}</td>
+                                                {{-- <td>{!! $product->description !!}</td> --}}
+                                                <td>{!! $product->short_description !!}</td>
                                                 <td>{{ $product->created_at }}</td>
                                                 <td>{{ $product->updated_at }}</td>
                                                 <td><a class="btn btn-primary"
@@ -119,4 +122,3 @@
         });
     </script>
 @endsection
-

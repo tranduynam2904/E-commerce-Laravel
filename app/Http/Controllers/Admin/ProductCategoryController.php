@@ -81,4 +81,5 @@ class ProductCategoryController extends Controller
         $message = $check ? 'Deleted product category successfully' : 'failed to delete product category';
         return Redirect::route('admin.product-category.index')->with('message', $message);
     }
+   
 }

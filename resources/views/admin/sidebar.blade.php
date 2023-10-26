@@ -28,6 +28,8 @@
                         <li class="active"><a href="{{ route('admin.product-category.index') }}"><i
                                     class="fa fa-table"></i>
                                 <span>Product Categories</span></a></li>
+                        <li class="active"><a href="{{ route('admin.home-product-category.index') }}"><i class="fa fa-table"></i>
+                                <span>Change Client Product Categories</span></a></li>
                         <li class="active"><a href="{{ route('admin.product.index') }}"><i class="fa fa-table"></i>
                                 <span>Product List</span></a></li>
                         <li class="active"><a href="{{ route('admin.role.index') }}"><i class="fa fa-table"></i>

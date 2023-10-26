@@ -64,6 +64,7 @@ class ProductController extends Controller
             'short_description' => $request->short_description,
             'description' => $request->description,
             'product_category_id' => $request->product_category_id,
+            'qty' => $request->qty,
             'rating_id' => 1,
             'color_id' => 1,
             'created_at' => Carbon::now(+7),
@@ -128,6 +129,7 @@ class ProductController extends Controller
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->product_category_id = $request->product_category_id;
+        $product->qty = $request->qty;
         $product->rating_id = 1;
         $product->color_id = 1;
         $product->updated_at = Carbon::now(+7);

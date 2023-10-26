@@ -40,8 +40,8 @@
         </div>
     </form>
 </x-guest-layout> --}}
-@extends('auth.master')
-@section('auth')
+@extends('client.layout.master')
+@section('main')
     <div id="modalRegisterForm">
         <div class="modal-dialog" role="document">
             <form  method="POST" action="{{ route('register') }}">
@@ -71,15 +71,6 @@
                                 autocomplete="email" />
                             <x-input-error style="color: red" :messages="$errors->get('email')" class="mt-2" />
                         </div>
-                        {{-- <script>
-                            //Prevent to press char on keyboard, only number can press
-                            function isNumberKey(evt) {
-                                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                                if (charCode > 31 && (charCode < 48 || charCode > 57))
-                                    return false;
-                                return true;
-                            }
-                        </script> --}}
                         <!-- Password -->
                         <div class="md-form mb-4">
                             <x-input-label for="password" :value="__('Password')" />

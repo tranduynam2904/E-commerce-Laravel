@@ -12,7 +12,6 @@
                             class="form-horizontal form-label-left" novalidate>
                             @method('put')
                             @csrf
-                            {{-- {{ dd($product->status) }} --}}
                             <div class="form-group">
                                 <label for="image" class="control-label">Image</label>
                                 <input id="image" class="form-control" data-validate-length-range="6"
@@ -27,8 +26,8 @@
                             <div class="form-group">
                                 <label for="second_image" class="control-label">Second Image</label>
                                 <input id="second_image" class="form-control" data-validate-length-range="6"
-                                    data-validate-words="2" name="second_image" multiple placeholder="both name(s) e.g Jon Doe"
-                                    type="file">
+                                    data-validate-words="2" name="second_image" multiple
+                                    placeholder="both name(s) e.g Jon Doe" type="file">
                                 @error('second_image')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">
@@ -72,6 +71,16 @@
                                 <input type="text" value="{{ old('discount_price', $product->discount_price) }}"
                                     name="discount_price" data-validate-length="6,8" class="form-control">
                                 @error('discount_price')
+                                    <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                        class="alert alert-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="qty" class="control-label">Quantity</label>
+                                <input type="number" value="{{ old('qty', $product->qty) }}" name="qty"
+                                    data-validate-length="6,8" class="form-control">
+                                @error('qty')
                                     <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
                                         class="alert alert-danger">
                                         {{ $message }}</div>
@@ -137,8 +146,10 @@
                                 <select class="form-control" name="status" id="status">
                                     <option value="">Choose option</option>
 
-                                    <option {{ old('status',$product->status) === 1 ? 'selected' : '' }} value="1">Show</option>
-                                    <option {{ old('status',$product->status) === 0 ? 'selected' : '' }} value="0">Hide</option>
+                                    <option {{ old('status', $product->status) === 1 ? 'selected' : '' }} value="1">
+                                        Show</option>
+                                    <option {{ old('status', $product->status) === 0 ? 'selected' : '' }} value="0">
+                                        Hide</option>
 
 
                                 </select>
@@ -164,7 +175,8 @@
 @endsection
 @section('js-custom')
     <script>
-        .create(document.querySelector('#short_description'), {
+        ClassicEditor
+            .create(document.querySelector('#short_description'), {
                 ckfinder: {
                     // Upload the images to the server using the CKFinder QuickUpload command.
                     uploadUrl: '{{ route('admin.product.ckeditor.upload.image') . '?_token=' . csrf_token() }}'
