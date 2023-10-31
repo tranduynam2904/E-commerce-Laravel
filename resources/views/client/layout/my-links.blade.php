@@ -1,26 +1,45 @@
 <!doctype html>
-<html lang="en">
-  <head>
-  	 <title>Fashion Template for Bootstrap</title>
+<html class="no-js" lang="zxx">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+<!-- index28:48-->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Home Version One || limupa - Digital Products Store eCommerce Bootstrap 4 Template</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/client/images/favicon.png') }}">
+        <!-- Material Design Iconic Font-V2.2.0 -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/material-design-iconic-font.min.css') }}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/font-awesome.min.css') }}">
+        <!-- Font Awesome Stars-->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/fontawesome-stars.css') }}">
+        <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/meanmenu.css') }}">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/owl.carousel.min.css') }}">
+        <!-- Slick Carousel CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/slick.css') }}">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/animate.css') }}">
+        <!-- Jquery-ui CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/jquery-ui.min.css') }}">
+        <!-- Venobox CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/venobox.css') }}">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/nice-select.css') }}">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/magnific-popup.css') }}">
+        <!-- Bootstrap V4.1.3 Fremwork CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/bootstrap.min.css') }}">
+        <!-- Helper CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/helper.css') }}">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/style.css') }}">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="{{ asset('assets/client/css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!-- Bootstrap core CSS -->
-    <link href="{{ asset('assets/client/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('assets/client/css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/client/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/client/css/owl-carousel.css') }}" rel="stylesheet">
-	 <link href="{{ asset('assets/client/css/lightbox.css') }}" rel="stylesheet">
-	 <link href="{{ asset('assets/client/css/cookiealert.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-  </head>
+    </head>

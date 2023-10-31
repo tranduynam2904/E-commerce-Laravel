@@ -82,7 +82,7 @@ class OrderController extends Controller
                 $vnp_BankCode = 'VNBANK'; //Mã phương thức thanh toán
                 $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán
 
-                $vnp_TmnCode = 'VIJOTQ1X';
+                $vnp_TmnCode = "VIJOTQ1X"; //Mã định danh merchant kết nối (Terminal Id)
                 $vnp_HashSecret = "FHKBJLJJYCIQZEDEHVTAFMPPWANTKSZD"; //Secret key
                 $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
                 $vnp_Returnurl = route('vnpay-callback');

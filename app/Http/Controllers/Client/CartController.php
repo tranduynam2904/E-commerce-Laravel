@@ -17,33 +17,31 @@ class CartController extends Controller
         $cart[$productId] = [
             'name' => $product->name,
             'price' => $product->price,
+            'discount_price' => $product->discount_price,
             'image' => $imagesLink,
             'qty' => ($cart[$productId]['qty'] ?? 0) + 1
         ];
         session()->put('cart', $cart);
         $total_price = $this->calculateTotalPrice($cart);
         $total_items = count($cart);
+        $total_qty = array_sum(array_column($cart, 'qty'));
 
-        // $total_qty = 0;
-        // foreach ($cart as $item) {
-        //     $total_qty += $item['qty'];
-        // }
-        // dd($total_qty);
         $notification = [
             'message' => 'Add product successfully!',
-            'product' => $cart[$productId],
+            // 'product_image' => $product->image,
             'total_price' => $total_price,
             'total_items' => $total_items,
-            // 'total_qty' => $total_qty,
+            'total_qty' => $total_qty,
         ];
         return response()->json($notification);
     }
     public function calculateTotalPrice($cart): float
     {
         $total = 0;
-        foreach ($cart as $item) {
-            $total += $item['price'] * $item['qty'];
-        }
+            foreach ($cart as $item) {
+                $total += ($item['discount_price'] > 0 ? $item['discount_price'] : $item['price']) * $item['qty'];
+            }
+            // $total += $item['price'] * $item['qty'];
         return $total;
     }
     public function index()
@@ -64,7 +62,7 @@ class CartController extends Controller
         // foreach ($cart as $item) {
         //     $total_qty += $item['qty'];
         // }
-        $notification =[
+        $notification = [
             'message' => 'Delete item success',
             // 'total_qty' => $total_qty,
         ];
@@ -106,7 +104,8 @@ class CartController extends Controller
             'total_items' => 0,
         ]);
     }
-    public function checkout(){
+    public function checkout()
+    {
         $cart = session()->get('cart', []);
         return view('client.pages.checkout', ['cart' => $cart]);
     }

@@ -1,126 +1,136 @@
 @extends('client.layout.master')
 @section('main')
-    <nav aria-label="breadcrumb" class="w-100 float-left">
-        <ol class="breadcrumb parallax justify-content-center" data-source-url="img/banner/parallax.jpg"
-            style="background-image: url(&quot;img/banner/parallax.jpg&quot;); background-position: 50% 0.809717%;">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">cart</li>
-
-        </ol>
-    </nav>
-    <div class="cart-area table-area pt-110 pb-95 float-left w-100">
+    <!-- Begin Li's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Shopping Cart</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Li's Breadcrumb Area End Here -->
+    <!--Shopping Cart Area Strat-->
+    <div class="Shopping-cart-area pt-60 pb-60">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-sm-12 float-left cart-wrapper">
-                    <div class="table-responsive">
-                        <table class="table product-table text-center">
-                            <thead>
-                                <tr>
-                                    <th class="table-remove text-capitalize">remove</th>
-                                    <th class="table-image text-capitalize">image</th>
-                                    <th class="table-p-name text-capitalize">product</th>
-                                    <th class="table-p-price text-capitalize">price</th>
-                                    <th class="table-p-qty text-capitalize">quantity</th>
-                                    <th class="table-total text-capitalize">total</th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="table-cart">
-                                @php $total = 0 @endphp
-                                {{-- Foreach will prevent to value change when reload page --}}
-                                @foreach ($cart as $productId => $item)
-                                    @php $total += $item['qty'] * $item['price'] @endphp
-                                    <tr id="{{ $productId }}">
-                                        <td class="table-remove">
-                                            <button style="cursor: pointer;" data-id="{{ $productId }}"
-                                                data-url="{{ route('product.delete-item-in-cart', ['productId' => $productId]) }}"
-                                                class="icon_close"><i class="material-icons">delete</i>
-                                            </button>
-                                        </td>
-                                        <td class="table-image"><a href="product-details.html"><img
-                                                    src="{{ $item['image'] }}" alt=""></a></td>
-                                        <td class="table-p-name text-capitalize"><a
-                                                href="product-details.html">{{ $item['name'] }}</a></td>
-                                        <td class="table-p-price">
-                                            <p>${{ number_format($item['price'], 2) }}</p>
-                                        </td>
-                                        <td style="display:flex" data-price="{{ $item['price'] }}"
-                                            data-url="{{ route('product.update-item-in-cart', ['productId' => $productId]) }}"
-                                            data-id="{{ $productId }}" class="table-p-qty">
-                                            <span class="btn-primary inc qtybtn">+</span>
-                                            <input style="margin: 0" class="qty-input" value="{{ $item['qty'] }}"
-                                                type="text">
-                                            <span class="btn-primary dec qtybtn">-</span>
-                                        </td>
-                                        <td class="table-p-total">
-                                            <p id="total-price-product" style="margin-top:1rem">
-                                                ${{ number_format($item['qty'] * $item['price'], 2) }}</p>
-                                        </td>
+                <div class="col-12">
+                    <form action="#">
+                        <div class="table-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="li-product-remove">remove</th>
+                                        <th class="li-product-thumbnail">images</th>
+                                        <th class="cart-product-name">Product</th>
+                                        <th class="li-product-price">Unit Price</th>
+                                        <th class="li-product-quantity">Quantity</th>
+                                        <th class="li-product-subtotal">Total</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="table-bottom-wrapper">
-                        <div
-                            class="table-coupon d-flex d-xs-block d-lg-flex d-sm-flex fix justify-content-start float-left">
-                            <input type="text" placeholder="Coupon code">
-                            <button type="submit" class="btn-primary btn">Apply coupon</button>
+                                </thead>
+                                <tbody id="table-cart">
+                                    @php $total = 0 @endphp
+                                    {{-- Foreach will prevent to value change when reload page --}}
+                                    @foreach ($cart as $productId => $item)
+                                        @php
+                                            if ($item['discount_price'] > 0) {
+                                                $total += $item['qty'] * $item['discount_price'];
+                                            } else {
+                                                $total += $item['qty'] * $item['price'];
+                                            }
+                                        @endphp
+                                        <tr id="{{ $productId }}">
+                                            <td class="li-product-remove"><a data-id="{{ $productId }}"
+                                                    data-url="{{ route('product.delete-item-in-cart', ['productId' => $productId]) }}"
+                                                    class="icon_close"><i class="fa fa-times"></i></a></td>
+                                            <td class="li-product-thumbnail"><a href="#"><img
+                                                        src="{{ $item['image'] }}"></a></td>
+                                            <td class="li-product-name"><a href="#">{{ $item['name'] }}</a></td>
+
+                                            <td class="li-product-price">
+                                                @if ($item['discount_price'] > 0)
+                                                    <span
+                                                        class="amount">${{ number_format($item['discount_price'], 2) }}</span>
+                                                @else
+                                                    <span class="amount">${{ number_format($item['price'], 2) }}</span>
+                                                @endif
+                                            </td>
+                                            <td class="quantity">
+                                                <label>Quantity</label>
+                                                <div class="cart-plus-minus"
+                                                data-price="{{ $item['price'] }}"
+                                                data-discount-price="{{ $item['discount_price'] }}"
+                                                    data-url="{{ route('product.update-item-in-cart', ['productId' => $productId]) }}"
+                                                    data-id="{{ $productId }}">
+                                                    <input class="cart-plus-minus-box qty-input"
+                                                        value="{{ $item['qty'] }}" type="text">
+                                                    <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                                    <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal">
+                                                @if ($item['discount_price'] > 0)
+                                                    <span
+                                                        class="total-price-product">${{ number_format($item['qty'] * $item['discount_price'], 2) }}</span>
+                                                @else
+                                                    <span
+                                                    class="total-price-product">${{ number_format($item['qty'] * $item['price'], 2) }}</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="table-update d-flex d-xs-block d-lg-flex d-sm-flex justify-content-end">
-                            <a data-url="{{ route('product.delete-all-in-cart') }}"
-                                class="btn-primary btn delete-cart">Delete cart</a>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="coupon-all">
+                                    <div class="coupon">
+                                        <input id="coupon_code" class="input-text" name="coupon_code" value=""
+                                            placeholder="Coupon code" type="text">
+                                        <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
+                                    </div>
+                                    <div class="coupon2">
+                                        <input data-url="{{ route('product.delete-all-in-cart') }}"
+                                            class="button delete-cart" name="update_cart" value="Delete cart"
+                                            type="submit">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div
-                    class="table-total-wrapper d-flex justify-content-end pt-60 col-md-12 col-sm-12 col-lg-4 float-left align-items-center">
-                    <div class="table-total-content">
-                        <h2 class="pb-20">Cart totals</h2>
-                        <div class="table-total-amount">
-                            <div class="single-total-content d-flex justify-content-between float-left w-100">
-                                @php
-                                    $total_qty = 0;
-                                    $cart = session()->get('cart', []);
-                                    foreach ($cart as $item) {
-                                        $total_qty += $item['qty'];
-                                    }
-                                @endphp
-                                <strong>Total item</strong>
-                                <span id="total-items-qty">
-                                    {{ $total_qty }}
-                                </span>
+                        <div class="row">
+                            <div class="col-md-5 ml-auto">
+                                <div class="cart-page-total">
+                                    <h2>Cart totals</h2>
+                                    <ul>
+                                        @php
+                                            $shipFee = $total * 0.03;
+                                            $totalAfterFee = $total + $shipFee;
+                                            $total_qty = 0;
+                                            $cart = session()->get('cart', []);
+                                            foreach ($cart as $item) {
+                                                $total_qty += $item['qty'];
+                                            }
+                                        @endphp
+                                        <li>Total item<span id="total-items-qty">{{ $total_qty }}</span></li>
+                                        <li>Shipping<span>3%</span></li>
+                                        <li>Subtotal<span id="cart-subtotal">${{ number_format($total, 2) }}</span></li>
+                                        <li>Total<span id="cart-total">
+                                            ${{ $totalAfterFee }}
+                                        </span></li>
+                                    </ul>
+                                    <a href="{{ route('checkout') }}">Proceed to checkout</a>
+                                </div>
                             </div>
-                            <div class="single-total-content d-flex justify-content-between float-left w-100">
-                                <strong>Shipping</strong>
-                                <span class="c-total-price"><span>Flat Rate:</span> $5.00</span>
-                            </div>
-                            <div class="single-total-content d-flex justify-content-end float-left w-100">
-                                <a href="#">Calculate shipping</a>
-                            </div>
-                            <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
-                                <strong>Sub Total</strong>
-                                <span id="cart-subtotal" class="c-total-price">${{ number_format($total, 2) }}</span>
-                            </div>
-                            <div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
-                                <strong>Total</strong>
-                                @php
-                                    $shipFee = $total * 0.05;
-                                    $totalAfterFee = $total + $shipFee;
-                                @endphp
-                                <span id ="cart-total" class="c-total-price">
-                                    ${{ number_format($totalAfterFee, 2) }}
-                                </span>
-                            </div>
-                            <a href="{{ route('checkout') }}" class="btn btn-primary float-left w-100 text-center">Proceed
-                                to
-                                checkout</a>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <!--Shopping Cart Area End-->
 @endsection
 @section('js-custom')
     <script>
@@ -144,7 +154,7 @@
                 });
             });
 
-            $('.qtybtn').on('click', function() {
+            $('.qtybutton').on('click', function() {
 
                 var button = $(this);
                 var id = button.parent().data('id');
@@ -159,16 +169,23 @@
                 //Call Back Input
                 $input.val(qty);
                 var price = parseFloat(button.parent().data('price'));
+                var discount_price = parseFloat(button.parent().data('discount-price'));
+                var totalPrice = 0;
+                if(discount_price >0){
+                    totalPrice = discount_price * qty;
+                }
 
-                var totalPrice = price * qty;
-                var shipFee = totalPrice * 0.05
-                var totalAfterFee = totalPrice - shipFee;
+                    totalPrice = price * qty;
+
+                // var totalPrice = price * qty;
+                // var shipFee = totalPrice * 0.03;
+                // var totalAfterFee = totalPrice - shipFee;
                 url += '/' + qty;
-
                 $.ajax({
                     method: 'GET',
                     url: url,
                     success: function(response) {
+                        // console.log(response);
                         // Swal.fire({
                         //     icon: 'success',
                         //     text: response.message,
@@ -176,11 +193,10 @@
                         if (qty === 0) {
                             $('tr#' + id).empty();
                         }
-                        $('tr#' + id)
-                            .find('#total-price-product')
-                            .html("$" + totalPrice.toFixed(2).replace(
+                        $('tr#' + id + ' .total-price-product').html("$" + totalPrice.toFixed(2).replace(
                                 /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
                         reloadView(response);
+
                     }
                 });
             });
@@ -196,7 +212,6 @@
                             icon: 'success',
                             text: response.message,
                         });
-
                         reloadView(response);
                         $('#table-cart').empty();
                     }
@@ -204,7 +219,7 @@
             });
             // Value will change when change value, don't need to reload page
             function reloadView(response) {
-                var shipFee = response.total_price * 0.05
+                var shipFee = response.total_price * 0.03
                 // console.log(response.total_items);
                 $('#total-items-qty').html(response.total_qty);
                 $('#total-items-cart').html(response.total_items);
