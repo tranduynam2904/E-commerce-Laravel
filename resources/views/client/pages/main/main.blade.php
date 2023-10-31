@@ -2540,13 +2540,13 @@
                                                 <h4><a class="product_name"
                                                         href="single-product.html">{{ $vrProduct->name }}</a></h4>
                                                 <div class="price-box">
+
                                                     @if($vrProduct->discount_price > 0)
                                                     <span class="new-price">${{ number_format($vrProduct->discount_price,2) }}</span>
                                                     <span class="old-price">${{ number_format($vrProduct->price,2) }}</span>
                                                     @else
                                                     <span class="new-price">${{ number_format($vrProduct->price,2) }}</span>
                                                     @endif
-
                                                 </div>
                                             </div>
                                             <div class="add-actions">
@@ -2565,20 +2565,16 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- single-product-wrap end -->
-
                                 </div>
                             @endforeach
                         </div>
                     </div>
-
                 </div>
                 <!-- Li's Section Area End Here -->
             </div>
         </div>
     </section>
-
     <!-- Li's Trending Product Area End Here -->
 @endsection
 @section('js-custom')

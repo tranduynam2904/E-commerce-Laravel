@@ -42,7 +42,8 @@
                                             }
                                         @endphp
                                         <tr id="{{ $productId }}">
-                                            <td class="li-product-remove"><a data-id="{{ $productId }}"
+                                            <td class="li-product-remove"><a
+                                                data-id="{{ $productId }}"
                                                     data-url="{{ route('product.delete-item-in-cart', ['productId' => $productId]) }}"
                                                     class="icon_close"><i class="fa fa-times"></i></a></td>
                                             <td class="li-product-thumbnail"><a href="#"><img
@@ -174,7 +175,6 @@
                 if(discount_price >0){
                     totalPrice = discount_price * qty;
                 }
-
                     totalPrice = price * qty;
 
                 // var totalPrice = price * qty;

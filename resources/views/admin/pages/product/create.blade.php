@@ -76,6 +76,16 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="qty" class="control-label">Quantity</label>
+                                <input type="number" value="{{ old('qty') }}" name="qty"
+                                    data-validate-length="6,8" class="form-control">
+                                @error('qty')
+                                    <div style="white-space:nowrap ;opacity: 1;max-width: 100%;margin-top:10px"
+                                        class="alert alert-danger">
+                                        {{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="weight" class="control-label">Weight</label>
                                 <input type="text" value="{{ old('weight') }}" name="weight" data-validate-length="6,8"
                                     class="form-control">

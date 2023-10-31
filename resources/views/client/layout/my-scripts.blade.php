@@ -49,3 +49,5 @@
   <script type="text/javascript" onload="initSendOTP(configuration)"
       src="https://control.msg91.com/app/assets/otp-provider/otp-provider.js"></script>
   @yield('js-custom')
+
+

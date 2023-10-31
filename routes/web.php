@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\AttendanceScheduleController;
 use App\Http\Controllers\admin\ClientAccountController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EmployeeAccountController;
+use App\Http\Controllers\admin\HomeProductCategoryController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
@@ -74,45 +75,48 @@ Route::middleware(['auth', 'role:client'])->group(function () {
 // });
 
 Route::prefix('')->name('admin.')->group(function () {
-        Route::middleware(['auth', 'role:admin|employee'])->group(function () {
-            Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-            Route::get('client-account', [ClientAccountController::class, 'index'])->name('client-account.index');
-            // Route::get('profile', [EmployeeDetailProfileController::class, 'show'])->name('profile');
+    Route::middleware(['auth', 'role:admin|employee'])->group(function () {
+        Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('client-account', [ClientAccountController::class, 'index'])->name('client-account.index');
+        // Route::get('profile', [EmployeeDetailProfileController::class, 'show'])->name('profile');
 
-            // Route::put('profile/{id}', [EmployeeDetailProfileController::class, 'update'])->name('profile.update');
-        });
-        Route::middleware(['auth', 'role:admin'])->group(function () {
-            Route::get('client-account/create', [ClientAccountController::class, 'create'])->name('client-account.create');
-            Route::post('client-account', [ClientAccountController::class, 'store'])->name('client-account.store');
-            Route::get('client-account/{client_account}', [ClientAccountController::class, 'show'])->name('client-account.show');
-            Route::get('client-account/{client_account}/edit', [ClientAccountController::class, 'edit'])->name('client-account.edit');
-            Route::put('client-account/{client_account}', [ClientAccountController::class, 'update'])->name('client-account.update');
-            Route::delete('client-account/{client_account}', [ClientAccountController::class, 'destroy'])->name('client-account.destroy');
-            Route::get('employee-list', [AdminEmployeeController::class, 'index'])->name('employee-list.index');
-            Route::get('employee-list/create', [AdminEmployeeController::class, 'create'])->name('employee-list.create');
-            Route::post('employee-list/store', [AdminEmployeeController::class, 'store'])->name('employee-list.store');
-            Route::get('employee-list/detail/{employee_list}', [AdminEmployeeController::class, 'show'])->name('employee-list.show');
-            Route::put('employee-list/update/{employee_list}', [AdminEmployeeController::class, 'update'])->name('employee-list.update');
-            Route::get('employee-list/delete/{employee_list}', [AdminEmployeeController::class, 'destroy'])->name('employee-list.destroy');
-            Route::post('employee-list/slug', [AdminEmployeeController::class, 'createSlug'])->name('employee-list.create.slug');
-            Route::post('employee-list/ckeditor-upload-image', [AdminEmployeeController::class, 'uploadImage'])->name('employee-list.ckeditor.upload.image');
-            Route::resource('job-category', AdminJobController::class);
-            Route::resource('product-category', ProductCategoryController::class);
-            Route::resource('product', ProductController::class);
-            Route::post('product/slug', [ProductController::class, 'createSlug'])->name('product.create.slug');
-            Route::post('product/ckeditor-upload-image', [ProductController::class, 'uploadImage'])->name('product.ckeditor.upload.image');
-            Route::resource('employee-account', EmployeeAccountController::class);
-            Route::resource('permission', PermissionController::class);
-            Route::post('role/{role}/permission', [RoleController::class, 'givePermission'])->name('role.permission.give');
-            Route::delete('role/{role}/revoke/{permission}', [RoleController::class, 'revokePermission'])->name('role.permission.revoke');
-            Route::post('permission/{permission}/role', [PermissionController::class, 'assignRole'])->name('permission.role.assign');
-            Route::delete('permission/{permission}/remove/{role}', [PermissionController::class, 'removeRole'])->name('permission.role.remove');
-            Route::resource('role', RoleController::class);
-        });
-        Route::middleware(['auth', 'role:employee'])->group(function () {
-            Route::get('attendance-schedule', [AttendanceScheduleController::class, 'index'])->name('attendance-schedule');
-        });
+        // Route::put('profile/{id}', [EmployeeDetailProfileController::class, 'update'])->name('profile.update');
     });
+    Route::middleware(['auth', 'role:admin'])->group(function () {
+        Route::get('client-account/create', [ClientAccountController::class, 'create'])->name('client-account.create');
+        Route::post('client-account', [ClientAccountController::class, 'store'])->name('client-account.store');
+        Route::get('client-account/{client_account}', [ClientAccountController::class, 'show'])->name('client-account.show');
+        Route::get('client-account/{client_account}/edit', [ClientAccountController::class, 'edit'])->name('client-account.edit');
+        Route::put('client-account/{client_account}', [ClientAccountController::class, 'update'])->name('client-account.update');
+        Route::delete('client-account/{client_account}', [ClientAccountController::class, 'destroy'])->name('client-account.destroy');
+        Route::get('employee-list', [AdminEmployeeController::class, 'index'])->name('employee-list.index');
+        Route::get('employee-list/create', [AdminEmployeeController::class, 'create'])->name('employee-list.create');
+        Route::post('employee-list/store', [AdminEmployeeController::class, 'store'])->name('employee-list.store');
+        Route::get('employee-list/detail/{employee_list}', [AdminEmployeeController::class, 'show'])->name('employee-list.show');
+        Route::put('employee-list/update/{employee_list}', [AdminEmployeeController::class, 'update'])->name('employee-list.update');
+        Route::get('employee-list/delete/{employee_list}', [AdminEmployeeController::class, 'destroy'])->name('employee-list.destroy');
+        Route::post('employee-list/slug', [AdminEmployeeController::class, 'createSlug'])->name('employee-list.create.slug');
+        Route::post('employee-list/ckeditor-upload-image', [AdminEmployeeController::class, 'uploadImage'])->name('employee-list.ckeditor.upload.image');
+        Route::resource('job-category', AdminJobController::class);
+        Route::resource('product-category', ProductCategoryController::class);
+        Route::resource('product', ProductController::class);
+        Route::post('product/slug', [ProductController::class, 'createSlug'])->name('product.create.slug');
+        Route::post('product/ckeditor-upload-image', [ProductController::class, 'uploadImage'])->name('product.ckeditor.upload.image');
+        Route::resource('employee-account', EmployeeAccountController::class);
+        Route::resource('permission', PermissionController::class);
+        Route::post('role/{role}/permission', [RoleController::class, 'givePermission'])->name('role.permission.give');
+        Route::delete('role/{role}/revoke/{permission}', [RoleController::class, 'revokePermission'])->name('role.permission.revoke');
+        Route::post('permission/{permission}/role', [PermissionController::class, 'assignRole'])->name('permission.role.assign');
+        Route::delete('permission/{permission}/remove/{role}', [PermissionController::class, 'removeRole'])->name('permission.role.remove');
+        Route::resource('role', RoleController::class);
+        Route::get('home-product-category', [HomeProductCategoryController::class, 'index'])->name('home-product-category.index');
+        Route::post('home-product-category/store', [HomeProductCategoryController::class, 'store'])->name('home-product-category.store');
+        Route::delete('home-product-category/delete/{home_product_category}', [HomeProductCategoryController::class, 'delete'])->name('home-product-category.delete');
+    });
+    Route::middleware(['auth', 'role:employee'])->group(function () {
+        Route::get('attendance-schedule', [AttendanceScheduleController::class, 'index'])->name('attendance-schedule');
+    });
+});
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

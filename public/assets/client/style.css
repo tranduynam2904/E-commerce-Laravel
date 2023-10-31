@@ -1546,7 +1546,6 @@ textarea:focus {
 		position: relative;
 		line-height: 45px;
 		font-weight: 500;
-        margin-right: 5px;
 }
 .item-text::before {
 		content: "";
@@ -1779,8 +1778,7 @@ textarea:focus {
 	transition: all 0.3s ease-in-out;
 	color: #242424;
 }
-.hb-menu nav > ul > li:nth-child(n+5) > a::after,
-.hb-menu nav > ul > li:nth-child(1) > a::after {
+.hb-menu nav > ul > li:nth-child(n+5) > a::after {
 	content: none;
 }
 .hb-menu nav > ul > li:hover  a::after {
@@ -1789,7 +1787,7 @@ textarea:focus {
 .ht-menu > li .ht-currency-trigger span::after,
 .ht-menu > li .ht-language-trigger span::after,
 .hm-minicart-trigger .item-text::after {
-	/* content: "\f106"; */
+	content: "\f106";
 	float: right;
 	font-weight: 400;
 	font-size: 18px;
@@ -1807,7 +1805,7 @@ textarea:focus {
 .ht-menu > li .ht-currency-trigger span::after,
 .ht-menu > li .ht-language-trigger span::after,
 .hm-minicart-trigger .item-text::after {
-	/* content: "\f107"; */
+	content: "\f107";
 	font-size: 14px;
 	color: #a4a4a4;
 	margin-left: 5px;
