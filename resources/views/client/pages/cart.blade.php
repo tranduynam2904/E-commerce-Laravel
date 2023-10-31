@@ -34,6 +34,7 @@
                                     @php $total = 0 @endphp
                                     {{-- Foreach will prevent to value change when reload page --}}
                                     @foreach ($cart as $productId => $item)
+
                                         @php
                                             if ($item['discount_price'] > 0) {
                                                 $total += $item['qty'] * $item['discount_price'];
@@ -73,12 +74,13 @@
                                             </td>
                                             <td class="product-subtotal">
                                                 @if ($item['discount_price'] > 0)
-                                                    <span
-                                                        class="total-price-product">${{ number_format($item['qty'] * $item['discount_price'], 2) }}</span>
+                                                <span
+                                                class="total-price-product">${{ number_format($item['qty'] * $item['discount_price'], 2) }}</span>
                                                 @else
                                                     <span
                                                     class="total-price-product">${{ number_format($item['qty'] * $item['price'], 2) }}</span>
                                                 @endif
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -172,10 +174,12 @@
                 var price = parseFloat(button.parent().data('price'));
                 var discount_price = parseFloat(button.parent().data('discount-price'));
                 var totalPrice = 0;
-                if(discount_price >0){
+                if(discount_price > 0){
                     totalPrice = discount_price * qty;
                 }
+                else{
                     totalPrice = price * qty;
+                  }
 
                 // var totalPrice = price * qty;
                 // var shipFee = totalPrice * 0.03;
