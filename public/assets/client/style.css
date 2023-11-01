@@ -1546,6 +1546,7 @@ textarea:focus {
 		position: relative;
 		line-height: 45px;
 		font-weight: 500;
+        margin-right: 10px;
 }
 .item-text::before {
 		content: "";
@@ -1786,7 +1787,7 @@ textarea:focus {
 .hb-menu nav > ul > li:hover  a::after {
 	transform: rotate(180deg);
 }
-.ht-menu > li .ht-currency-trigger span::after,
+/* .ht-menu > li .ht-currency-trigger span::after,
 .ht-menu > li .ht-language-trigger span::after,
 .hm-minicart-trigger .item-text::after {
 	content: "\f106";
@@ -1796,14 +1797,14 @@ textarea:focus {
 	font-family: fontawesome;
 	color: #242424;
 	transition: all 0.3s ease-in-out;
-}
+} */
 .ht-menu > li:hover .ht-currency-trigger span,
 .ht-menu > li:hover .ht-currency-trigger span::after,
 .ht-menu > li:hover .ht-language-trigger span,
 .ht-menu > li:hover .ht-language-trigger span::after {
 	color: #fed700;
 }
-.ht-menu > li .ht-setting-trigger span::after,
+/* .ht-menu > li .ht-setting-trigger span::after,
 .ht-menu > li .ht-currency-trigger span::after,
 .ht-menu > li .ht-language-trigger span::after,
 .hm-minicart-trigger .item-text::after {
@@ -1812,7 +1813,7 @@ textarea:focus {
 	color: #a4a4a4;
 	margin-left: 5px;
 	font-family: fontawesome;
-}
+} */
 .hm-minicart-trigger .item-text::after {
 	color: #fff;
 }

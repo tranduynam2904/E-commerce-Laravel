@@ -234,6 +234,9 @@
                 $('#cart-subtotal').html('$' + response.total_price.toFixed(
                     2).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                    $('#cart-subtotal-header').html('$' + response.total_price.toFixed(
+                    2).replace(
+                    /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
                 var cartTotal = response.total_price + shipFee;
                 $('#cart-total').html('$' + cartTotal.toFixed(
                     2).replace(

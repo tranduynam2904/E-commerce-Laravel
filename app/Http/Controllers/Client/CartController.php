@@ -28,7 +28,11 @@ class CartController extends Controller
 
         $notification = [
             'message' => 'Add product successfully!',
-            // 'product_image' => $product->image,
+            'product_image' => $product->image,
+            'product_discount_price' => $product->discount_price,
+            'product_price' => $product->price,
+            'product_name' => $product->name,
+            'product_qty' => $cart[$productId]['qty'],
             'total_price' => $total_price,
             'total_items' => $total_items,
             'total_qty' => $total_qty,

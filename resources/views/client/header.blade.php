@@ -18,31 +18,29 @@
                         <ul class="ht-menu">
                             <!-- Begin Setting Area -->
                             <li>
-                                @if(Auth::check())
-
-                                <div class="ht-setting-trigger"><span>{{ Auth::user()->name }}</span></div>
+                                @if (Auth::check())
+                                    <div class="ht-setting-trigger"><span>{{ Auth::user()->name }}</span></div>
                                 @else
-                                <div class="ht-setting-trigger"><span>Sign In</span></div>
+                                    <div class="ht-setting-trigger"><span>Sign In</span></div>
                                 @endif
                                 <div class="setting ht-setting">
                                     <ul class="ht-setting-list">
                                         @if (Auth::check())
-                                        <li><a href="{{ route('profile.edit') }}">My Account</a></li>
+                                            <li><a href="{{ route('profile.edit') }}">My Account</a></li>
 
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <li><x-dropdown-link id="logout"
-                                                    :href="route('logout')"
-                                                    onclick="event.preventDefault();
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <li><x-dropdown-link id="logout" :href="route('logout')"
+                                                        onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                                    {{ __('Log Out') }}
-                                                </x-dropdown-link>
-                                            </li>
-                                        </form>
+                                                        {{ __('Log Out') }}
+                                                    </x-dropdown-link>
+                                                </li>
+                                            </form>
                                         @else
-                                        <li><a href="{{ route('register') }}">Register</a></li>
-                                        <li><a href="{{ route('login') }}">Login</a></li>
-                                   @endif
+                                            <li><a href="{{ route('register') }}">Register</a></li>
+                                            <li><a href="{{ route('login') }}">Login</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                             </li>
@@ -65,8 +63,12 @@
                                 <div class="ht-language-trigger"><span>English</span></div>
                                 <div class="language ht-language">
                                     <ul class="ht-setting-list">
-                                        <li class="active"><a href="#"><img src="{{ asset('assets/client/images/menu/flag-icon/1.jpg') }}" alt="">English</a></li>
-                                        <li><a href="#"><img src="{{ asset('assets/client/images/menu/flag-icon/2.jpg') }}" alt="">Français</a></li>
+                                        <li class="active"><a href="#"><img
+                                                    src="{{ asset('assets/client/images/menu/flag-icon/1.jpg') }}"
+                                                    alt="">English</a></li>
+                                        <li><a href="#"><img
+                                                    src="{{ asset('assets/client/images/menu/flag-icon/2.jpg') }}"
+                                                    alt="">Français</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -99,70 +101,70 @@
                         <select class="nice-select select-search-category">
                             <option value="0">All</option>
                             <option value="10">Laptops</option>
-                            <option value="17">- -  Prime Video</option>
-                            <option value="20">- - - -  All Videos</option>
-                            <option value="21">- - - -  Blouses</option>
-                            <option value="22">- - - -  Evening Dresses</option>
-                            <option value="23">- - - -  Summer Dresses</option>
-                            <option value="24">- - - -  T-shirts</option>
-                            <option value="25">- - - -  Rent or Buy</option>
-                            <option value="26">- - - -  Your Watchlist</option>
-                            <option value="27">- - - -  Watch Anywhere</option>
-                            <option value="28">- - - -  Getting Started</option>
-                            <option value="18">- - - -  Computers</option>
-                            <option value="29">- - - -  More to Explore</option>
-                            <option value="30">- - - -  TV &amp; Video</option>
-                            <option value="31">- - - -  Audio &amp; Theater</option>
-                            <option value="32">- - - -  Camera, Photo </option>
-                            <option value="33">- - - -  Cell Phones</option>
-                            <option value="34">- - - -  Headphones</option>
-                            <option value="35">- - - -  Video Games</option>
-                            <option value="36">- - - -  Wireless Speakers</option>
-                            <option value="19">- - - -  Electronics</option>
-                            <option value="37">- - - -  Amazon Home</option>
-                            <option value="38">- - - -  Kitchen &amp; Dining</option>
-                            <option value="39">- - - -  Furniture</option>
-                            <option value="40">- - - -  Bed &amp; Bath</option>
-                            <option value="41">- - - -  Appliances</option>
+                            <option value="17">- - Prime Video</option>
+                            <option value="20">- - - - All Videos</option>
+                            <option value="21">- - - - Blouses</option>
+                            <option value="22">- - - - Evening Dresses</option>
+                            <option value="23">- - - - Summer Dresses</option>
+                            <option value="24">- - - - T-shirts</option>
+                            <option value="25">- - - - Rent or Buy</option>
+                            <option value="26">- - - - Your Watchlist</option>
+                            <option value="27">- - - - Watch Anywhere</option>
+                            <option value="28">- - - - Getting Started</option>
+                            <option value="18">- - - - Computers</option>
+                            <option value="29">- - - - More to Explore</option>
+                            <option value="30">- - - - TV &amp; Video</option>
+                            <option value="31">- - - - Audio &amp; Theater</option>
+                            <option value="32">- - - - Camera, Photo </option>
+                            <option value="33">- - - - Cell Phones</option>
+                            <option value="34">- - - - Headphones</option>
+                            <option value="35">- - - - Video Games</option>
+                            <option value="36">- - - - Wireless Speakers</option>
+                            <option value="19">- - - - Electronics</option>
+                            <option value="37">- - - - Amazon Home</option>
+                            <option value="38">- - - - Kitchen &amp; Dining</option>
+                            <option value="39">- - - - Furniture</option>
+                            <option value="40">- - - - Bed &amp; Bath</option>
+                            <option value="41">- - - - Appliances</option>
                             <option value="11">TV &amp; Audio</option>
-                            <option value="42">- -  Chamcham</option>
-                            <option value="45">- - - -  Office</option>
-                            <option value="47">- - - -  Gaming</option>
-                            <option value="48">- - - -  Chromebook</option>
-                            <option value="49">- - - -  Refurbished</option>
-                            <option value="50">- - - -  Touchscreen</option>
-                            <option value="51">- - - -  Ultrabooks</option>
-                            <option value="52">- - - -  Blouses</option>
-                            <option value="43">- -  Sanai</option>
-                            <option value="53">- - - -  Hard Drives</option>
-                            <option value="54">- - - -  Graphic Cards</option>
-                            <option value="55">- - - -  Processors (CPU)</option>
-                            <option value="56">- - - -  Memory</option>
-                            <option value="57">- - - -  Motherboards</option>
-                            <option value="58">- - - -  Fans &amp; Cooling</option>
-                            <option value="59">- - - -  CD/DVD Drives</option>
-                            <option value="44">- -  Meito</option>
-                            <option value="60">- - - -  Sound Cards</option>
-                            <option value="61">- - - -  Cases &amp; Towers</option>
-                            <option value="62">- - - -  Casual Dresses</option>
-                            <option value="63">- - - -  Evening Dresses</option>
-                            <option value="64">- - - -  T-shirts</option>
-                            <option value="65">- - - -  Tops</option>
+                            <option value="42">- - Chamcham</option>
+                            <option value="45">- - - - Office</option>
+                            <option value="47">- - - - Gaming</option>
+                            <option value="48">- - - - Chromebook</option>
+                            <option value="49">- - - - Refurbished</option>
+                            <option value="50">- - - - Touchscreen</option>
+                            <option value="51">- - - - Ultrabooks</option>
+                            <option value="52">- - - - Blouses</option>
+                            <option value="43">- - Sanai</option>
+                            <option value="53">- - - - Hard Drives</option>
+                            <option value="54">- - - - Graphic Cards</option>
+                            <option value="55">- - - - Processors (CPU)</option>
+                            <option value="56">- - - - Memory</option>
+                            <option value="57">- - - - Motherboards</option>
+                            <option value="58">- - - - Fans &amp; Cooling</option>
+                            <option value="59">- - - - CD/DVD Drives</option>
+                            <option value="44">- - Meito</option>
+                            <option value="60">- - - - Sound Cards</option>
+                            <option value="61">- - - - Cases &amp; Towers</option>
+                            <option value="62">- - - - Casual Dresses</option>
+                            <option value="63">- - - - Evening Dresses</option>
+                            <option value="64">- - - - T-shirts</option>
+                            <option value="65">- - - - Tops</option>
                             <option value="12">Smartphone</option>
-                            <option value="66">- -  Camera Accessories</option>
-                            <option value="68">- - - -  Octa Core</option>
-                            <option value="69">- - - -  Quad Core</option>
-                            <option value="70">- - - -  Dual Core</option>
-                            <option value="71">- - - -  7.0 Screen</option>
-                            <option value="72">- - - -  9.0 Screen</option>
-                            <option value="73">- - - -  Bags &amp; Cases</option>
-                            <option value="67">- -  XailStation</option>
-                            <option value="74">- - - -  Batteries</option>
-                            <option value="75">- - - -  Microphones</option>
-                            <option value="76">- - - -  Stabilizers</option>
-                            <option value="77">- - - -  Video Tapes</option>
-                            <option value="78">- - - -  Memory Card Readers</option>
-                            <option value="79">- - - -  Tripods</option>
+                            <option value="66">- - Camera Accessories</option>
+                            <option value="68">- - - - Octa Core</option>
+                            <option value="69">- - - - Quad Core</option>
+                            <option value="70">- - - - Dual Core</option>
+                            <option value="71">- - - - 7.0 Screen</option>
+                            <option value="72">- - - - 9.0 Screen</option>
+                            <option value="73">- - - - Bags &amp; Cases</option>
+                            <option value="67">- - XailStation</option>
+                            <option value="74">- - - - Batteries</option>
+                            <option value="75">- - - - Microphones</option>
+                            <option value="76">- - - - Stabilizers</option>
+                            <option value="77">- - - - Video Tapes</option>
+                            <option value="78">- - - - Memory Card Readers</option>
+                            <option value="79">- - - - Tripods</option>
                             <option value="13">Cameras</option>
                             <option value="14">headphone</option>
                             <option value="15">Smartwatch</option>
@@ -184,61 +186,62 @@
                             </li>
                             <!-- Header Middle Wishlist Area End Here -->
                             <!-- Begin Header Mini Cart Area -->
-                            <li class="hm-minicart">
+                            @if(!Request::is('cart'))
+                            <a href="{{ route('cart.index') }}" class="hm-minicart">
+
                                 <div class="hm-minicart-trigger">
                                     <span class="item-icon"></span>
                                     @php
                                         $total = 0;
                                         $cart = session()->get('cart', []);
                                     @endphp
-                                    @foreach($cart as $productId => $item)
-                                    @php
-                                        if ($item['discount_price'] > 0) {
-                                            $total += $item['discount_price'] * $item['qty'];
-                                        }
-                                        else {
-                                            $total += $item['price'] * $item['qty'];
-                                        }
-                                    @endphp
+                                    @foreach ($cart as $productId => $item)
+                                        @php
+                                            if ($item['discount_price'] > 0) {
+                                                $total += $item['discount_price'] * $item['qty'];
+                                            } else {
+                                                $total += $item['price'] * $item['qty'];
+                                            }
+                                        @endphp
                                     @endforeach
-                                    <span
-
-                                    class="item-text">${{ number_format($total,2) }}
-                                        <span id="total-items-cart" class="cart-item-count">{{ count(session()->get('cart',[])) }}</span>
+                                    <span class="item-text">
+                                        <span id="total-items-cart"
+                                            class="cart-item-count">{{ count(session()->get('cart', [])) }}</span>
                                     </span>
                                 </div>
                                 <span></span>
-
                                 {{-- <div class="minicart">
                                     <ul class="minicart-product-list">
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="{{ asset('assets/client/images/product/small-size/5.jpg') }}" alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>£40 x 1</span>
-                                            </div>
-                                            <button class="close" title="Remove">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="{{ asset('assets/client/images/product/small-size/6.jpg') }}" alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>£40 x 1</span>
-                                            </div>
-                                            <button class="close" title="Remove">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
+                                        @foreach ($cart as $productId => $item)
+                                            <li id="{{ $productId }}">
+                                                <a href="single-product.html" class="minicart-product-image">
+                                                    <img id="product-image" src="{{ $item['image'] }}" alt="{{ $item['image'] }}">
+                                                </a>
+                                                <div class="minicart-product-details">
+                                                    <h6><a id="product-name" href="single-product.html">{{ $item['name'] }}</a></h6>
+                                                    @if ($item['discount_price'] > 0)
+                                                        <span
+                                                            id="product-discount-price">${{ number_format($item['discount_price'],2) }}
+                                                            x <span id="product-qty">{{ $item['qty'] }}</span>
+                                                        </span>
+                                                    @else
+                                                        <span id="product-price">${{ number_format($item['price'],2) }}
+                                                            x <span id="product-qty">{{ $item['qty'] }}</span>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                <button class="close" title="Remove">
+                                                    <i class="fa fa-close"></i>
+                                                </button>
+                                            </li>
+                                        @endforeach
+
                                     </ul>
-                                    <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                    <p class="minicart-total">SUBTOTAL: <span
+                                            id="total-price-cart">${{ number_format($total, 2) }}</span></p>
                                     <div class="minicart-button">
-                                        <a href="{{ route('cart.index') }}" class="li-button li-button-fullwidth li-button-dark">
+                                        <a href="{{ route('cart.index') }}"
+                                            class="li-button li-button-fullwidth li-button-dark">
                                             <span>View Full Cart</span>
                                         </a>
                                         <a href="{{ route('checkout') }}" class="li-button li-button-fullwidth">
@@ -246,7 +249,8 @@
                                         </a>
                                     </div>
                                 </div> --}}
-                            </li>
+                            </a>
+                            @endif
                             <!-- Header Mini Cart Area End Here -->
                         </ul>
                     </div>
@@ -277,18 +281,26 @@
                                                 <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
                                                 <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
                                                 <li><a href="shop-list.html">Shop List</a></li>
-                                                <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                                <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
+                                                <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a>
+                                                </li>
+                                                <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li><a href="single-product-gallery-left.html">Single Product Style</a>
                                             <ul>
-                                                <li><a href="single-product-carousel.html">Single Product Carousel</a></li>
-                                                <li><a href="single-product-gallery-left.html">Single Product Gallery Left</a></li>
-                                                <li><a href="single-product-gallery-right.html">Single Product Gallery Right</a></li>
-                                                <li><a href="single-product-tab-style-top.html">Single Product Tab Style Top</a></li>
-                                                <li><a href="single-product-tab-style-left.html">Single Product Tab Style Left</a></li>
-                                                <li><a href="single-product-tab-style-right.html">Single Product Tab Style Right</a></li>
+                                                <li><a href="single-product-carousel.html">Single Product Carousel</a>
+                                                </li>
+                                                <li><a href="single-product-gallery-left.html">Single Product Gallery
+                                                        Left</a></li>
+                                                <li><a href="single-product-gallery-right.html">Single Product Gallery
+                                                        Right</a></li>
+                                                <li><a href="single-product-tab-style-top.html">Single Product Tab
+                                                        Style Top</a></li>
+                                                <li><a href="single-product-tab-style-left.html">Single Product Tab
+                                                        Style Left</a></li>
+                                                <li><a href="single-product-tab-style-right.html">Single Product Tab
+                                                        Style Right</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="single-product.html">Single Products</a>
@@ -297,14 +309,16 @@
                                                 <li><a href="single-product-sale.html">Single Product Sale</a></li>
                                                 <li><a href="single-product-group.html">Single Product Group</a></li>
                                                 <li><a href="single-product-normal.html">Single Product Normal</a></li>
-                                                <li><a href="single-product-affiliate.html">Single Product Affiliate</a></li>
+                                                <li><a href="single-product-affiliate.html">Single Product
+                                                        Affiliate</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown-holder"><a href="blog-left-sidebar.html">Blog</a>
                                     <ul class="hb-dropdown">
-                                        <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid View</a>
+                                        <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid
+                                                View</a>
                                             <ul class="hb-dropdown hb-sub-dropdown">
                                                 <li><a href="blog-2-column.html">Blog 2 Column</a></li>
                                                 <li><a href="blog-3-column.html">Blog 3 Column</a></li>
@@ -312,20 +326,23 @@
                                                 <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
                                             </ul>
                                         </li>
-                                        <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List View</a>
+                                        <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog
+                                                List View</a>
                                             <ul class="hb-dropdown hb-sub-dropdown">
                                                 <li><a href="blog-list.html">Blog List</a></li>
                                                 <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
                                                 <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
                                             </ul>
                                         </li>
-                                        <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog Details</a>
+                                        <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog
+                                                Details</a>
                                             <ul class="hb-dropdown hb-sub-dropdown">
                                                 <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
                                                 <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
                                             </ul>
                                         </li>
-                                        <li class="sub-dropdown-holder"><a href="blog-gallery-format.html">Blog Format</a>
+                                        <li class="sub-dropdown-holder"><a href="blog-gallery-format.html">Blog
+                                                Format</a>
                                             <ul class="hb-dropdown hb-sub-dropdown">
                                                 <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
                                                 <li><a href="blog-video-format.html">Blog Video Format</a></li>
@@ -399,5 +416,3 @@
     </div>
     <!-- Mobile Menu Area End Here -->
 </header>
-
-

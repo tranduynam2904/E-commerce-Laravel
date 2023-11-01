@@ -2541,11 +2541,14 @@
                                                         href="single-product.html">{{ $vrProduct->name }}</a></h4>
                                                 <div class="price-box">
 
-                                                    @if($vrProduct->discount_price > 0)
-                                                    <span class="new-price">${{ number_format($vrProduct->discount_price,2) }}</span>
-                                                    <span class="old-price">${{ number_format($vrProduct->price,2) }}</span>
+                                                    @if ($vrProduct->discount_price > 0)
+                                                        <span
+                                                            class="new-price">${{ number_format($vrProduct->discount_price, 2) }}</span>
+                                                        <span
+                                                            class="old-price">${{ number_format($vrProduct->price, 2) }}</span>
                                                     @else
-                                                    <span class="new-price">${{ number_format($vrProduct->price,2) }}</span>
+                                                        <span
+                                                            class="new-price">${{ number_format($vrProduct->price, 2) }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -2593,10 +2596,7 @@
                             // title: 'Notification',
                             text: response.message,
                         });
-                        $('#total-items-cart').html(response.total_items);
-                        $('#total-price-cart').html('$' + response.total_price.toFixed(2)
-                            .replace(
-                                /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+                        reloadView(response);
                     },
                     statusCode: {
                         401: function() {
@@ -2609,8 +2609,22 @@
                             });
                         },
                     },
+
                 });
             });
+            function reloadView(response) {
+                console.log(response);
+                // $('#product-image').html(response.product_image);
+                // $('#product-discount-price').html(response.product_discount_price);
+                // $('#product-price').html(response.product_price);
+                // $('#product-name').html(response.product_name);
+                // $('#product-qty').html(response.product_qty);
+                $('#total-items-cart').html(response.total_items);
+                $('#total-price-cart').html('$' + response.total_price.toFixed(2)
+                    .replace(
+                        /(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            }
+
         });
     </script>
 @endsection
