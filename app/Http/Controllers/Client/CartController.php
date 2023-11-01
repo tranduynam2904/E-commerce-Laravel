@@ -57,20 +57,13 @@ class CartController extends Controller
     public function deleteItem($productId)
     {
         $cart = session()->get('cart', []);
-        // dd($cart);
         if (array_key_exists($productId, $cart)) {
             unset($cart[$productId]);
             session()->put('cart', $cart);
         }
-        // $total_qty = 0;
-        // foreach ($cart as $item) {
-        //     $total_qty += $item['qty'];
-        // }
         $notification = [
             'message' => 'Delete item success',
-            // 'total_qty' => $total_qty,
         ];
-
         return response()->json($notification);
     }
 

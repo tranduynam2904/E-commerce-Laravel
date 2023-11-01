@@ -37,8 +37,6 @@
                         <li class="active"><a href="{{ route('admin.permission.index') }}"><i class="fa fa-table"></i>
                                 <span>Permissions</span></a></li>
                     @endif
-
-
                 </ul>
             </nav>
         </div>

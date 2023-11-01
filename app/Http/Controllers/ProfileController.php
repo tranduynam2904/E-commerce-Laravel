@@ -52,6 +52,9 @@ class ProfileController extends Controller
     public function updatePhone(UpdatePhoneRequest $request): RedirectResponse
     {
         event(new UpdatePhoneEvent($request));
+        if ($request->phone == Auth::user()->phone) {
+            return Redirect::route('profile.edit')->with('message', 'Nothing to update');
+        }
         return Redirect::route('profile.phone.verifyOtp');
     }
     public function verifyOtp(OtpRequest $request)
@@ -79,16 +82,11 @@ class ProfileController extends Controller
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
-
         $user = $request->user();
-
         Auth::logout();
-
         $user->delete();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return Redirect::to('/');
     }
 
@@ -98,12 +96,14 @@ class ProfileController extends Controller
     }
     public function verifyPassword()
     {
+        if (Hash::check('123456dummy', Auth::user()->password)) {
+            return Redirect::route('profile.new-password');
+        }
         return view('auth.verify-password');
     }
     public function verifyPasswordStore(Request $request)
     {
-        if (Auth::check() && Hash::check("$request->current_password", Auth::user()->password
-        )) {
+        if (Auth::check() && Hash::check("$request->current_password", Auth::user()->password)) {
             return Redirect::route('profile.new-password');
         }
         return Redirect::route('profile.verify-password')->with('message', 'Wrong Password');
